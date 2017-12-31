@@ -4,6 +4,7 @@
   "private": true,
   "homepage": "http://zlargon.github.io/mbta-wellington",
   "dependencies": {
+    "co": "^4.6.0",
     "material-ui": "^1.0.0-beta.25",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
