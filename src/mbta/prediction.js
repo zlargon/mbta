@@ -6,7 +6,7 @@ module.exports = function (stop_id, direction_id) {
   const url = `https://api-v3.mbta.com/predictions?`
             + `filter[stop]=${stop_id}&`
             + `filter[direction_id]=${direction_id}&`
-            + `sort=arrival_time&`
+            + `sort=departure_time&`
             + `api_key=${api_key}`;
 
   return fetch(url)
