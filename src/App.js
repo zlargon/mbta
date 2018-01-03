@@ -21,11 +21,17 @@ class App extends React.Component {
       currentTime: new Date(),
       schedules: [
         {
-          isFailed: false,
           title: 'Wellington → Forest Hills',
-          url: 'https://www.mbta.com/schedules/Orange/schedule?direction_id=0&origin=place-welln',
-          stop_id: 'place-welln',       // Wellington: place-welln, Malden Center: place-mlmnl
-          direction_id: 0,              // 0: Southbound, 1: Northbound
+          stop_id: 'place-welln', // Wellington: place-welln, Malden Center: place-mlmnl
+          direction_id: 0,        // 0: Southbound, 1: Northbound
+          isFailed: false,
+          departureTime: []
+        },
+        {
+          title: 'Ruggles → Oak Grove',
+          stop_id: 'place-rugg',
+          direction_id: 1,
+          isFailed: false,
           departureTime: []
         }
       ]
@@ -74,7 +80,8 @@ class App extends React.Component {
   }
 
   getList(schedule, schedule_id) {
-    const link = <a href={schedule.url}>{schedule.url}</a>;
+    const url = `https://www.mbta.com/schedules/Orange/schedule?direction_id=${schedule.direction_id}&origin=${schedule.stop_id}`;
+    const link = <a href={url}>{url}</a>;
 
     if (schedule.departureTime.length === 0) {
 
