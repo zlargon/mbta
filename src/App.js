@@ -42,11 +42,12 @@ class App extends React.Component {
 
     this.updateTime();
     setInterval(() => {
-      if (new Date().getSeconds() % 10 !== 0) {
-        // update current time
-        this.setState({ currentTime: new Date() });
-      } else {
+      if (new Date().getSeconds() % 10 === 0) {
+        // update data every 10 sec
         this.updateTime();
+      } else {
+        // update current time every 1 sec
+        this.setState({ currentTime: new Date() });
       }
     }, 1000);
   }
@@ -93,43 +94,30 @@ class App extends React.Component {
       ];
     }
 
-    try {
+    // 2. Departure Time
+    const list = [];
+    for (let i = 0; i < schedule.departureTime.length; i++) {
+      const departureTime = schedule.departureTime[i];
 
-      // 2. Arrival Time
-      const list = [];
-      for (let i = 0; i < schedule.departureTime.length; i++) {
-        const time = schedule.departureTime[i];
-
-        if (time.getTime() === 0) {
-          console.log(schedule.departureTime);
-          throw new Error();
-        }
-
-        const t = new Date(time - this.state.currentTime);
-        const MM = t.getMinutes() === 0 ? '' : (t.getMinutes() + 'm ');
-        const SS = t.getSeconds() + 's';
-
-        list.push(
-          <ListItem key={schedule_id + '-time-' + i}>
-            <ListItemText
-              primary={time.toLocaleTimeString()}
-              secondary={MM + SS}
-            />
-          </ListItem>
-        );
+      // train has left
+      if (departureTime - this.state.currentTime <= 0) {
+        continue;
       }
-      return list;
 
-    } catch (e) {
+      const t = new Date(departureTime - this.state.currentTime);
+      const MM = t.getMinutes() === 0 ? '' : (t.getMinutes() + 'm ');
+      const SS = t.getSeconds() + 's';
 
-      // 3. Error
-      const msg = 'There have some problems to Orange Line. Please check it on MBTA website.';
-      return [
-        <ListItem key={schedule_id + '-time-0'}>
-         <ListItemText primary={msg} secondary={link} />
-       </ListItem>
-      ];
+      list.push(
+        <ListItem key={schedule_id + '-time-' + i}>
+          <ListItemText
+            primary={departureTime.toLocaleTimeString()}
+            secondary={MM + SS}
+          />
+        </ListItem>
+      );
     }
+    return list;
   }
 
   render() {
