@@ -1,13 +1,17 @@
 import React from 'react';
 import co from 'co';
 
-// Material UI
-import AppBar from 'material-ui/AppBar';
-import Toolbar from 'material-ui/Toolbar';
-import Typography from 'material-ui/Typography';
-import ListSubheader from 'material-ui/List/ListSubheader';
-import List, { ListItem, ListItemText } from 'material-ui/List';
-import Divider from 'material-ui/Divider';
+// AppBar
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
+
+// List
+import ListSubheader from '@material-ui/core/ListSubheader';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
+import Divider from '@material-ui/core/Divider';
 
 // MBTA
 import prediction from './mbta/prediction';
@@ -109,7 +113,8 @@ class App extends React.Component {
       const SS = t.getSeconds() + 's';
 
       list.push(
-        <ListItem key={schedule_id + '-time-' + i}>
+        <ListItem key={schedule_id + '-time-' + i}
+          style={{ textAlign: 'center' }}>
           <ListItemText
             primary={departureTime.toLocaleTimeString()}
             secondary={MM + SS}
@@ -128,7 +133,7 @@ class App extends React.Component {
             <a href='https://www.mbta.com/schedules/Orange/schedule'>
               <img alt='' src={logo} style={{ height: '30px', width: '30px', marginRight: '-30px' }}/>
             </a>
-            <Typography type="title" color="inherit" style={{ margin: 'auto'}}>
+            <Typography type="title" color="inherit" style={{ margin: 'auto', fontSize: '20px'}}>
               {this.state.currentTime.toLocaleTimeString()}
             </Typography>
           </Toolbar>
