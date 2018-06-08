@@ -6,6 +6,9 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 
+// Panels
+import Settings from './Settings';
+import Search from './Search';
 import ScheduleList from './ScheduleList';
 
 // BottomNavigation
@@ -15,7 +18,7 @@ import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
 // Icon
 import RestoreIcon from '@material-ui/icons/Restore';
 import FavoriteIcon from '@material-ui/icons/Favorite';
-import LocationOnIcon from '@material-ui/icons/LocationOn';
+import SettingsIcon from '@material-ui/icons/Settings';
 
 // MBTA
 import prediction from './mbta/prediction';
@@ -26,7 +29,7 @@ class App extends React.Component {
     super(props);
 
     this.state = {
-      panel: 0,
+      panel: 1,
       currentTime: new Date(),
       schedules: [
         {
@@ -61,9 +64,9 @@ class App extends React.Component {
     }, 1000);
   }
 
-  panelChange = (event, value) => {
+  panelChange = (event, panelNumber) => {
     this.setState({
-      panel: value
+      panel: panelNumber
     });
   };
 
@@ -96,6 +99,27 @@ class App extends React.Component {
   }
 
   render() {
+    let toolBarTitle;
+    let bodyPanel;
+    switch (this.state.panel) {
+      case 0:
+        toolBarTitle = 'Search';
+        bodyPanel = <Search/>;
+        break;
+
+      case 1:
+        toolBarTitle = this.state.currentTime.toLocaleTimeString();
+        bodyPanel = <ScheduleList
+          schedules={this.state.schedules}
+          currentTime={this.state.currentTime}/>
+        break;
+
+      case 2:
+        toolBarTitle = 'Settings';
+        bodyPanel = <Settings/>;
+        break;
+    }
+
     return (
       <div style={{ textAlign: 'center' }}>
         <AppBar position="sticky" style={{backgroundColor: '#FF9800', color: 'black'}}>
@@ -103,16 +127,14 @@ class App extends React.Component {
             <a href='https://www.mbta.com/schedules/Orange/schedule'>
               <img alt='' src={logo} style={{ height: '30px', width: '30px', marginRight: '-30px' }}/>
             </a>
-            <Typography type="title" color="inherit" style={{ margin: 'auto', fontSize: '20px'}}>
-              {this.state.currentTime.toLocaleTimeString()}
+            <Typography type="title" color="inherit" style={{ margin: 'auto', fontSize: '20px', fontWeight: 'bold'}}>
+              {toolBarTitle}
             </Typography>
           </Toolbar>
         </AppBar>
 
         <div style={{ marginTop: '-5px', marginBottom: '45px' }}>
-          <ScheduleList
-            schedules={this.state.schedules}
-            currentTime={this.state.currentTime}/>
+          { bodyPanel }
         </div>
 
         <BottomNavigation
@@ -121,9 +143,9 @@ class App extends React.Component {
           showLabels
           style={{ position: 'fixed', bottom: 0, width: '100%', backgroundColor: 'WhiteSmoke' }}
         >
-          <BottomNavigationAction label="Recents" icon={<RestoreIcon />} />
+          <BottomNavigationAction label="Search" icon={<RestoreIcon />} />
           <BottomNavigationAction label="Favorites" icon={<FavoriteIcon />} />
-          <BottomNavigationAction label="Nearby" icon={<LocationOnIcon />} />
+          <BottomNavigationAction label="Settings" icon={<SettingsIcon />} />
         </BottomNavigation>
       </div>
     );
