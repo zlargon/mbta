@@ -1,8 +1,8 @@
 {
-  "name": "mbta-wellington",
+  "name": "mbta",
   "version": "0.1.0",
   "private": true,
-  "homepage": "http://zlargon.github.io/mbta-wellington",
+  "homepage": "http://zlargon.github.io/mbta",
   "dependencies": {
     "@material-ui/core": "^1.2.0",
     "@material-ui/icons": "^1.1.0",
