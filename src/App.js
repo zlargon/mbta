@@ -13,6 +13,15 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import Divider from '@material-ui/core/Divider';
 
+// BottomNavigation
+import BottomNavigation from '@material-ui/core/BottomNavigation';
+import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
+
+// Icon
+import RestoreIcon from '@material-ui/icons/Restore';
+import FavoriteIcon from '@material-ui/icons/Favorite';
+import LocationOnIcon from '@material-ui/icons/LocationOn';
+
 // MBTA
 import prediction from './mbta/prediction';
 import logo from './logo.png';
@@ -22,6 +31,7 @@ class App extends React.Component {
     super(props);
 
     this.state = {
+      panel: 0,
       currentTime: new Date(),
       schedules: [
         {
@@ -55,6 +65,12 @@ class App extends React.Component {
       }
     }, 1000);
   }
+
+  panelChange = (event, value) => {
+    this.setState({
+      panel: value
+    });
+  };
 
   updateTime() {
     const self = this;
@@ -152,6 +168,17 @@ class App extends React.Component {
             })
           }
         </List>
+
+        <BottomNavigation
+          value={this.state.panel}
+          onChange={this.panelChange}
+          showLabels
+          style={{ position: 'fixed', bottom: 0, width: '100%', backgroundColor: 'WhiteSmoke' }}
+        >
+          <BottomNavigationAction label="Recents" icon={<RestoreIcon />} />
+          <BottomNavigationAction label="Favorites" icon={<FavoriteIcon />} />
+          <BottomNavigationAction label="Nearby" icon={<LocationOnIcon />} />
+        </BottomNavigation>
       </div>
     );
   }
