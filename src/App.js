@@ -6,12 +6,7 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 
-// List
-import ListSubheader from '@material-ui/core/ListSubheader';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
-import Divider from '@material-ui/core/Divider';
+import ScheduleList from './ScheduleList';
 
 // BottomNavigation
 import BottomNavigation from '@material-ui/core/BottomNavigation';
@@ -100,51 +95,10 @@ class App extends React.Component {
     .catch(console.error);
   }
 
-  getList(schedule, schedule_id) {
-    const url = `https://www.mbta.com/schedules/Orange/schedule?direction_id=${schedule.direction_id}&origin=${schedule.stop_id}`;
-    const link = <a href={url}>{url}</a>;
-
-    if (schedule.departureTime.length === 0) {
-
-      // 1. No Data
-      return [
-        <ListItem key={schedule_id + '-time-0'}>
-          <ListItemText primary='No Data' secondary={link} />
-        </ListItem>
-      ];
-    }
-
-    // 2. Departure Time
-    const list = [];
-    for (let i = 0; i < schedule.departureTime.length; i++) {
-      const departureTime = schedule.departureTime[i];
-
-      // train has left
-      if (departureTime - this.state.currentTime <= 0) {
-        continue;
-      }
-
-      const t = new Date(departureTime - this.state.currentTime);
-      const MM = t.getMinutes() === 0 ? '' : (t.getMinutes() + 'm ');
-      const SS = t.getSeconds() + 's';
-
-      list.push(
-        <ListItem key={schedule_id + '-time-' + i}
-          style={{ textAlign: 'center' }}>
-          <ListItemText
-            primary={departureTime.toLocaleTimeString()}
-            secondary={MM + SS}
-          />
-        </ListItem>
-      );
-    }
-    return list;
-  }
-
   render() {
     return (
       <div style={{ textAlign: 'center' }}>
-        <AppBar position="static" style={{backgroundColor: '#FF9800', color: 'black'}}>
+        <AppBar position="sticky" style={{backgroundColor: '#FF9800', color: 'black'}}>
           <Toolbar>
             <a href='https://www.mbta.com/schedules/Orange/schedule'>
               <img alt='' src={logo} style={{ height: '30px', width: '30px', marginRight: '-30px' }}/>
@@ -154,20 +108,12 @@ class App extends React.Component {
             </Typography>
           </Toolbar>
         </AppBar>
-        <List>
-          {
-            this.state.schedules.map((sch, index) => {
-              const id = 'sch-' + index;
-              const list = this.getList(sch, id);
-              list.unshift(
-                <ListSubheader key={id} style={{ backgroundColor: 'white' }}>
-                  {sch.title + (sch.isFailed ? ' (Update Failed)' : '')}
-                </ListSubheader>);
-              list.push(<Divider key={id + '-divider'}/>);
-              return list;
-            })
-          }
-        </List>
+
+        <div style={{ marginTop: '-5px', marginBottom: '45px' }}>
+          <ScheduleList
+            schedules={this.state.schedules}
+            currentTime={this.state.currentTime}/>
+        </div>
 
         <BottomNavigation
           value={this.state.panel}
