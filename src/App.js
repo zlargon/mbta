@@ -1,10 +1,14 @@
 import React from 'react';
 import co from 'co';
 
+// Drawer
+import Drawer from '@material-ui/core/Drawer';
+
 // AppBar
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
+import IconButton from '@material-ui/core/IconButton';
 
 // Panels
 import Settings from './Settings';
@@ -30,6 +34,7 @@ class App extends React.Component {
 
     this.state = {
       panel: 1,
+      drawer: false,
       currentTime: new Date(),
       schedules: [
         {
@@ -67,6 +72,12 @@ class App extends React.Component {
   panelChange = (event, panelNumber) => {
     this.setState({
       panel: panelNumber
+    });
+  };
+
+  toggleDrawer = (open) => () => {
+    this.setState({
+      drawer: open,
     });
   };
 
@@ -122,14 +133,27 @@ class App extends React.Component {
 
     return (
       <div style={{ textAlign: 'center' }}>
+
+        <Drawer open={this.state.drawer} onClose={this.toggleDrawer(false)}>
+          <div style={{ width: '100px', padding: '20px' }}>
+            Settings
+          </div>
+        </Drawer>
+
         <AppBar position="sticky" style={{backgroundColor: '#FF9800', color: 'black'}}>
           <Toolbar>
-            <a href='https://www.mbta.com/schedules/Orange/schedule'>
-              <img alt='' src={logo} style={{ height: '30px', width: '30px', marginRight: '-30px' }}/>
-            </a>
+
+            <IconButton color="inherit" onClick={this.toggleDrawer(true)}>
+              <SettingsIcon />
+            </IconButton>
+
             <Typography type="title" color="inherit" style={{ margin: 'auto', fontSize: '20px', fontWeight: 'bold'}}>
               {toolBarTitle}
             </Typography>
+
+            <a href='https://www.mbta.com/schedules/Orange/schedule'>
+              <img alt='' src={logo} style={{ height: '30px', width: '30px' }}/>
+            </a>
           </Toolbar>
         </AppBar>
 
