@@ -55,9 +55,10 @@ class ScheduleList extends React.Component {
   }
 
   render() {
+    const { style } = this.props;
 
     return (
-      <List>
+      <List style={style}>
         {
           this.props.schedules.map((sch, index) => {
             const id = 'sch-' + index;

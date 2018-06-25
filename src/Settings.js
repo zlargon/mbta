@@ -2,8 +2,10 @@ import React from 'react';
 
 class Settings extends React.Component {
   render () {
+    const { style } = this.props;
+
     return (
-      <div style={{ border: '1px solid red' }}>
+      <div style={style}>
       </div>
     );
   }

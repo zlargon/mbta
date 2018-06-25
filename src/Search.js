@@ -44,6 +44,7 @@ class Search extends React.Component {
   }
 
   render () {
+    const { style } = this.props;
 
     const list = [];
     for (let route of Routes) {
@@ -102,7 +103,7 @@ class Search extends React.Component {
     }
 
     return (
-      <List component="nav">
+      <List component="nav" style={style}>
         { list }
       </List>
     );

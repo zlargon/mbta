@@ -20,6 +20,7 @@ import BottomNavigation from '@material-ui/core/BottomNavigation';
 import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
 
 // Icon
+import MenuIcon from '@material-ui/icons/Menu';
 import RestoreIcon from '@material-ui/icons/Restore';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import SettingsIcon from '@material-ui/icons/Settings';
@@ -66,20 +67,26 @@ class App extends React.Component {
         // update current time every 1 sec
         this.setState({ currentTime: new Date() });
       }
-    }, 1000);
+    }, 500);
   }
 
   panelChange = (event, panelNumber) => {
     this.setState({
       panel: panelNumber
     });
-  };
+  }
 
   toggleDrawer = (open) => () => {
     this.setState({
       drawer: open,
     });
-  };
+  }
+
+  showPanel = (panelNumber) => {
+    if (panelNumber !== this.state.panel) {
+      return { display: 'none' };
+    }
+  }
 
   updateTime() {
     const self = this;
@@ -109,25 +116,19 @@ class App extends React.Component {
     .catch(console.error);
   }
 
-  render() {
+  render () {
     let toolBarTitle;
-    let bodyPanel;
     switch (this.state.panel) {
       case 0:
         toolBarTitle = 'Search';
-        bodyPanel = <Search/>;
         break;
 
       case 1:
         toolBarTitle = this.state.currentTime.toLocaleTimeString();
-        bodyPanel = <ScheduleList
-          schedules={this.state.schedules}
-          currentTime={this.state.currentTime}/>
         break;
 
       case 2:
         toolBarTitle = 'Settings';
-        bodyPanel = <Settings/>;
         break;
     }
 
@@ -144,7 +145,7 @@ class App extends React.Component {
           <Toolbar>
 
             <IconButton color="inherit" onClick={this.toggleDrawer(true)}>
-              <SettingsIcon />
+              <MenuIcon />
             </IconButton>
 
             <Typography type="title" color="inherit" style={{ margin: 'auto', fontSize: '20px', fontWeight: 'bold'}}>
@@ -158,7 +159,17 @@ class App extends React.Component {
         </AppBar>
 
         <div style={{ marginTop: '-5px', marginBottom: '45px' }}>
-          { bodyPanel }
+          {/* Panel 0 */}
+          <Search style={this.showPanel(0)}/>
+
+          {/* Panel 1 */}
+          <ScheduleList
+            style={this.showPanel(1)}
+            schedules={this.state.schedules}
+            currentTime={this.state.currentTime}/>
+
+          {/* Panel 2 */}
+          <Settings style={this.showPanel(2)}/>
         </div>
 
         <BottomNavigation
