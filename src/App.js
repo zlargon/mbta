@@ -33,36 +33,47 @@ class App extends React.Component {
   constructor(props) {
     super(props);
 
+    // get select from localStorage
+    let select = null;
+    try {
+      select = JSON.parse(localStorage.getItem('select'));
+    } catch (e) {
+
+    }
+    if (select === null) {
+      select = {};
+    }
+
+    // generate schedules
+    const schedules = [];
+    for (let stop_direct in select) {
+      const stop_id = stop_direct.split('_')[0];
+      const direct_id = Number.parseInt(stop_direct.split('_')[1]);
+
+      schedules.push({
+        title: select[stop_direct],
+        stop_id: stop_id,
+        direction_id: direct_id,
+        isFailed: false,
+        departureTime: []
+      });
+    }
+
     this.state = {
       panel: 1,
       drawer: false,
+      select: select,
       currentTime: new Date(),
-      schedules: [
-        {
-          title: 'Wellington → Forest Hills',
-          stop_id: 'place-welln', // Wellington: place-welln, Malden Center: place-mlmnl
-          direction_id: 0,        // 0: Southbound, 1: Northbound
-          isFailed: false,
-          departureTime: []
-        },
-        {
-          title: 'Ruggles → Oak Grove',
-          stop_id: 'place-rugg',
-          direction_id: 1,
-          isFailed: false,
-          departureTime: []
-        }
-      ]
+      schedules: schedules
     }
 
-    this.updateTime = this.updateTime.bind(this);
     this.render = this.render.bind(this);
 
-    this.updateTime();
+    this.updateSchedule();
     setInterval(() => {
       if (new Date().getSeconds() % 10 === 0) {
         // update data every 10 sec
-        this.updateTime();
+        this.updateSchedule();
       } else {
         // update current time every 1 sec
         this.setState({ currentTime: new Date() });
@@ -88,33 +99,62 @@ class App extends React.Component {
     }
   }
 
-  updateTime() {
-    const self = this;
+  selectHandler = (route, stop, direct_id) => () => {
+    const select = Object.assign({}, this.state.select);
+    const key = stop.id + '_' + direct_id;
 
-    co(function * () {
-      const schedules = [];
-      for (let i = 0; i < self.state.schedules.length; i++) {
-        const sch = Object.assign({}, self.state.schedules[i]);
-        try {
-          sch.departureTime = yield prediction(sch.stop_id, sch.direction_id);
-          sch.isFailed = false;
-        } catch (e) {
-          sch.isFailed = true;
-        }
+    if (select[key]) {
+      delete select[key];
+    } else {
+      select[key] = `${stop.name} (${route.direction[direct_id]})`;
+    }
 
-        schedules.push(sch);
+    // save to location storage
+    localStorage.setItem('select', JSON.stringify(select));
+    console.log(localStorage.select);
+
+    this.updateSchedule()
+      .catch(console.error);
+  }
+
+  updateSchedule = co.wrap(function * () {
+    const select = JSON.parse(localStorage.getItem('select'));
+
+    // update schedules
+    const schedules = [];
+    for (let key in select) {
+
+      const stop_id = key.split('_')[0];
+      const direct_id = Number.parseInt(key.split('_')[1]);
+
+      schedules.push({
+        title: select[key],
+        stop_id: stop_id,
+        direction_id: direct_id,
+        isFailed: false,
+        departureTime: []
+      });
+    }
+
+    const newSchedules = [];
+    for (let i = 0; i < schedules.length; i++) {
+      const sch = Object.assign({}, schedules[i]);
+      try {
+        sch.departureTime = yield prediction(sch.stop_id, sch.direction_id);
+        sch.isFailed = false;
+      } catch (e) {
+        sch.isFailed = true;
       }
 
-      const state = {
-        currentTime: new Date(),
-        schedules
-      };
+      newSchedules.push(sch);
+    }
 
-      console.log('success', state);
-      self.setState(state);
-    })
-    .catch(console.error);
-  }
+    this.setState({
+      currentTime: new Date(),
+      select: select,
+      schedules: newSchedules
+    });
+  })
 
   render () {
     let toolBarTitle;
@@ -160,7 +200,9 @@ class App extends React.Component {
 
         <div style={{ marginTop: '-5px', marginBottom: '45px' }}>
           {/* Panel 0 */}
-          <Search style={this.showPanel(0)}/>
+          <Search style={this.showPanel(0)}
+            select={this.state.select}
+            onSelect={this.selectHandler}/>
 
           {/* Panel 1 */}
           <ScheduleList

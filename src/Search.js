@@ -20,8 +20,7 @@ import logo from './logo.png';
 class Search extends React.Component {
 
   state = {
-    open: [],
-    select: {}
+    open: []
   }
 
   collapseHandler = (index) => (event, target) => {
@@ -31,16 +30,6 @@ class Search extends React.Component {
     this.setState({
       open: open
     });
-  }
-
-  selectHandler = (stop_id, direction_id) => () => {
-
-    const select = Object.assign([], this.state.select);
-    select[stop_id + '_' + direction_id] = !select[stop_id + '_' + direction_id];
-
-    this.setState({
-      select: select
-    })
   }
 
   render () {
@@ -80,12 +69,12 @@ class Search extends React.Component {
 
             <ListItemText inset primary={stop.name} />
 
-
-            <IconButton onClick={this.selectHandler(stop.id, 0)}>
-              { this.state.select[stop.id + '_0'] ? <StarIcon /> : <StarBorderIcon /> }
+            <IconButton onClick={this.props.onSelect(route, stop, 0)}>
+              { this.props.select[stop.id + '_0'] ? <StarIcon /> : <StarBorderIcon /> }
             </IconButton>
-            <IconButton onClick={this.selectHandler(stop.id, 1)}>
-              { this.state.select[stop.id + '_1'] ? <StarIcon /> : <StarBorderIcon /> }
+
+            <IconButton onClick={this.props.onSelect(route, stop, 1)}>
+              { this.props.select[stop.id + '_1'] ? <StarIcon /> : <StarBorderIcon /> }
             </IconButton>
 
           </ListItem>
