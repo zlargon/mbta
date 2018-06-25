@@ -34,37 +34,19 @@ class App extends React.Component {
     super(props);
 
     // get select from localStorage
-    let select = null;
-    try {
-      select = JSON.parse(localStorage.getItem('select'));
-    } catch (e) {
-
-    }
+    let select = localStorage.getItem('select');
     if (select === null) {
-      select = {};
+      localStorage.setItem('select', '{}');
+      select = '{}';
     }
-
-    // generate schedules
-    const schedules = [];
-    for (let stop_direct in select) {
-      const stop_id = stop_direct.split('_')[0];
-      const direct_id = Number.parseInt(stop_direct.split('_')[1]);
-
-      schedules.push({
-        title: select[stop_direct],
-        stop_id: stop_id,
-        direction_id: direct_id,
-        isFailed: false,
-        departureTime: []
-      });
-    }
+    select = JSON.parse(select);
 
     this.state = {
       panel: 1,
       drawer: false,
       select: select,
       currentTime: new Date(),
-      schedules: schedules
+      schedules: []
     }
 
     this.render = this.render.bind(this);
@@ -106,7 +88,7 @@ class App extends React.Component {
     if (select[key]) {
       delete select[key];
     } else {
-      select[key] = `${stop.name} (${route.direction[direct_id]})`;
+      select[key] = `${route.id}_${stop.name} (${route.direction[direct_id]})`;
     }
 
     // save to location storage
@@ -124,11 +106,15 @@ class App extends React.Component {
     const schedules = [];
     for (let key in select) {
 
+      const route_id = select[key].split('_')[0];
       const stop_id = key.split('_')[0];
       const direct_id = Number.parseInt(key.split('_')[1]);
 
+      console.log(route_id);
+
       schedules.push({
         title: select[key],
+        route_id: route_id,
         stop_id: stop_id,
         direction_id: direct_id,
         isFailed: false,
@@ -140,7 +126,7 @@ class App extends React.Component {
     for (let i = 0; i < schedules.length; i++) {
       const sch = Object.assign({}, schedules[i]);
       try {
-        sch.departureTime = yield prediction(sch.stop_id, sch.direction_id);
+        sch.departureTime = yield prediction(sch.route_id, sch.stop_id, sch.direction_id);
         sch.isFailed = false;
       } catch (e) {
         sch.isFailed = true;
