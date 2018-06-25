@@ -11,7 +11,7 @@ import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 
 // Panels
-import Settings from './Settings';
+import NearBy from './NearBy';
 import Search from './Search';
 import ScheduleList from './ScheduleList';
 
@@ -21,9 +21,9 @@ import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
 
 // Icon
 import MenuIcon from '@material-ui/icons/Menu';
-import RestoreIcon from '@material-ui/icons/Restore';
-import FavoriteIcon from '@material-ui/icons/Favorite';
-import SettingsIcon from '@material-ui/icons/Settings';
+import SearchIcon from '@material-ui/icons/Search';
+import LocationOnIcon from '@material-ui/icons/LocationOn';
+import StarIcon from '@material-ui/icons/Star';
 
 // MBTA
 import prediction from './mbta/prediction';
@@ -42,7 +42,7 @@ class App extends React.Component {
     select = JSON.parse(select);
 
     this.state = {
-      panel: 1,
+      panel: 0,
       drawer: false,
       select: select,
       currentTime: new Date(),
@@ -165,7 +165,7 @@ class App extends React.Component {
         break;
 
       case 2:
-        toolBarTitle = 'Settings';
+        toolBarTitle = 'NearBy';
         break;
     }
 
@@ -190,7 +190,7 @@ class App extends React.Component {
             </Typography>
 
             <a href='https://www.mbta.com/schedules/Orange/schedule'>
-              <img alt='' src={logo} style={{ height: '30px', width: '30px' }}/>
+              <img alt='' src={logo} style={{ height: '30px', width: '30px', marginLeft: '20px' }}/>
             </a>
           </Toolbar>
         </AppBar>
@@ -209,18 +209,17 @@ class App extends React.Component {
             onDeleteSchedule={this.deleteSchedule}/>
 
           {/* Panel 2 */}
-          <Settings style={this.showPanel(2)}/>
+          <NearBy style={this.showPanel(2)}/>
         </div>
 
         <BottomNavigation
           value={this.state.panel}
           onChange={this.panelChange}
-          showLabels
           style={{ position: 'fixed', bottom: 0, width: '100%', backgroundColor: 'WhiteSmoke' }}
         >
-          <BottomNavigationAction label="Search" icon={<RestoreIcon />} />
-          <BottomNavigationAction label="Favorites" icon={<FavoriteIcon />} />
-          <BottomNavigationAction label="Settings" icon={<SettingsIcon />} />
+          <BottomNavigationAction label="Search"    icon={<SearchIcon />} />
+          <BottomNavigationAction label="Favorites" icon={<StarIcon />} />
+          <BottomNavigationAction label="Near By"   icon={<LocationOnIcon />} />
         </BottomNavigation>
       </div>
     );
