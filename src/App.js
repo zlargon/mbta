@@ -178,14 +178,14 @@ class App extends React.Component {
           </div>
         </Drawer>
 
-        <AppBar position="sticky" style={{backgroundColor: '#FF9800', color: 'black'}}>
+        <AppBar position="sticky" style={{backgroundColor: '#1f88ff', color: 'white'}}>
           <Toolbar>
 
             <IconButton color="inherit" onClick={this.toggleDrawer(true)}>
               <MenuIcon />
             </IconButton>
 
-            <Typography type="title" color="inherit" style={{ margin: 'auto', fontSize: '20px', fontWeight: 'bold'}}>
+            <Typography type="title" color="inherit" style={{ margin: 'auto', fontSize: '16px' }}>
               {toolBarTitle}
             </Typography>
 

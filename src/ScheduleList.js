@@ -68,7 +68,7 @@ class ScheduleList extends React.Component {
               <ListSubheader key={id} style={{ backgroundColor: '#' + sch.color, color: 'white' }}>
                 {sch.title + (sch.isFailed ? ' (Update Failed)' : '')}
                 <IconButton>
-                  <DeleteIcon onClick={this.props.onDeleteSchedule(sch)}/>
+                  <DeleteIcon onClick={this.props.onDeleteSchedule(sch)} style={{color: 'white'}}/>
                 </IconButton>
               </ListSubheader>);
             list.push(<Divider key={id + '-divider'}/>);
