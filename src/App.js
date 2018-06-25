@@ -42,11 +42,11 @@ class App extends React.Component {
     select = JSON.parse(select);
 
     this.state = {
-      panel: 0,
-      drawer: false,
-      select: select,
-      currentTime: new Date(),
-      schedules: []
+      panel: 0,                 // 目前所在頁面 0, 1, 2
+      drawer: false,            // slide menu
+      select: select,           // 選取的地鐵站
+      currentTime: new Date(),  // 目前的時間
+      schedules: []             // 時刻表
     }
 
     this.render = this.render.bind(this);
@@ -57,7 +57,7 @@ class App extends React.Component {
         // update data every 10 sec
         this.updateSchedule();
       } else {
-        // update current time every 1 sec
+        // update current time every 0.5 sec
         this.setState({ currentTime: new Date() });
       }
     }, 500);
@@ -93,7 +93,6 @@ class App extends React.Component {
 
     // save to location storage
     localStorage.setItem('select', JSON.stringify(select));
-    console.log(localStorage.select);
 
     // update schedule
     this.updateSchedule();
@@ -111,7 +110,7 @@ class App extends React.Component {
       const route_color = select[key].split('_')[2];
 
       const stop_id = key.split('_')[0];
-      const direct_id = Number.parseInt(key.split('_')[1]);
+      const direct_id = Number.parseInt(key.split('_')[1], 10);
 
       schedules.push({
         title: route_title,
@@ -213,6 +212,7 @@ class App extends React.Component {
         </div>
 
         <BottomNavigation
+          showLabels
           value={this.state.panel}
           onChange={this.panelChange}
           style={{ position: 'fixed', bottom: 0, width: '100%', backgroundColor: 'WhiteSmoke' }}
