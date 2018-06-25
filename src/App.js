@@ -88,15 +88,15 @@ class App extends React.Component {
     if (select[key]) {
       delete select[key];
     } else {
-      select[key] = `${route.id}_${stop.name} (${route.direction[direct_id]})`;
+      select[key] = `${route.id}_${stop.name} (${route.direction[direct_id]})_${route.color}`;
     }
 
     // save to location storage
     localStorage.setItem('select', JSON.stringify(select));
     console.log(localStorage.select);
 
-    this.updateSchedule()
-      .catch(console.error);
+    // update schedule
+    this.updateSchedule();
   }
 
   updateSchedule = co.wrap(function * () {
@@ -107,14 +107,16 @@ class App extends React.Component {
     for (let key in select) {
 
       const route_id = select[key].split('_')[0];
+      const route_title = select[key].split('_')[1];
+      const route_color = select[key].split('_')[2];
+
       const stop_id = key.split('_')[0];
       const direct_id = Number.parseInt(key.split('_')[1]);
 
-      console.log(route_id);
-
       schedules.push({
-        title: select[key],
+        title: route_title,
         route_id: route_id,
+        color: route_color,
         stop_id: stop_id,
         direction_id: direct_id,
         isFailed: false,
@@ -141,6 +143,15 @@ class App extends React.Component {
       schedules: newSchedules
     });
   })
+
+  deleteSchedule = (sch) => () => {
+    const select = JSON.parse(localStorage.getItem('select'));
+    const key = sch.stop_id + '_' + sch.direction_id;
+    delete select[key];
+    localStorage.setItem('select', JSON.stringify(select));
+
+    this.updateSchedule();
+  }
 
   render () {
     let toolBarTitle;
@@ -194,7 +205,8 @@ class App extends React.Component {
           <ScheduleList
             style={this.showPanel(1)}
             schedules={this.state.schedules}
-            currentTime={this.state.currentTime}/>
+            currentTime={this.state.currentTime}
+            onDeleteSchedule={this.deleteSchedule}/>
 
           {/* Panel 2 */}
           <Settings style={this.showPanel(2)}/>

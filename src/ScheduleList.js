@@ -7,6 +7,9 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import Divider from '@material-ui/core/Divider';
 
+import IconButton from '@material-ui/core/IconButton';
+import DeleteIcon from '@material-ui/icons/Delete';
+
 class ScheduleList extends React.Component {
 
   constructor(props) {
@@ -55,17 +58,18 @@ class ScheduleList extends React.Component {
   }
 
   render() {
-    const { style } = this.props;
-
     return (
-      <List style={style}>
+      <List style={this.props.style}>
         {
           this.props.schedules.map((sch, index) => {
             const id = 'sch-' + index;
             const list = this.getList(sch, id, this.props.currentTime);
             list.unshift(
-              <ListSubheader key={id} style={{ backgroundColor: 'white' }}>
+              <ListSubheader key={id} style={{ backgroundColor: '#' + sch.color, color: 'white' }}>
                 {sch.title + (sch.isFailed ? ' (Update Failed)' : '')}
+                <IconButton>
+                  <DeleteIcon onClick={this.props.onDeleteSchedule(sch)}/>
+                </IconButton>
               </ListSubheader>);
             list.push(<Divider key={id + '-divider'}/>);
             return list;
