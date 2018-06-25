@@ -17,7 +17,7 @@ class ScheduleList extends React.Component {
   }
 
   getList(schedule, schedule_id, currentTime) {
-    const url = `https://www.mbta.com/schedules/Orange/schedule?direction_id=${schedule.direction_id}&origin=${schedule.stop_id}`;
+    const url = `https://www.mbta.com/schedules/${schedule.route_id}/schedule?direction_id=${schedule.direction_id}&origin=${schedule.stop_id}`;
     const link = <a href={url}>{url}</a>;
 
     if (schedule.departureTime.length === 0) {
@@ -65,7 +65,7 @@ class ScheduleList extends React.Component {
             const id = 'sch-' + index;
             const list = this.getList(sch, id, this.props.currentTime);
             list.unshift(
-              <ListSubheader key={id} style={{ backgroundColor: '#' + sch.color, color: 'white' }}>
+              <ListSubheader key={id} style={{ backgroundColor: '#' + sch.color, color: 'white', opacity: 0.9 }}>
                 {sch.title + (sch.isFailed ? ' (Update Failed)' : '')}
                 <IconButton>
                   <DeleteIcon onClick={this.props.onDeleteSchedule(sch)} style={{color: 'white'}}/>
