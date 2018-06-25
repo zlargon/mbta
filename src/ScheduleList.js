@@ -12,10 +12,6 @@ import DeleteIcon from '@material-ui/icons/Delete';
 
 class ScheduleList extends React.Component {
 
-  constructor(props) {
-    super(props);
-  }
-
   getList(schedule, schedule_id, currentTime) {
     const url = `https://www.mbta.com/schedules/${schedule.route_id}/schedule?direction_id=${schedule.direction_id}&origin=${schedule.stop_id}`;
     const link = <a href={url}>{url}</a>;
