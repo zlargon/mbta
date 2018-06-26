@@ -60,6 +60,9 @@ class App extends React.Component {
   constructor(props) {
     super(props);
 
+    // get lang from localStorage
+    const lang = localStorage.getItem('lang') || 'en';
+
     // get select from localStorage
     let select = localStorage.getItem('select');
     if (select === null) {
@@ -69,7 +72,7 @@ class App extends React.Component {
     select = JSON.parse(select);
 
     this.state = {
-      lang: 'en',               // 語言
+      lang: lang,               // 語言
       panel: 0,                 // 目前所在頁面 0, 1, 2
       drawer: false,            // slide menu
       collapse: [true, true, true],
@@ -204,6 +207,9 @@ class App extends React.Component {
   }
 
   languageChanged = (event) => {
+    const lang = event.target.value;
+    localStorage.setItem('lang', lang); // save to localStorage
+
     this.setState({
       lang: event.target.value
     });
