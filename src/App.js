@@ -71,7 +71,7 @@ class App extends React.Component {
     select = JSON.parse(select);
 
     this.state = {
-      lang: lang,               // 語言
+      lang: lang,               // 語言 en / zh / cn
       panel: 0,                 // 目前所在頁面 0, 1, 2
       drawer: false,            // slide menu
       collapse: [true, true, true],
@@ -276,10 +276,10 @@ class App extends React.Component {
             </ListItem>
             <Collapse in={this.state.collapse[1]} timeout="auto" unmountOnExit>
               <p className="drawer-content">
-                {this.lang('NB-MBTA is a real time personal assistant for all your subway needs in Boston.')}
+                {this.lang('Ever arrived at the station right as the train pulled away? You could have walked faster but now you’re stuck waiting.')}
               </p>
               <p className="drawer-content">
-                {this.lang('Ever arrived at the station right as the train pulled away? You could have walked faster but now you’re stuck waiting.')}
+                {this.lang('NB-MBTA is a real time personal assistant for all your subway needs in Boston.')}
               </p>
             </Collapse>
             <Divider/>
