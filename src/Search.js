@@ -184,6 +184,11 @@ class Search extends React.Component {
           </List>
         </Collapse>
       );
+
+      // Add Divider
+      list.push(
+        <Divider key={route.id + '-divider'} light />
+      )
     }
 
     return (
