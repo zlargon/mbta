@@ -4,7 +4,7 @@ import co from 'co';
 // Drawer
 import Drawer from '@material-ui/core/Drawer';
 import Divider from '@material-ui/core/Divider';
-import team_logo from './team_logo.png';
+import logo from './logo.png';
 
 // List
 import List from '@material-ui/core/List';
@@ -41,7 +41,6 @@ import StarIcon from '@material-ui/icons/Star';
 
 // MBTA
 import prediction from './mbta/prediction';
-import logo from './mbta/logo.png';
 
 // Dictionary
 import dictionary from './dictionary.json';
@@ -233,7 +232,7 @@ class App extends React.Component {
         <Drawer open={this.state.drawer} onClose={this.toggleDrawer(false)} >
           <List className="drawer">
             <ListItem dense disableGutters >
-              <img src={team_logo} className="drawer-logo"/>
+              <img src={logo} className="drawer-logo"/>
             </ListItem>
             <Divider/>
 
@@ -308,7 +307,6 @@ class App extends React.Component {
 
         <AppBar position="sticky" style={{backgroundColor: '#1f88ff', color: 'white'}}>
           <Toolbar>
-
             <IconButton color="inherit" onClick={this.toggleDrawer(true)}>
               <MenuIcon />
             </IconButton>
@@ -317,9 +315,7 @@ class App extends React.Component {
               {toolBarTitle}
             </Typography>
 
-            <a href='https://www.mbta.com/schedules/Orange/schedule'>
-              <img alt='' src={logo} style={{ height: '30px', width: '30px', marginLeft: '20px' }}/>
-            </a>
+            <div style={{ height: '30px', width: '30px', marginLeft: '20px' }}></div>
           </Toolbar>
         </AppBar>
 
