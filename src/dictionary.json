@@ -21,5 +21,14 @@
 
   "Contact us": {
     "zh": "與我聯絡"
+  },
+  "English": {
+    "zh": "英文"
+  },
+  "Traditional Chinese": {
+    "zh": "繁體中文"
+  },
+  "Simplified Chinese": {
+    "zh": "簡體中文"
   }
 }

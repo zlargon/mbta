@@ -14,6 +14,11 @@ import Collapse from '@material-ui/core/Collapse';
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
 
+// Radio
+import Radio from '@material-ui/core/Radio';
+import RadioGroup from '@material-ui/core/RadioGroup';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+
 // AppBar
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -184,6 +189,12 @@ class App extends React.Component {
     this.updateSchedule();
   }
 
+  languageChanged = (event) => {
+    this.setState({
+      lang: event.target.value
+    });
+  }
+
   render () {
     let toolBarTitle;
     switch (this.state.panel) {
@@ -216,9 +227,30 @@ class App extends React.Component {
               {this.state.collapse[0] ? <ExpandLess /> : <ExpandMore />}
             </ListItem>
             <Collapse in={this.state.collapse[0]} timeout="auto" unmountOnExit>
-              <div>
-                Language
-              </div>
+              <RadioGroup
+                name="language"
+                value={this.state.lang}
+                style={{ margin: '0 20px 15px' }}
+                onChange={this.languageChanged}
+              >
+                <FormControlLabel
+                  value="en"
+                  control={<Radio color="primary" />}
+                  label={this.lang('English')}
+                />
+
+                <FormControlLabel
+                  value="zh"
+                  control={<Radio color="primary" />}
+                  label={this.lang('Traditional Chinese')}
+                />
+
+                <FormControlLabel
+                  value="cn"
+                  control={<Radio color="primary" />}
+                  label={this.lang('Simplified Chinese')}
+                />
+              </RadioGroup>
             </Collapse>
             <Divider/>
 
