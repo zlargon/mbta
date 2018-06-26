@@ -26,7 +26,6 @@ import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 
 // Panels
-import NearBy from './NearBy';
 import Search from './Search';
 import ScheduleList from './ScheduleList';
 
@@ -220,10 +219,6 @@ class App extends React.Component {
       case 1:
         toolBarTitle = this.state.currentTime.toLocaleTimeString();
         break;
-
-      case 2:
-        toolBarTitle = this.lang('Near By');
-        break;
     }
 
     return (
@@ -335,9 +330,6 @@ class App extends React.Component {
             schedules={this.state.schedules}
             currentTime={this.state.currentTime}
             onDeleteSchedule={this.deleteSchedule}/>
-
-          {/* Panel 2 */}
-          <NearBy style={this.showPanel(2)}/>
         </div>
 
         <BottomNavigation
@@ -348,7 +340,6 @@ class App extends React.Component {
         >
           <BottomNavigationAction label={this.lang('Search')}    icon={<SearchIcon />} />
           <BottomNavigationAction label={this.lang('Favorites')} icon={<StarIcon />} />
-          <BottomNavigationAction label={this.lang('Near By')}   icon={<LocationOnIcon />} />
         </BottomNavigation>
       </div>
     );
