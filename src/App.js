@@ -1,6 +1,5 @@
 import React from 'react';
 import co from 'co';
-import language from './language';
 
 // Drawer
 import Drawer from '@material-ui/core/Drawer';
@@ -31,6 +30,9 @@ import StarIcon from '@material-ui/icons/Star';
 // MBTA
 import prediction from './mbta/prediction';
 import logo from './mbta/logo.png';
+
+// Dictionary
+import dictionary from './dictionary.json';
 
 class App extends React.Component {
   constructor(props) {
@@ -68,7 +70,11 @@ class App extends React.Component {
   }
 
   lang = (sentence) => {
-    return language(sentence, this.state.lang);
+    if (this.state.lang === 'en') {
+      return sentence;
+    }
+
+    return dictionary[sentence][this.state.lang];
   }
 
   panelChange = (event, panelNumber) => {
