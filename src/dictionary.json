@@ -1,34 +1,74 @@
 {
   "Search": {
-    "zh": "搜尋"
+    "zh": "搜尋",
+    "cn": "搜寻"
   },
-
   "Favorites": {
-    "zh": "我的最愛"
+    "zh": "我的最愛",
+    "cn": "我的最爱"
   },
-
   "Near By": {
-    "zh": "附近"
+    "zh": "附近",
+    "cn": "附近"
   },
-
   "Language": {
-    "zh": "語言"
+    "zh": "選擇語言",
+    "cn": "选择语言"
   },
-
   "About us": {
-    "zh": "關於我"
+    "zh": "關於我",
+    "cn": "关于我"
   },
-
   "Contact us": {
-    "zh": "與我聯絡"
+    "zh": "與我聯絡",
+    "cn": "与我联络"
   },
   "English": {
-    "zh": "英文"
+    "zh": "英文",
+    "cn": "英文"
   },
   "Traditional Chinese": {
-    "zh": "繁體中文"
+    "zh": "繁體中文",
+    "cn": "繁体中文"
   },
   "Simplified Chinese": {
-    "zh": "簡體中文"
+    "zh": "簡體中文",
+    "cn": "简体中文"
+  },
+  "NB-MBTA is a real time personal assistant for all your subway needs in Boston.": {
+    "zh": "NB-MBTA一款實時地鐵個人助手，幫助您查詢地鐵到站時間，讓您不至錯過地鐵。",
+    "cn": "NB-MBTA 一款实时地铁个人助手，帮助您查询地铁到站时间，让您不在错过地铁。"
+  },
+  "Ever arrived at the station right as the train pulled away? You could have walked faster but now you’re stuck waiting.": {
+    "zh": "總是在進站時發現地鐵剛剛離開？總是在後悔沒有提早一分鐘出門？",
+    "cn": "总是在进站时发现地铁刚刚离开？总是在后悔没有提早一分钟出门？"
+  },
+  "Chun-Lung Huang": {
+    "zh": "黃俊隆",
+    "cn": "黄俊隆"
+  },
+  "Haorui Song": {
+    "zh": "宋昊睿",
+    "cn": "宋昊睿"
+  },
+  "Qili Ou": {
+    "zh": "歐琦理",
+    "cn": "欧琦理"
+  },
+  "Tianye Shi": {
+    "zh": "石天冶",
+    "cn": "石天冶"
+  },
+  "Ting Chou Lin": {
+    "zh": "林庭洲",
+    "cn": "林庭洲"
+  },
+  "Xuan Yao": {
+    "zh": "姚暄",
+    "cn": "姚暄"
+  },
+  "Ye Xu": {
+    "zh": "許燁",
+    "cn": "许烨"
   }
 }

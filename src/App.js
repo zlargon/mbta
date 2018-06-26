@@ -47,6 +47,16 @@ import logo from './mbta/logo.png';
 // Dictionary
 import dictionary from './dictionary.json';
 
+const UserInfo = {
+  'Chun-Lung Huang': 'huang.chunl@husky.neu.edu',
+  'Haorui Song': 'song.h@husky.neu.edu',
+  'Qili Ou': 'ou.qi@husky.neu.edu',
+  'Tianye Shi': 'shi.t@husky.neu.edu',
+  'Ting Chou Lin': 'lin.ti@husky.neu.edu',
+  'Xuan Yao': 'yao.x@husky.neu.edu',
+  'Ye Xu': 'xu.ye1@husky.neu.edu',
+}
+
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -60,10 +70,10 @@ class App extends React.Component {
     select = JSON.parse(select);
 
     this.state = {
-      lang: 'zh',               // 語言
+      lang: 'en',               // 語言
       panel: 0,                 // 目前所在頁面 0, 1, 2
       drawer: false,            // slide menu
-      collapse: [],
+      collapse: [true, true, true],
       select: select,           // 選取的地鐵站
       currentTime: new Date(),  // 目前的時間
       schedules: []             // 時刻表
@@ -84,11 +94,12 @@ class App extends React.Component {
   }
 
   lang = (sentence) => {
-    if (this.state.lang === 'en') {
+    try {
+      const translate = dictionary[sentence][this.state.lang];
+      return typeof translate === 'undefined' ? sentence : translate;
+    } catch (e) {
       return sentence;
     }
-
-    return dictionary[sentence][this.state.lang];
   }
 
   panelChange = (event, panelNumber) => {
@@ -133,6 +144,10 @@ class App extends React.Component {
     this.setState({
       collapse: collapse
     });
+  }
+
+  openEmail = (email) => () => {
+    window.location.href = 'mailto:' + email;
   }
 
   updateSchedule = co.wrap(function * () {
@@ -260,9 +275,12 @@ class App extends React.Component {
               {this.state.collapse[1] ? <ExpandLess /> : <ExpandMore />}
             </ListItem>
             <Collapse in={this.state.collapse[1]} timeout="auto" unmountOnExit>
-              <div>
-                About us
-              </div>
+              <p className="drawer-content">
+                {this.lang('NB-MBTA is a real time personal assistant for all your subway needs in Boston.')}
+              </p>
+              <p className="drawer-content">
+                {this.lang('Ever arrived at the station right as the train pulled away? You could have walked faster but now you’re stuck waiting.')}
+              </p>
             </Collapse>
             <Divider/>
 
@@ -272,9 +290,17 @@ class App extends React.Component {
               {this.state.collapse[2] ? <ExpandLess /> : <ExpandMore />}
             </ListItem>
             <Collapse in={this.state.collapse[2]} timeout="auto" unmountOnExit>
-              <div>
-                Contact us
-              </div>
+              <List>
+                {
+                  Object.keys(UserInfo).map((name) => {
+                    const email = UserInfo[name];
+                    return (
+                      <ListItem key={name + email} button onClick={this.openEmail(email)}>
+                        <ListItemText primary={this.lang(name)} secondary={email} />
+                      </ListItem>)
+                  })
+                }
+              </List>
             </Collapse>
           </List>
         </Drawer>
