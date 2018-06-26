@@ -1,5 +1,4 @@
 import React from 'react';
-import Routes from './mbta/route.json';
 
 // List
 import List from '@material-ui/core/List';
@@ -22,10 +21,11 @@ import Slide from '@material-ui/core/Slide';
 // Icons
 import ExpandLessIcon from '@material-ui/icons/ExpandLess';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import logo from './logo.png';
 
 // MBTA
 import prediction from './mbta/prediction';
+import logo from './mbta/logo.png';
+import Routes from './mbta/route.json';
 
 function Transition(props) {
   return <Slide direction="up" {...props} />;

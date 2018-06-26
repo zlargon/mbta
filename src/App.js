@@ -27,7 +27,7 @@ import StarIcon from '@material-ui/icons/Star';
 
 // MBTA
 import prediction from './mbta/prediction';
-import logo from './logo.png';
+import logo from './mbta/logo.png';
 
 class App extends React.Component {
   constructor(props) {
