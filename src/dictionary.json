@@ -70,5 +70,37 @@
   "Ye Xu": {
     "zh": "許燁",
     "cn": "许烨"
+  },
+  "No Data": {
+    "zh": "無資料",
+    "cn": "无资料"
+  },
+  "Red Line": {
+    "zh": "紅線",
+    "cn": "红线"
+  },
+  "Orange Line": {
+    "zh": "橙線",
+    "cn": "橙线"
+  },
+  "Green Line B": {
+    "zh": "綠線 B",
+    "cn": "绿线 B"
+  },
+  "Green Line C": {
+    "zh": "綠線 C",
+    "cn": "绿线 C"
+  },
+  "Green Line D": {
+    "zh": "綠線 D",
+    "cn": "绿线 D"
+  },
+  "Green Line E": {
+    "zh": "綠線 E",
+    "cn": "绿线 E"
+  },
+  "Blue Line": {
+    "zh": "藍線",
+    "cn": "蓝线"
   }
 }

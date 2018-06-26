@@ -325,6 +325,7 @@ class App extends React.Component {
         <div style={{ marginTop: '-5px', marginBottom: '45px' }}>
           {/* Panel 0 */}
           <Search style={this.showPanel(0)}
+            lang={this.state.lang}
             select={this.state.select}
             onSelect={this.selectHandler}/>
 

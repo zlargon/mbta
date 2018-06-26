@@ -27,6 +27,9 @@ import prediction from './mbta/prediction';
 import logo from './mbta/logo.png';
 import Routes from './mbta/route.json';
 
+// Dictionary
+import dictionary from './dictionary.json';
+
 function Transition(props) {
   return <Slide direction="up" {...props} />;
 }
@@ -41,6 +44,15 @@ class Search extends React.Component {
     },
     outSchdule: {
       departureTime: []
+    }
+  }
+
+  lang = (sentence) => {
+    try {
+      const translate = dictionary[sentence][this.props.lang];
+      return typeof translate === 'undefined' ? sentence : translate;
+    } catch (e) {
+      return sentence;
     }
   }
 
@@ -91,7 +103,7 @@ class Search extends React.Component {
       // 1. No Data
       return [
         <ListItem key={schedule_id + '-time-0'}>
-          <ListItemText primary='No Data' secondary={link} />
+          <ListItemText primary={this.lang('No Data')} secondary={link} />
         </ListItem>
       ];
     }
@@ -140,7 +152,7 @@ class Search extends React.Component {
           <ListItemText inset
             primary={
               <Typography variant="subheading" style={{ color: '#' + route.text_color }}>
-                {route.name}
+                {this.lang(route.name)}
               </Typography>
             }
             secondary={
