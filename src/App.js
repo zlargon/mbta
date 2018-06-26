@@ -1,5 +1,6 @@
 import React from 'react';
 import co from 'co';
+import language from './language';
 
 // Drawer
 import Drawer from '@material-ui/core/Drawer';
@@ -42,6 +43,7 @@ class App extends React.Component {
     select = JSON.parse(select);
 
     this.state = {
+      lang: 'zh',               // 語言
       panel: 0,                 // 目前所在頁面 0, 1, 2
       drawer: false,            // slide menu
       select: select,           // 選取的地鐵站
@@ -61,6 +63,10 @@ class App extends React.Component {
         this.setState({ currentTime: new Date() });
       }
     }, 500);
+  }
+
+  lang = (sentence) => {
+    return language(sentence, this.state.lang);
   }
 
   panelChange = (event, panelNumber) => {
@@ -156,7 +162,7 @@ class App extends React.Component {
     let toolBarTitle;
     switch (this.state.panel) {
       case 0:
-        toolBarTitle = 'Search';
+        toolBarTitle = this.lang('Search');
         break;
 
       case 1:
@@ -164,7 +170,7 @@ class App extends React.Component {
         break;
 
       case 2:
-        toolBarTitle = 'NearBy';
+        toolBarTitle = this.lang('Near By');
         break;
     }
 
@@ -217,9 +223,9 @@ class App extends React.Component {
           onChange={this.panelChange}
           style={{ position: 'fixed', bottom: 0, width: '100%', backgroundColor: 'WhiteSmoke' }}
         >
-          <BottomNavigationAction label="Search"    icon={<SearchIcon />} />
-          <BottomNavigationAction label="Favorites" icon={<StarIcon />} />
-          <BottomNavigationAction label="Near By"   icon={<LocationOnIcon />} />
+          <BottomNavigationAction label={this.lang('Search')}    icon={<SearchIcon />} />
+          <BottomNavigationAction label={this.lang('Favorites')} icon={<StarIcon />} />
+          <BottomNavigationAction label={this.lang('Near By')}   icon={<LocationOnIcon />} />
         </BottomNavigation>
       </div>
     );

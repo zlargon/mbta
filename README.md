@@ -1,4 +1,4 @@
-# MBTA V3 API - Wellington
+# MBTA V3 API
 
 * https://api-v3.mbta.com/docs/swagger
 * https://www.mbta.com/schedules/Orange/schedule?direction_id=0&origin=place-welln
