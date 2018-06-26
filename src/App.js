@@ -6,6 +6,14 @@ import Drawer from '@material-ui/core/Drawer';
 import Divider from '@material-ui/core/Divider';
 import team_logo from './team_logo.png';
 
+// List
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
+import Collapse from '@material-ui/core/Collapse';
+import ExpandLess from '@material-ui/icons/ExpandLess';
+import ExpandMore from '@material-ui/icons/ExpandMore';
+
 // AppBar
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -50,6 +58,7 @@ class App extends React.Component {
       lang: 'zh',               // 語言
       panel: 0,                 // 目前所在頁面 0, 1, 2
       drawer: false,            // slide menu
+      collapse: [],
       select: select,           // 選取的地鐵站
       currentTime: new Date(),  // 目前的時間
       schedules: []             // 時刻表
@@ -110,6 +119,15 @@ class App extends React.Component {
 
     // update schedule
     this.updateSchedule();
+  }
+
+  collapseHandler = (index) => (event, target) => {
+    const collapse = Object.assign([], this.state.collapse);
+    collapse[index] = !collapse[index];
+
+    this.setState({
+      collapse: collapse
+    });
   }
 
   updateSchedule = co.wrap(function * () {
@@ -182,32 +200,51 @@ class App extends React.Component {
         break;
     }
 
-    const divider = <Divider style={{backgroundColor: 'lightgray'}}/>;
-
     return (
       <div style={{ textAlign: 'center' }}>
 
         <Drawer open={this.state.drawer} onClose={this.toggleDrawer(false)} >
-          <div className='drawer'>
+          <List className="drawer">
+            <ListItem dense disableGutters >
+              <img src={team_logo} className="drawer-logo"/>
+            </ListItem>
+            <Divider/>
 
-            <img src={team_logo} className='drawer-logo'/>
-            { divider }
+            { /* Language */ }
+            <ListItem button onClick={this.collapseHandler(0)}>
+              <ListItemText primary={this.lang('Language')}/>
+              {this.state.collapse[0] ? <ExpandLess /> : <ExpandMore />}
+            </ListItem>
+            <Collapse in={this.state.collapse[0]} timeout="auto" unmountOnExit>
+              <div>
+                Language
+              </div>
+            </Collapse>
+            <Divider/>
 
-            <div className="drawer-content">
-              <div>{this.lang('Language')}</div>
-            </div>
-            { divider }
+            { /* About Us */ }
+            <ListItem button onClick={this.collapseHandler(1)}>
+              <ListItemText primary={this.lang('About us')}/>
+              {this.state.collapse[1] ? <ExpandLess /> : <ExpandMore />}
+            </ListItem>
+            <Collapse in={this.state.collapse[1]} timeout="auto" unmountOnExit>
+              <div>
+                About us
+              </div>
+            </Collapse>
+            <Divider/>
 
-            <div className="drawer-content">
-              <div>{this.lang('About us')}</div>
-            </div>
-            { divider }
-
-            <div className="drawer-content">
-              <div>{this.lang('Contact us')}</div>
-            </div>
-            { divider }
-          </div>
+            { /* Contact Us */ }
+            <ListItem button onClick={this.collapseHandler(2)}>
+              <ListItemText primary={this.lang('Contact us')}/>
+              {this.state.collapse[2] ? <ExpandLess /> : <ExpandMore />}
+            </ListItem>
+            <Collapse in={this.state.collapse[2]} timeout="auto" unmountOnExit>
+              <div>
+                Contact us
+              </div>
+            </Collapse>
+          </List>
         </Drawer>
 
         <AppBar position="sticky" style={{backgroundColor: '#1f88ff', color: 'white'}}>
