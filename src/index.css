@@ -3,3 +3,24 @@ body {
   padding: 0;
   font-family: sans-serif;
 }
+
+.drawer {
+  width: 200px;
+  background-color: #181818;
+  color: white;
+}
+
+.drawer-logo {
+  width: 120px;
+  height: auto;
+  margin: auto;
+  padding: 15px;
+}
+
+.drawer-divider {
+  background-color: lightgray;
+}
+
+.drawer-content {
+  padding: 15px;
+}

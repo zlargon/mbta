@@ -4,6 +4,8 @@ import language from './language';
 
 // Drawer
 import Drawer from '@material-ui/core/Drawer';
+import Divider from '@material-ui/core/Divider';
+import team_logo from './team_logo.png';
 
 // AppBar
 import AppBar from '@material-ui/core/AppBar';
@@ -174,12 +176,31 @@ class App extends React.Component {
         break;
     }
 
+    const divider = <Divider style={{backgroundColor: 'lightgray'}}/>;
+
     return (
       <div style={{ textAlign: 'center' }}>
 
-        <Drawer open={this.state.drawer} onClose={this.toggleDrawer(false)}>
-          <div style={{ width: '100px', padding: '20px' }}>
-            Settings
+        <Drawer open={this.state.drawer} onClose={this.toggleDrawer(false)} >
+          <div className='drawer'>
+
+            <img src={team_logo} className='drawer-logo'/>
+            { divider }
+
+            <div className="drawer-content">
+              <div>{this.lang('Language')}</div>
+            </div>
+            { divider }
+
+            <div className="drawer-content">
+              <div>{this.lang('About us')}</div>
+            </div>
+            { divider }
+
+            <div className="drawer-content">
+              <div>{this.lang('Contact us')}</div>
+            </div>
+            { divider }
           </div>
         </Drawer>
 
