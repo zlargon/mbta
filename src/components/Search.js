@@ -7,7 +7,6 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import Collapse from '@material-ui/core/Collapse';
-import Typography from '@material-ui/core/Typography';
 import Checkbox from '@material-ui/core/Checkbox';
 import Divider from '@material-ui/core/Divider';
 import ListSubheader from '@material-ui/core/ListSubheader';
@@ -150,16 +149,14 @@ class Search extends React.Component {
             <img alt='' src={logo} style={{ height: '30px', width: '30px' }}/>
           </ListItemIcon>
           <ListItemText inset
-            primary={
-              <Typography variant="subheading" style={{ color: '#' + route.text_color }}>
-                {this.lang(route.name)}
-              </Typography>
-            }
-            secondary={
-              <Typography style={{ color: '#' + route.text_color }}>
-                {`${route.direction[0]} / ${route.direction[1]}`}
-              </Typography>
-            }/>
+            primary={this.lang(route.name)}
+            primaryTypographyProps={{
+              style: { color: '#' + route.text_color }
+            }}
+            secondary={`${route.direction[0]} / ${route.direction[1]}`}
+            secondaryTypographyProps={{
+              style: { color: '#' + route.text_color }
+            }}/>
           {this.state.collapse[route.id] ? <ExpandLessIcon /> : <ExpandMoreIcon />}
         </ListItem>
       );
