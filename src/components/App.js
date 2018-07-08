@@ -36,7 +36,6 @@ import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
 // Icon
 import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
-import LocationOnIcon from '@material-ui/icons/LocationOn';
 import StarIcon from '@material-ui/icons/Star';
 
 // MBTA
@@ -215,16 +214,8 @@ class App extends React.Component {
   }
 
   render () {
-    let toolBarTitle;
-    switch (this.state.panel) {
-      case 0:
-        toolBarTitle = this.lang('Search');
-        break;
-
-      case 1:
-        toolBarTitle = this.state.currentTime.toLocaleTimeString();
-        break;
-    }
+    const toolBarTitle = this.state.panel === 0 ?
+      this.lang('Search') : this.state.currentTime.toLocaleTimeString();
 
     return (
       <div style={{ textAlign: 'center' }}>
@@ -232,7 +223,7 @@ class App extends React.Component {
         <Drawer open={this.state.drawer} onClose={this.toggleDrawer(false)} >
           <List className="drawer">
             <ListItem dense disableGutters >
-              <img src={logo} className="drawer-logo"/>
+              <img alt='' src={logo} className="drawer-logo"/>
             </ListItem>
             <Divider/>
 
