@@ -23,12 +23,12 @@ import ExpandLessIcon from '@material-ui/icons/ExpandLess';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 // MBTA
-import prediction from './mbta/prediction';
-import logo from './mbta/logo.png';
-import Routes from './mbta/route.json';
+import prediction from '../mbta/prediction';
+import logo from '../mbta/logo.png';
+import Routes from '../mbta/route.json';
 
 // Dictionary
-import dictionary from './dictionary.json';
+import dictionary from '../dictionary.json';
 
 function Transition(props) {
   return <Slide direction="up" {...props} />;

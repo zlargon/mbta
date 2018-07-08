@@ -4,7 +4,7 @@ import co from 'co';
 // Drawer
 import Drawer from '@material-ui/core/Drawer';
 import Divider from '@material-ui/core/Divider';
-import logo from './logo.png';
+import logo from '../images/logo.png';
 
 // List
 import List from '@material-ui/core/List';
@@ -40,10 +40,10 @@ import LocationOnIcon from '@material-ui/icons/LocationOn';
 import StarIcon from '@material-ui/icons/Star';
 
 // MBTA
-import prediction from './mbta/prediction';
+import prediction from '../mbta/prediction';
 
 // Dictionary
-import dictionary from './dictionary.json';
+import dictionary from '../dictionary.json';
 
 const UserInfo = {
   'Chun-Lung Huang': 'huang.chunl@husky.neu.edu',
