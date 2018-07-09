@@ -32,6 +32,20 @@ const UserInfo = {
   'Ye Xu': 'xu.ye1@husky.neu.edu',
 }
 
+const menuStyle = {
+  root: {
+    width: '240px'
+  },
+  logo: {
+    width: '120px',
+    height: 'auto',
+    padding: '0 15px 10px'
+  },
+  content: {
+    margin: '0 20px 20px'
+  }
+}
+
 class SlideMenu extends React.Component {
 
   state = {}
@@ -73,9 +87,9 @@ class SlideMenu extends React.Component {
   render = () => {
     return (
       <Drawer open={this.props.menu} onClose={this.close} >
-        <List className="drawer">
+        <List style={menuStyle.root}>
           <ListItem dense disableGutters >
-            <img alt='' src={logo} className="drawer-logo"/>
+            <img alt='' src={logo} style={menuStyle.logo}/>
           </ListItem>
           <Divider/>
 
@@ -118,10 +132,10 @@ class SlideMenu extends React.Component {
             {this.props.collapse[1] ? <ExpandLess /> : <ExpandMore />}
           </ListItem>
           <Collapse in={this.props.collapse[1]} timeout="auto" unmountOnExit>
-            <p className="drawer-content">
+            <p style={menuStyle.content}>
               {this.lang('Ever arrived at the station right as the train pulled away? You could have walked faster but now you’re stuck waiting.')}
             </p>
-            <p className="drawer-content">
+            <p style={menuStyle.content}>
               {this.lang('NB-MBTA is a real time personal assistant for all your subway needs in Boston.')}
             </p>
           </Collapse>
