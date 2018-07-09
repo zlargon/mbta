@@ -9,11 +9,25 @@ import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
 
+// MBTA
+import prediction from '../mbta/prediction';
+
 // Utils
 import generateScheduleListItems from './utils/generateScheduleListItems';
 
 class Favorite extends React.Component {
   state = {}
+
+  constructor (props) {
+    super(props);
+
+    // TODO: move to index.js
+    this.updateSchedule();
+    setInterval(() => {
+      // update data every 10 sec
+      this.updateSchedule();
+    }, 10000);
+  }
 
   removeSchedule = (schedule) => () => {
     this.props.dispatch({
@@ -22,6 +36,30 @@ class Favorite extends React.Component {
       stop_id: schedule.stop_id,
       direct_id: schedule.direct_id
     });
+  }
+
+  updateSchedule = () => {
+    const schedules = {...this.props.schedules};
+
+    const requests = [];
+    for (const key in schedules) {
+      const sch = schedules[key];
+      requests.push(prediction(sch.route_id, sch.stop_id, sch.direct_id));
+    }
+
+    Promise.all(requests)
+      .then(departureTimes => {
+        let i = 0;
+        for (const key in schedules) {
+          const sch = schedules[key];
+          sch.departureTime = departureTimes[i++];
+        }
+
+        this.props.dispatch({
+          type: 'SCHEDULE_UPDATE',
+          schedules: schedules
+        });
+      });
   }
 
   render = () => {

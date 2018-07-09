@@ -32,7 +32,7 @@ const scheduleReducer = (state = defultState, action) => {
 
   // 3. Update
   if (action.type === 'SCHEDULE_UPDATE') {
-    // TODO
+    newState = action.schedules;
   }
 
   // save to location storage
