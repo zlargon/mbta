@@ -17,9 +17,7 @@ const reducer = combineReducers({
 });
 
 // Store
-const store = createStore(reducer, {
-  lang: localStorage.getItem('lang') || 'en'  // get lang from localStorage
-});
+const store = createStore(reducer);
 
 ReactDOM.render(
   <Provider store={store}>
