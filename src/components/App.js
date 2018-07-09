@@ -68,7 +68,6 @@ class App extends React.Component {
     select = JSON.parse(select);
 
     this.state = {
-      collapse: [true, true, true],
       select: select,           // 選取的地鐵站
       currentTime: new Date(),  // 目前的時間
       schedules: []             // 時刻表
@@ -134,12 +133,10 @@ class App extends React.Component {
     this.updateSchedule();
   }
 
-  collapseHandler = (index) => (event, target) => {
-    const collapse = Object.assign([], this.state.collapse);
-    collapse[index] = !collapse[index];
-
-    this.setState({
-      collapse: collapse
+  collapseHandler = (index) => () => {
+    this.props.dispatch({
+      type: 'UI_DRAWER_COLLAPSE',
+      index: index
     });
   }
 
@@ -228,9 +225,9 @@ class App extends React.Component {
             { /* Language */ }
             <ListItem button onClick={this.collapseHandler(0)}>
               <ListItemText primary={this.lang('Language')}/>
-              {this.state.collapse[0] ? <ExpandLess /> : <ExpandMore />}
+              {this.props.collapse[0] ? <ExpandLess /> : <ExpandMore />}
             </ListItem>
-            <Collapse in={this.state.collapse[0]} timeout="auto" unmountOnExit>
+            <Collapse in={this.props.collapse[0]} timeout="auto" unmountOnExit>
               <RadioGroup
                 name="language"
                 value={this.props.lang}
@@ -261,9 +258,9 @@ class App extends React.Component {
             { /* About Us */ }
             <ListItem button onClick={this.collapseHandler(1)}>
               <ListItemText primary={this.lang('About us')}/>
-              {this.state.collapse[1] ? <ExpandLess /> : <ExpandMore />}
+              {this.props.collapse[1] ? <ExpandLess /> : <ExpandMore />}
             </ListItem>
-            <Collapse in={this.state.collapse[1]} timeout="auto" unmountOnExit>
+            <Collapse in={this.props.collapse[1]} timeout="auto" unmountOnExit>
               <p className="drawer-content">
                 {this.lang('Ever arrived at the station right as the train pulled away? You could have walked faster but now you’re stuck waiting.')}
               </p>
@@ -276,9 +273,9 @@ class App extends React.Component {
             { /* Contact Us */ }
             <ListItem button onClick={this.collapseHandler(2)}>
               <ListItemText primary={this.lang('Contact us')}/>
-              {this.state.collapse[2] ? <ExpandLess /> : <ExpandMore />}
+              {this.props.collapse[2] ? <ExpandLess /> : <ExpandMore />}
             </ListItem>
-            <Collapse in={this.state.collapse[2]} timeout="auto" unmountOnExit>
+            <Collapse in={this.props.collapse[2]} timeout="auto" unmountOnExit>
               <List>
                 {
                   Object.keys(UserInfo).map((name) => {
@@ -340,6 +337,7 @@ export default connect((state) => {
   return {
     lang: state.lang,
     panel: state.ui.panel,
-    drawer: state.ui.drawer
+    drawer: state.ui.drawer,
+    collapse: state.ui.drawer_collapse
   }
 })(App);

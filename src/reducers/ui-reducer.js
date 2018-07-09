@@ -1,6 +1,7 @@
 const defaultUI = {
   panel: 0,
-  drawer: false
+  drawer: false,
+  drawer_collapse: [true, true, true]
 }
 
 const uiReducer = (state = defaultUI, action) => {
@@ -16,6 +17,16 @@ const uiReducer = (state = defaultUI, action) => {
     return {
       ...state,
       drawer: !state.drawer
+    }
+  }
+
+  if (action.type === 'UI_DRAWER_COLLAPSE') {
+    const collapse = [...state.drawer_collapse];
+    collapse[action.index] = !collapse[action.index];
+
+    return {
+      ...state,
+      drawer_collapse: collapse
     }
   }
 
