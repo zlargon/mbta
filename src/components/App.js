@@ -69,22 +69,17 @@ class App extends React.Component {
 
     this.state = {
       select: select,           // 選取的地鐵站
-      currentTime: new Date(),  // 目前的時間
       schedules: []             // 時刻表
     }
 
     this.render = this.render.bind(this);
 
+    // TODO: move to index.js
     this.updateSchedule();
     setInterval(() => {
-      if (new Date().getSeconds() % 10 === 0) {
         // update data every 10 sec
         this.updateSchedule();
-      } else {
-        // update current time every 0.5 sec
-        this.setState({ currentTime: new Date() });
-      }
-    }, 500);
+    }, 10000);
   }
 
   lang = (sentence) => {
@@ -183,7 +178,6 @@ class App extends React.Component {
     }
 
     this.setState({
-      currentTime: new Date(),
       select: select,
       schedules: newSchedules
     });
@@ -210,7 +204,7 @@ class App extends React.Component {
 
   render () {
     const toolBarTitle = this.props.panel === 0 ?
-      this.lang('Search') : this.state.currentTime.toLocaleTimeString();
+      this.lang('Search') : this.props.currentTime.toLocaleTimeString();
 
     return (
       <div style={{ textAlign: 'center' }}>
@@ -315,7 +309,6 @@ class App extends React.Component {
           <ScheduleList
             style={this.showPanel(1)}
             schedules={this.state.schedules}
-            currentTime={this.state.currentTime}
             onDeleteSchedule={this.deleteSchedule}/>
         </div>
 
@@ -335,6 +328,7 @@ class App extends React.Component {
 
 export default connect((state) => {
   return {
+    currentTime: state.currentTime,
     lang: state.lang,
     panel: state.ui.panel,
     drawer: state.ui.drawer,

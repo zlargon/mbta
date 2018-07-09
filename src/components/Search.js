@@ -215,7 +215,7 @@ class Search extends React.Component {
           aria-describedby="alert-dialog-slide-description"
         >
           <DialogTitle style={{ margin: 'auto' }}>
-            { new Date().toLocaleTimeString() }
+            { this.props.currentTime.toLocaleTimeString() }
           </DialogTitle>
           <DialogContent>
             <List>
@@ -242,6 +242,7 @@ class Search extends React.Component {
 
 export default connect((state) => {
   return {
+    currentTime: state.currentTime,
     lang: state.lang,
     collapse: state.ui.search_collapse,
     dialog: state.ui.search_dialog

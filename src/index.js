@@ -9,16 +9,24 @@ import { createStore, combineReducers } from 'redux';
 import { Provider } from 'react-redux';
 
 // Reducer
-import languageReducer from './reducers/language-reducer';
 import uiReducer from './reducers/ui-reducer';
+import languageReducer from './reducers/language-reducer';
+import timeReducer from './reducers/time-reducer';
 const reducer = combineReducers({
   lang: languageReducer,
-  ui: uiReducer
+  ui: uiReducer,
+  currentTime: timeReducer
 });
 
 // Store
 const store = createStore(reducer);
 
+// Update Time every 0.5 sec
+setInterval(() => {
+  store.dispatch({ type: 'TIME_UPDATE' });
+}, 500)
+
+// React Render
 ReactDOM.render(
   <Provider store={store}>
     <App />

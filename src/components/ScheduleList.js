@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
 // List
 import ListSubheader from '@material-ui/core/ListSubheader';
@@ -76,4 +77,8 @@ class ScheduleList extends React.Component {
   }
 }
 
-export default ScheduleList;
+export default connect((state) => {
+  return {
+    currentTime: state.currentTime
+  }
+})(ScheduleList);
