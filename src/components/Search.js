@@ -40,10 +40,10 @@ function Transition(props) {
 class Search extends React.Component {
 
   state = {
-    inSchdule: {
+    inSchedule: {
       departureTime: []
     },
-    outSchdule: {
+    outSchedule: {
       departureTime: []
     }
   }
@@ -72,7 +72,7 @@ class Search extends React.Component {
     ])
     .then(departureTimes => {
       this.setState({
-        inSchdule: {
+        inSchedule: {
           title: `${stop.name} (${route.direction[0]})`,
           route_id: route.id,
           stop_id: stop.id,
@@ -80,7 +80,7 @@ class Search extends React.Component {
           departureTime: departureTimes[0]
         },
 
-        outSchdule: {
+        outSchedule: {
           title: `${stop.name} (${route.direction[1]})`,
           route_id: route.id,
           stop_id: stop.id,
@@ -180,19 +180,13 @@ class Search extends React.Component {
           </DialogTitle>
           <DialogContent>
             <List>
-              <ListSubheader>
-                {this.state.inSchdule.title}
-              </ListSubheader>
-
-              { generateScheduleListItems(this.state.inSchdule,'inbound', this.props.currentTime) }
+              <ListSubheader>{this.state.inSchedule.title}</ListSubheader>
+              { generateScheduleListItems(this.state.inSchedule, 'inbound', this.props.currentTime) }
 
               <Divider/>
 
-              <ListSubheader>
-                {this.state.outSchdule.title}
-              </ListSubheader>
-
-              { generateScheduleListItems(this.state.outSchdule,'outbound', this.props.currentTime) }
+              <ListSubheader>{this.state.outSchedule.title}</ListSubheader>
+              { generateScheduleListItems(this.state.outSchedule, 'outbound', this.props.currentTime) }
             </List>
           </DialogContent>
         </Dialog>
