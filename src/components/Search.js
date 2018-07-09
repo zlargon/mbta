@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
 // List
 import List from '@material-ui/core/List';
@@ -240,4 +241,8 @@ class Search extends React.Component {
   }
 }
 
-export default Search;
+export default connect((state) => {
+  return {
+    lang: state.lang
+  }
+})(Search);

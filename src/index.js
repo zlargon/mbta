@@ -4,5 +4,26 @@ import './index.css';
 import App from './components/App';
 import registerServiceWorker from './registerServiceWorker';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+// Redux
+import { createStore, combineReducers } from 'redux';
+import { Provider } from 'react-redux';
+
+// Reducer
+import languageReducer from './reducers/language-reducer';
+const reducer = combineReducers({
+  lang: languageReducer
+});
+
+// Store
+const store = createStore(reducer, {
+  lang: localStorage.getItem('lang') || 'en'  // get lang from localStorage
+});
+
+ReactDOM.render(
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  document.getElementById('root')
+);
+
 registerServiceWorker();

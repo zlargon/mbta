@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import co from 'co';
 
 // Drawer
@@ -58,9 +59,6 @@ class App extends React.Component {
   constructor(props) {
     super(props);
 
-    // get lang from localStorage
-    const lang = localStorage.getItem('lang') || 'en';
-
     // get select from localStorage
     let select = localStorage.getItem('select');
     if (select === null) {
@@ -70,7 +68,6 @@ class App extends React.Component {
     select = JSON.parse(select);
 
     this.state = {
-      lang: lang,               // 語言 en / zh / cn
       panel: 0,                 // 目前所在頁面 0, 1, 2
       drawer: false,            // slide menu
       collapse: [true, true, true],
@@ -95,7 +92,7 @@ class App extends React.Component {
 
   lang = (sentence) => {
     try {
-      const translate = dictionary[sentence][this.state.lang];
+      const translate = dictionary[sentence][this.props.lang];
       return typeof translate === 'undefined' ? sentence : translate;
     } catch (e) {
       return sentence;
@@ -205,11 +202,12 @@ class App extends React.Component {
   }
 
   languageChanged = (event) => {
+    const dispatch = this.props.dispatch;
     const lang = event.target.value;
-    localStorage.setItem('lang', lang); // save to localStorage
 
-    this.setState({
-      lang: event.target.value
+    dispatch({
+      type: 'LANG_CHANGE',
+      lang: lang
     });
   }
 
@@ -235,7 +233,7 @@ class App extends React.Component {
             <Collapse in={this.state.collapse[0]} timeout="auto" unmountOnExit>
               <RadioGroup
                 name="language"
-                value={this.state.lang}
+                value={this.props.lang}
                 style={{ margin: '0 20px 15px' }}
                 onChange={this.languageChanged}
               >
@@ -313,7 +311,6 @@ class App extends React.Component {
         <div style={{ marginTop: '-5px', marginBottom: '45px' }}>
           {/* Panel 0 */}
           <Search style={this.showPanel(0)}
-            lang={this.state.lang}
             select={this.state.select}
             onSelect={this.selectHandler}/>
 
@@ -339,4 +336,8 @@ class App extends React.Component {
   }
 }
 
-export default App;
+export default connect((state) => {
+  return {
+    lang: state.lang
+  }
+})(App);
