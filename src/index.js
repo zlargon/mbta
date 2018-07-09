@@ -9,12 +9,15 @@ import { Provider } from 'react-redux';
 
 // Reducer
 import uiReducer from './reducers/ui-reducer';
-import languageReducer from './reducers/language-reducer';
 import timeReducer from './reducers/time-reducer';
+import languageReducer from './reducers/language-reducer';
+import scheduleReducer from './reducers/schedule-reducer';
+
 const reducer = combineReducers({
-  lang: languageReducer,
   ui: uiReducer,
-  currentTime: timeReducer
+  lang: languageReducer,
+  currentTime: timeReducer,
+  schedules: scheduleReducer
 });
 
 // Store

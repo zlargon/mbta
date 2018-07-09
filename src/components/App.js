@@ -34,21 +34,6 @@ class App extends React.Component {
   constructor(props) {
     super(props);
 
-    // get select from localStorage
-    let select = localStorage.getItem('select');
-    if (select === null) {
-      localStorage.setItem('select', '{}');
-      select = '{}';
-    }
-    select = JSON.parse(select);
-
-    this.state = {
-      select: select,           // 選取的地鐵站
-      schedules: []             // 時刻表
-    }
-
-    this.render = this.render.bind(this);
-
     // TODO: move to index.js
     this.updateSchedule();
     setInterval(() => {
@@ -84,23 +69,6 @@ class App extends React.Component {
     if (panelNumber !== this.props.panel) {
       return { display: 'none' };
     }
-  }
-
-  selectHandler = (route, stop, direct_id) => () => {
-    const select = Object.assign({}, this.state.select);
-    const key = stop.id + '_' + direct_id;
-
-    if (select[key]) {
-      delete select[key];
-    } else {
-      select[key] = `${route.id}_${stop.name} (${route.direction[direct_id]})_${route.color}`;
-    }
-
-    // save to location storage
-    localStorage.setItem('select', JSON.stringify(select));
-
-    // update schedule
-    this.updateSchedule();
   }
 
   updateSchedule = co.wrap(function * () {
@@ -140,23 +108,9 @@ class App extends React.Component {
 
       newSchedules.push(sch);
     }
-
-    this.setState({
-      select: select,
-      schedules: newSchedules
-    });
   })
 
-  deleteSchedule = (sch) => () => {
-    const select = JSON.parse(localStorage.getItem('select'));
-    const key = sch.stop_id + '_' + sch.direction_id;
-    delete select[key];
-    localStorage.setItem('select', JSON.stringify(select));
-
-    this.updateSchedule();
-  }
-
-  render () {
+  render = () => {
     const toolBarTitle = this.props.panel === 0 ?
       this.lang('Search') : this.props.currentTime.toLocaleTimeString();
 
@@ -181,15 +135,10 @@ class App extends React.Component {
 
         <div style={{ marginTop: '-5px', marginBottom: '45px' }}>
           {/* Panel 0 */}
-          <Search style={this.showPanel(0)}
-            select={this.state.select}
-            onSelect={this.selectHandler}/>
+          <Search style={this.showPanel(0)} />
 
           {/* Panel 1 */}
-          <Favorite
-            style={this.showPanel(1)}
-            schedules={this.state.schedules}
-            onDeleteSchedule={this.deleteSchedule}/>
+          <Favorite style={this.showPanel(1)} />
         </div>
 
         <BottomNavigation

@@ -13,19 +13,29 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import generateScheduleListItems from './utils/generateScheduleListItems';
 
 class Favorite extends React.Component {
+  state = {}
 
-  render() {
+  removeSchedule = (schedule) => () => {
+    this.props.dispatch({
+      type: 'SCHEDULE_REMOVE',
+      route_id: schedule.route_id,
+      stop_id: schedule.stop_id,
+      direct_id: schedule.direct_id
+    });
+  }
+
+  render = () => {
     return (
       <List style={this.props.style}>
         {
-          this.props.schedules.map((sch, index) => {
+          Object.values(this.props.schedules).map((sch, index) => {
             const id = 'sch-' + index;
             const list = generateScheduleListItems(sch, id, this.props.currentTime);
             list.unshift(
               <ListSubheader key={id} style={{ backgroundColor: '#' + sch.color, color: 'white', opacity: 0.9 }}>
                 {sch.title + (sch.isFailed ? ' (Update Failed)' : '')}
                 <IconButton>
-                  <DeleteIcon onClick={this.props.onDeleteSchedule(sch)} style={{color: 'white'}}/>
+                  <DeleteIcon onClick={this.removeSchedule(sch)} style={{color: 'white'}}/>
                 </IconButton>
               </ListSubheader>);
             list.push(<Divider key={id + '-divider'}/>);
@@ -39,6 +49,7 @@ class Favorite extends React.Component {
 
 export default connect((state) => {
   return {
-    currentTime: state.currentTime
+    currentTime: state.currentTime,
+    schedules: state.schedules
   }
 })(Favorite);

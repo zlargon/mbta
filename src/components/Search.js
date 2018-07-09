@@ -96,7 +96,38 @@ class Search extends React.Component {
     });
   }
 
-  render () {
+  scheduleHandler = (route, stop, direct_id) => (event, checked) => {
+
+    if (checked) {
+
+      // Add Schedule
+      // TODO: loading
+      prediction(route.id, stop.id, direct_id)
+        .then(departureTime => {
+
+          // TODO: unloading
+          this.props.dispatch({
+            type: 'SCHEDULE_ADD',
+            route: route,
+            stop: stop,
+            direct_id: direct_id,
+            departureTime: departureTime
+          });
+        });
+
+    } else {
+
+      // Remove Schedule
+      this.props.dispatch({
+        type: 'SCHEDULE_REMOVE',
+        route_id: route.id,
+        stop_id: stop.id,
+        direct_id: direct_id
+      });
+    }
+  }
+
+  render = () => {
     const list = [];
     for (let route of Routes) {
 
@@ -132,14 +163,14 @@ class Search extends React.Component {
             <ListItemSecondaryAction>
               <Checkbox
                 color="primary"
-                onChange={this.props.onSelect(route, stop, 0)}
-                checked={this.props.select[stop.id + '_0']}
+                onChange={this.scheduleHandler(route, stop, 0)}
+                checked={this.props.schedules.hasOwnProperty(`${route.id}_${stop.id}_0`)}
               />
 
               <Checkbox
                 color="primary"
-                onChange={this.props.onSelect(route, stop, 1)}
-                checked={this.props.select[stop.id + '_1']}
+                onChange={this.scheduleHandler(route, stop, 1)}
+                checked={this.props.schedules.hasOwnProperty(`${route.id}_${stop.id}_1`)}
               />
             </ListItemSecondaryAction>
           </ListItem>
@@ -200,6 +231,7 @@ export default connect((state) => {
     currentTime: state.currentTime,
     lang: state.lang,
     collapse: state.ui.search_collapse,
-    dialog: state.ui.search_dialog
+    dialog: state.ui.search_dialog,
+    schedules: state.schedules
   }
 })(Search);
