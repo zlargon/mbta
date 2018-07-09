@@ -13,7 +13,7 @@ import SlideMenu from './SlideMenu';
 
 // Panels
 import Search from './Search';
-import ScheduleList from './ScheduleList';
+import Favorite from './Favorite';
 
 // BottomNavigation
 import BottomNavigation from '@material-ui/core/BottomNavigation';
@@ -186,7 +186,7 @@ class App extends React.Component {
             onSelect={this.selectHandler}/>
 
           {/* Panel 1 */}
-          <ScheduleList
+          <Favorite
             style={this.showPanel(1)}
             schedules={this.state.schedules}
             onDeleteSchedule={this.deleteSchedule}/>

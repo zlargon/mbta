@@ -12,7 +12,7 @@ import DeleteIcon from '@material-ui/icons/Delete';
 // Utils
 import generateScheduleListItems from './utils/generateScheduleListItems';
 
-class ScheduleList extends React.Component {
+class Favorite extends React.Component {
 
   render() {
     return (
@@ -41,4 +41,4 @@ export default connect((state) => {
   return {
     currentTime: state.currentTime
   }
-})(ScheduleList);
+})(Favorite);
