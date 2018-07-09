@@ -68,7 +68,6 @@ class App extends React.Component {
     select = JSON.parse(select);
 
     this.state = {
-      drawer: false,            // slide menu
       collapse: [true, true, true],
       select: select,           // 選取的地鐵站
       currentTime: new Date(),  // 目前的時間
@@ -106,8 +105,9 @@ class App extends React.Component {
   }
 
   toggleDrawer = (open) => () => {
-    this.setState({
-      drawer: open,
+    this.props.dispatch({
+      type: 'UI_DRAWER_TOGGLE',
+      drawer: open
     });
   }
 
@@ -218,7 +218,7 @@ class App extends React.Component {
     return (
       <div style={{ textAlign: 'center' }}>
 
-        <Drawer open={this.state.drawer} onClose={this.toggleDrawer(false)} >
+        <Drawer open={this.props.drawer} onClose={this.toggleDrawer(false)} >
           <List className="drawer">
             <ListItem dense disableGutters >
               <img alt='' src={logo} className="drawer-logo"/>
@@ -339,6 +339,7 @@ class App extends React.Component {
 export default connect((state) => {
   return {
     lang: state.lang,
-    panel: state.ui.panel
+    panel: state.ui.panel,
+    drawer: state.ui.drawer
   }
 })(App);
