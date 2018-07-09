@@ -30,6 +30,9 @@ import Routes from '../mbta/route.json';
 // Dictionary
 import dictionary from '../dictionary.json';
 
+// Utils
+import generateScheduleListItems from './utils/generateScheduleListItems';
+
 function Transition(props) {
   return <Slide direction="up" {...props} />;
 }
@@ -92,48 +95,6 @@ class Search extends React.Component {
       })
     });
   }
-
-  getList(schedule, schedule_id, currentTime) {
-    const url = `https://www.mbta.com/schedules/${schedule.route_id}/schedule?direction_id=${schedule.direction_id}&origin=${schedule.stop_id}`;
-    const link = <a href={url}>{url}</a>;
-
-    if (schedule.departureTime.length === 0) {
-
-      // 1. No Data
-      return [
-        <ListItem key={schedule_id + '-time-0'}>
-          <ListItemText primary={this.lang('No Data')} secondary={link} />
-        </ListItem>
-      ];
-    }
-
-    // 2. Departure Time
-    const list = [];
-    for (let i = 0; i < schedule.departureTime.length; i++) {
-      const departureTime = schedule.departureTime[i];
-
-      // train has left
-      if (departureTime - currentTime <= 0) {
-        continue;
-      }
-
-      const t = new Date(departureTime - currentTime);
-      const MM = t.getMinutes() === 0 ? '' : (t.getMinutes() + 'm ');
-      const SS = t.getSeconds() + 's';
-
-      list.push(
-        <ListItem key={schedule_id + '-time-' + i}
-          style={{ textAlign: 'center' }}>
-          <ListItemText
-            primary={departureTime.toLocaleTimeString()}
-            secondary={MM + SS}
-          />
-        </ListItem>
-      );
-    }
-    return list;
-  }
-
 
   render () {
     const list = [];
@@ -223,7 +184,7 @@ class Search extends React.Component {
                 {this.state.inSchdule.title}
               </ListSubheader>
 
-              { this.getList(this.state.inSchdule,'inbound', new Date()) }
+              { generateScheduleListItems(this.state.inSchdule,'inbound', this.props.currentTime) }
 
               <Divider/>
 
@@ -231,7 +192,7 @@ class Search extends React.Component {
                 {this.state.outSchdule.title}
               </ListSubheader>
 
-              { this.getList(this.state.outSchdule,'outbound', new Date()) }
+              { generateScheduleListItems(this.state.outSchdule,'outbound', this.props.currentTime) }
             </List>
           </DialogContent>
         </Dialog>
