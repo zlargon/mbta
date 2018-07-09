@@ -54,14 +54,14 @@ class SlideMenu extends React.Component {
 
   close = () => {
     this.props.dispatch({
-      type: 'UI_DRAWER_TOGGLE',
-      drawer: false
+      type: 'UI_MENU_TOGGLE',
+      menu: false
     });
   }
 
   collapseHandler = (index) => () => {
     this.props.dispatch({
-      type: 'UI_DRAWER_COLLAPSE',
+      type: 'UI_MENU_COLLAPSE',
       index: index
     });
   }
@@ -72,7 +72,7 @@ class SlideMenu extends React.Component {
 
   render = () => {
     return (
-      <Drawer open={this.props.drawer} onClose={this.close} >
+      <Drawer open={this.props.menu} onClose={this.close} >
         <List className="drawer">
           <ListItem dense disableGutters >
             <img alt='' src={logo} className="drawer-logo"/>
@@ -154,8 +154,8 @@ class SlideMenu extends React.Component {
 export default connect((state) => {
   return {
     lang: state.lang,
-    drawer: state.ui.drawer,
-    collapse: state.ui.drawer_collapse
+    menu: state.ui.menu,
+    collapse: state.ui.menu_collapse
   }
 })(SlideMenu);
 

@@ -75,8 +75,8 @@ class App extends React.Component {
 
   openSlideMenu = () => {
     this.props.dispatch({
-      type: 'UI_DRAWER_TOGGLE',
-      drawer: true
+      type: 'UI_MENU_TOGGLE',
+      menu: true
     });
   }
 
