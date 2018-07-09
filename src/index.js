@@ -10,8 +10,10 @@ import { Provider } from 'react-redux';
 
 // Reducer
 import languageReducer from './reducers/language-reducer';
+import uiReducer from './reducers/ui-reducer';
 const reducer = combineReducers({
-  lang: languageReducer
+  lang: languageReducer,
+  ui: uiReducer
 });
 
 // Store

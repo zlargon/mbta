@@ -68,7 +68,6 @@ class App extends React.Component {
     select = JSON.parse(select);
 
     this.state = {
-      panel: 0,                 // 目前所在頁面 0, 1, 2
       drawer: false,            // slide menu
       collapse: [true, true, true],
       select: select,           // 選取的地鐵站
@@ -100,7 +99,8 @@ class App extends React.Component {
   }
 
   panelChange = (event, panelNumber) => {
-    this.setState({
+    this.props.dispatch({
+      type: 'UI_PANEL_CHANGE',
       panel: panelNumber
     });
   }
@@ -112,7 +112,7 @@ class App extends React.Component {
   }
 
   showPanel = (panelNumber) => {
-    if (panelNumber !== this.state.panel) {
+    if (panelNumber !== this.props.panel) {
       return { display: 'none' };
     }
   }
@@ -212,7 +212,7 @@ class App extends React.Component {
   }
 
   render () {
-    const toolBarTitle = this.state.panel === 0 ?
+    const toolBarTitle = this.props.panel === 0 ?
       this.lang('Search') : this.state.currentTime.toLocaleTimeString();
 
     return (
@@ -324,7 +324,7 @@ class App extends React.Component {
 
         <BottomNavigation
           showLabels
-          value={this.state.panel}
+          value={this.props.panel}
           onChange={this.panelChange}
           style={{ position: 'fixed', bottom: 0, width: '100%', backgroundColor: 'WhiteSmoke' }}
         >
@@ -338,6 +338,7 @@ class App extends React.Component {
 
 export default connect((state) => {
   return {
-    lang: state.lang
+    lang: state.lang,
+    panel: state.ui.panel
   }
 })(App);
