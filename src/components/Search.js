@@ -37,7 +37,6 @@ function Transition(props) {
 class Search extends React.Component {
 
   state = {
-    openDialog: false,
     inSchdule: {
       departureTime: []
     },
@@ -84,9 +83,12 @@ class Search extends React.Component {
           stop_id: stop.id,
           direction_id: 1,
           departureTime: departureTimes[1]
-        },
+        }
+      });
 
-        openDialog: true
+      this.props.dispatch({
+        type: 'UI_SEARCH_DIALOG',
+        open: true
       })
     });
   }
@@ -205,10 +207,10 @@ class Search extends React.Component {
         </List>
 
         <Dialog
-          open={this.state.openDialog}
+          open={this.props.dialog}
           TransitionComponent={Transition}
           keepMounted
-          onClose={() => { this.setState({ openDialog: false }) }}
+          onClose={() => { this.props.dispatch({ type: 'UI_SEARCH_DIALOG', open: false }); }}
           aria-labelledby="alert-dialog-slide-title"
           aria-describedby="alert-dialog-slide-description"
         >
@@ -241,6 +243,7 @@ class Search extends React.Component {
 export default connect((state) => {
   return {
     lang: state.lang,
-    collapse: state.ui.search_collapse
+    collapse: state.ui.search_collapse,
+    dialog: state.ui.search_dialog
   }
 })(Search);

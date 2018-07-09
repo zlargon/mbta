@@ -2,7 +2,8 @@ const defaultUI = {
   panel: 0,
   drawer: false,
   drawer_collapse: [true, true, true],
-  search_collapse: {} // { "Blue": false, "Orange": false, "Red": false, ...}
+  search_collapse: {}, // { "Blue": false, "Orange": false, "Red": false, ...}
+  search_dialog: false
 }
 
 const uiReducer = (state = defaultUI, action) => {
@@ -38,6 +39,13 @@ const uiReducer = (state = defaultUI, action) => {
     return {
       ...state,
       search_collapse: collapse
+    }
+  }
+
+  if (action.type === 'UI_SEARCH_DIALOG') {
+    return {
+      ...state,
+      search_dialog: action.open
     }
   }
 
