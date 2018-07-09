@@ -37,7 +37,6 @@ function Transition(props) {
 class Search extends React.Component {
 
   state = {
-    collapse: [],
     openDialog: false,
     inSchdule: {
       departureTime: []
@@ -56,12 +55,10 @@ class Search extends React.Component {
     }
   }
 
-  collapseHandler = (index) => (event, target) => {
-    const collapse = Object.assign([], this.state.collapse);
-    collapse[index] = !collapse[index];
-
-    this.setState({
-      collapse: collapse
+  collapseHandler = (routeId) => () => {
+    this.props.dispatch({
+      type: 'UI_SEARCH_COLLAPSE',
+      routeId: routeId
     });
   }
 
@@ -158,7 +155,7 @@ class Search extends React.Component {
             secondaryTypographyProps={{
               style: { color: '#' + route.text_color }
             }}/>
-          {this.state.collapse[route.id] ? <ExpandLessIcon /> : <ExpandMoreIcon />}
+          {this.props.collapse[route.id] ? <ExpandLessIcon /> : <ExpandMoreIcon />}
         </ListItem>
       );
 
@@ -188,7 +185,7 @@ class Search extends React.Component {
 
       // Collapse with stop list
       list.push(
-        <Collapse key={route.id + '-collapse'} in={this.state.collapse[route.id]} timeout="auto" unmountOnExit>
+        <Collapse key={route.id + '-collapse'} in={this.props.collapse[route.id]} timeout="auto" unmountOnExit>
           <List component="div" disablePadding>
             { stops }
           </List>
@@ -243,6 +240,7 @@ class Search extends React.Component {
 
 export default connect((state) => {
   return {
-    lang: state.lang
+    lang: state.lang,
+    collapse: state.ui.search_collapse
   }
 })(Search);

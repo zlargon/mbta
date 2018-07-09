@@ -1,7 +1,8 @@
 const defaultUI = {
   panel: 0,
   drawer: false,
-  drawer_collapse: [true, true, true]
+  drawer_collapse: [true, true, true],
+  search_collapse: {} // { "Blue": false, "Orange": false, "Red": false, ...}
 }
 
 const uiReducer = (state = defaultUI, action) => {
@@ -27,6 +28,16 @@ const uiReducer = (state = defaultUI, action) => {
     return {
       ...state,
       drawer_collapse: collapse
+    }
+  }
+
+  if (action.type === 'UI_SEARCH_COLLAPSE') {
+    const collapse = {...state.search_collapse};
+    collapse[action.routeId] = !collapse[action.routeId];
+
+    return {
+      ...state,
+      search_collapse: collapse
     }
   }
 
