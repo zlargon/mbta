@@ -19,7 +19,7 @@ function generateScheduleListItems (schedule, schedule_id, currentTime) {
   // 2. Departure Time
   const list = [];
   for (let i = 0; i < schedule.departureTime.length; i++) {
-    const departureTime = schedule.departureTime[i];
+    const departureTime = new Date(schedule.departureTime[i]);
 
     // train has left
     if (departureTime - currentTime <= 0) {

@@ -13,6 +13,6 @@ module.exports = function (route_id, stop_id, direction_id, limit = 2) {
 
   return fetch(url)
           .then(res => res.json())
-          .then(json => json.data.map(o => new Date(o.attributes.departure_time)))
+          .then(json => json.data.map(o => o.attributes.departure_time))
 }
 
