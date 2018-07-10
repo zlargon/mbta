@@ -7,16 +7,16 @@ import SearchDialog from './SearchDialog';
 // List
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
 import Collapse from '@material-ui/core/Collapse';
-import Checkbox from '@material-ui/core/Checkbox';
 import Divider from '@material-ui/core/Divider';
 
 // Icons
 import ExpandLessIcon from '@material-ui/icons/ExpandLess';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward';
+import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
 
 // MBTA
 import prediction from '../mbta/prediction';
@@ -69,35 +69,9 @@ class Search extends React.Component {
     });
   }
 
-  scheduleHandler = (route, stop, direct_id) => (event, checked) => {
-
-    if (checked) {
-
-      // Add Schedule
-      // TODO: loading
-      prediction(route.id, stop.id, direct_id)
-        .then(departureTime => {
-
-          // TODO: unloading
-          this.props.dispatch({
-            type: 'SCHEDULE_ADD',
-            route: route,
-            stop: stop,
-            direct_id: direct_id,
-            departureTime: departureTime
-          });
-        });
-
-    } else {
-
-      // Remove Schedule
-      this.props.dispatch({
-        type: 'SCHEDULE_REMOVE',
-        route_id: route.id,
-        stop_id: stop.id,
-        direct_id: direct_id
-      });
-    }
+  showArrowIcon = (route_id, stop_id, direct_id) => {
+    return this.props.schedules.hasOwnProperty(`${route_id}_${stop_id}_${direct_id}`) ?
+      {} : { visibility: 'hidden' };
   }
 
   render = () => {
@@ -133,19 +107,8 @@ class Search extends React.Component {
 
             <ListItemText inset primary={stop.name} />
 
-            <ListItemSecondaryAction>
-              <Checkbox
-                color="primary"
-                onChange={this.scheduleHandler(route, stop, 0)}
-                checked={this.props.schedules.hasOwnProperty(`${route.id}_${stop.id}_0`)}
-              />
-
-              <Checkbox
-                color="primary"
-                onChange={this.scheduleHandler(route, stop, 1)}
-                checked={this.props.schedules.hasOwnProperty(`${route.id}_${stop.id}_1`)}
-              />
-            </ListItemSecondaryAction>
+            <ArrowDownwardIcon style={this.showArrowIcon(route.id, stop.id, 0) }/>
+            <ArrowUpwardIcon style={this.showArrowIcon(route.id, stop.id, 1) }/>
           </ListItem>
         );
       }
