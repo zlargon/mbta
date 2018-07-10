@@ -11,6 +11,7 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
+import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import Divider from '@material-ui/core/Divider';
 
 // Dialog
@@ -21,11 +22,14 @@ import Slide from '@material-ui/core/Slide';
 // Icon
 import IconButton from '@material-ui/core/IconButton';
 import ClearIcon from '@material-ui/icons/Clear';
+import StarIcon from '@material-ui/icons/Star';
+import StarBorderIcon from '@material-ui/icons/StarBorder';
 
 // Utils
 import generateScheduleListItems from './utils/generateScheduleListItems';
 
 // MBTA
+import prediction from '../mbta/prediction';
 import logo from '../mbta/logo.png';
 
 function Transition(props) {
@@ -35,11 +39,48 @@ function Transition(props) {
 class SearchDialog extends React.Component {
   state = {}
 
+  isScheduleExist = (schedule) => {
+    const { route, stop, direct_id } = schedule;
+    return this.props.schedules.hasOwnProperty(`${route.id}_${stop.id}_${direct_id}`);
+  }
+
   close = () => {
     this.props.dispatch({
       type: 'UI_SEARCH_DIALOG',
       open: false
     });
+  }
+
+  addScheduleToggle = (schedule) => () => {
+    const { route, stop, direct_id } = schedule;
+
+    if (this.isScheduleExist(schedule)) {
+
+      // remove schedule
+      this.props.dispatch({
+        type: 'SCHEDULE_REMOVE',
+        route_id: route.id,
+        stop_id: stop.id,
+        direct_id: direct_id
+      });
+
+    } else {
+
+      // add schedule
+      // TODO: loading
+      prediction(route.id, stop.id, direct_id)
+        .then(departureTime => {
+
+          // TODO: unloading
+          this.props.dispatch({
+            type: 'SCHEDULE_ADD',
+            route: route,
+            stop: stop,
+            direct_id: direct_id,
+            departureTime: departureTime
+          });
+        });
+    }
   }
 
   getHeader = (schedule) => {
@@ -56,14 +97,18 @@ class SearchDialog extends React.Component {
             }
           }}
         />
+
+        <ListItemSecondaryAction>
+          <IconButton onClick={this.addScheduleToggle(schedule)}>
+            { this.isScheduleExist(schedule) ? <StarIcon /> : <StarBorderIcon /> }
+          </IconButton>
+        </ListItemSecondaryAction>
       </ListItem>
     );
   }
 
   render = () => {
-    const inbound = this.props.search.inbound;
-    const outbound = this.props.search.outbound;
-
+    const {inbound, outbound} = this.props.search;
     return (
       <Dialog
         open={this.props.dialog}
@@ -110,6 +155,7 @@ export default connect((state) => {
   return {
     currentTime: state.currentTime,
     dialog: state.ui.search_dialog,
+    schedules: state.schedules,
     search: state.searchSchedule
   }
 })(SearchDialog);

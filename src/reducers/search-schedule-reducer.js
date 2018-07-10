@@ -20,23 +20,14 @@ const defaultState = {
 const searchScheduleReducer = (state = defaultState, action) => {
 
   if (action.type === 'SEARCH_SCHEDULE') {
-
-    const route = {
-      id: action.route.id,
-      name: action.route.name,
-      short_name: action.route.short_name,
-      color: action.route.color,
-      text_color: action.route.text_color,
-      direction: action.route.direction
-    };
-    const {stop, departureTimes } = action;
+    const {route, stop, departureTimes } = action;
 
     return {
       inbound: {
         route: route,
         stop: stop,
         direct_id: 0,
-        destination: action.route.stops[action.route.stops.length - 1],
+        destination: route.stops[route.stops.length - 1],
         isFailed: false,
         departureTime: departureTimes[0]
       },
@@ -44,7 +35,7 @@ const searchScheduleReducer = (state = defaultState, action) => {
         route: route,
         stop: stop,
         direct_id: 1,
-        destination: action.route.stops[0],
+        destination: route.stops[0],
         isFailed: false,
         departureTime: departureTimes[1]
       }
