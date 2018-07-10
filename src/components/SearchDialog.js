@@ -25,6 +25,9 @@ import ClearIcon from '@material-ui/icons/Clear';
 import StarIcon from '@material-ui/icons/Star';
 import StarBorderIcon from '@material-ui/icons/StarBorder';
 
+// Progress
+import CircularProgress from '@material-ui/core/CircularProgress';
+
 // Utils
 import generateScheduleListItems from './utils/generateScheduleListItems';
 
@@ -53,6 +56,7 @@ class SearchDialog extends React.Component {
 
   addScheduleToggle = (schedule) => () => {
     const { route, stop, direct_id } = schedule;
+    const key = `${route.id}_${stop.id}_${direct_id}`;
 
     if (this.isScheduleExist(schedule)) {
 
@@ -65,13 +69,16 @@ class SearchDialog extends React.Component {
       });
 
     } else {
+      // loading
+      this.props.dispatch({
+        type: 'UI_SCHEDULE_LOADING_ADD',
+        schedule: key
+      });
 
       // add schedule
-      // TODO: loading
       prediction(route.id, stop.id, direct_id)
         .then(departureTime => {
 
-          // TODO: unloading
           this.props.dispatch({
             type: 'SCHEDULE_ADD',
             route: route,
@@ -79,12 +86,19 @@ class SearchDialog extends React.Component {
             direct_id: direct_id,
             departureTime: departureTime
           });
+
+          // unloading
+          this.props.dispatch({
+            type: 'UI_SCHEDULE_LOADING_REMOVE',
+            schedule: key
+          });
         });
     }
   }
 
   getHeader = (schedule) => {
     const { route, stop, direct_id, destination } = schedule;
+    const isLoading = this.props.loading.hasOwnProperty(`${route.id}_${stop.id}_${direct_id}`);
 
     return (
       <ListItem>
@@ -100,7 +114,7 @@ class SearchDialog extends React.Component {
 
         <ListItemSecondaryAction>
           <IconButton onClick={this.addScheduleToggle(schedule)}>
-            { this.isScheduleExist(schedule) ? <StarIcon /> : <StarBorderIcon /> }
+            { isLoading ? <CircularProgress/> : (this.isScheduleExist(schedule) ? <StarIcon /> : <StarBorderIcon />) }
           </IconButton>
         </ListItemSecondaryAction>
       </ListItem>
@@ -155,7 +169,8 @@ export default connect((state) => {
   return {
     currentTime: state.currentTime,
     dialog: state.ui.search_dialog,
+    search: state.searchSchedule,
     schedules: state.schedules,
-    search: state.searchSchedule
+    loading: state.ui.schedule_loading
   }
 })(SearchDialog);
