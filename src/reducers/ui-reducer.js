@@ -8,7 +8,8 @@ const defultState = {
   menu_collapse: [true, true, true],
   search_dialog: false,
   schedule_loading: {},
-  preference_dialog: true
+  preference_dialog: false,
+  schedule_is_refreshing: false
 };
 
 const uiReducer = (state = defultState, action) => {
@@ -83,6 +84,13 @@ const uiReducer = (state = defultState, action) => {
     newState = {
       ...state,
       preference_dialog: action.open
+    }
+  }
+
+  if (action.type === 'UI_SCHEDULE_REFRESH') {
+    newState = {
+      ...state,
+      schedule_is_refreshing: action.refreshing
     }
   }
 

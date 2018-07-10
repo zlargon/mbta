@@ -17,11 +17,15 @@ import PreferenceDialog from './PreferenceDialog';
 import BottomNavigation from '@material-ui/core/BottomNavigation';
 import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
 
+// Progress
+import CircularProgress from '@material-ui/core/CircularProgress';
+
 // Icon
 import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
 import StarIcon from '@material-ui/icons/Star';
 import SettingsIcon from '@material-ui/icons/Settings';
+import RefreshIcon from '@material-ui/icons/Refresh';
 
 // MBTA
 import prediction from '../mbta/prediction';
@@ -51,6 +55,12 @@ class App extends React.Component {
       requests.push(prediction(sch.route.id, sch.stop.id, sch.direct_id));
     }
 
+    // loading
+    this.props.dispatch({
+      type: 'UI_SCHEDULE_REFRESH',
+      refreshing: true
+    });
+
     Promise.all(requests)
       .then(departureTimes => {
         let i = 0;
@@ -62,6 +72,12 @@ class App extends React.Component {
         this.props.dispatch({
           type: 'SCHEDULE_UPDATE',
           schedules: schedules
+        });
+
+        // unloading
+        this.props.dispatch({
+          type: 'UI_SCHEDULE_REFRESH',
+          refreshing: false
         });
       });
   }
@@ -114,17 +130,28 @@ class App extends React.Component {
 
         <AppBar position="sticky" style={{backgroundColor: '#1f88ff', color: 'white'}}>
           <Toolbar>
-            <IconButton color="inherit" onClick={this.openSlideMenu}>
+            {/* MenuIcon is disable */}
+            <IconButton color="inherit" onClick={this.openSlideMenu} style={{ display: 'none' }}>
               <MenuIcon />
             </IconButton>
 
+            {/* Setting Icon */}
+            <IconButton color="inherit" onClick={this.openPreference}>
+              <SettingsIcon />
+            </IconButton>
+
+            {/* Title */}
             <Typography type="title" color="inherit" style={{ margin: 'auto', fontSize: '16px' }}>
               {toolBarTitle}
             </Typography>
 
-            <IconButton color="inherit" onClick={this.openPreference}>
-              <SettingsIcon />
-            </IconButton>
+            { // Refresh Icon
+              this.props.refreshing ?
+                <CircularProgress style={{marginLeft: '8px', color: 'white'}}/> :
+                <IconButton color="inherit" onClick={this.updateSchedule}>
+                  <RefreshIcon />
+                </IconButton>
+            }
           </Toolbar>
         </AppBar>
 
@@ -155,6 +182,7 @@ export default connect((state) => {
     currentTime: state.currentTime,
     schedules: state.schedules,
     lang: state.lang,
-    panel: state.ui.panel
+    panel: state.ui.panel,
+    refreshing: state.ui.schedule_is_refreshing
   }
 })(App);
