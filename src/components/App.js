@@ -7,12 +7,11 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 
-// Slide Menu
-import SlideMenu from './SlideMenu';
-
-// Panels
+// My Components
 import Search from './Search';
 import Favorite from './Favorite';
+import SlideMenu from './SlideMenu';
+import PreferenceDialog from './PreferenceDialog';
 
 // BottomNavigation
 import BottomNavigation from '@material-ui/core/BottomNavigation';
@@ -22,6 +21,7 @@ import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
 import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
 import StarIcon from '@material-ui/icons/Star';
+import SettingsIcon from '@material-ui/icons/Settings';
 
 // Dictionary
 import dictionary from '../dictionary.json';
@@ -52,6 +52,13 @@ class App extends React.Component {
     });
   }
 
+  openPreference = () => {
+    this.props.dispatch({
+      type: 'UI_PREFRENCE_DIALOG',
+      open: true
+    });
+  }
+
   showPanel = (panelNumber) => {
     if (panelNumber !== this.props.panel) {
       return { display: 'none' };
@@ -66,6 +73,7 @@ class App extends React.Component {
       <div style={{ textAlign: 'center' }}>
 
         <SlideMenu/>
+        <PreferenceDialog/>
 
         <AppBar position="sticky" style={{backgroundColor: '#1f88ff', color: 'white'}}>
           <Toolbar>
@@ -77,7 +85,9 @@ class App extends React.Component {
               {toolBarTitle}
             </Typography>
 
-            <div style={{ height: '30px', width: '30px', marginLeft: '20px' }}></div>
+            <IconButton color="inherit" onClick={this.openPreference}>
+              <SettingsIcon />
+            </IconButton>
           </Toolbar>
         </AppBar>
 

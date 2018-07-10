@@ -7,7 +7,8 @@ const defultState = {
   menu: false,
   menu_collapse: [true, true, true],
   search_dialog: false,
-  schedule_loading: {}
+  schedule_loading: {},
+  preference_dialog: true
 };
 
 const uiReducer = (state = defultState, action) => {
@@ -75,6 +76,13 @@ const uiReducer = (state = defultState, action) => {
     newState = {
       ...state,
       schedule_loading: loading
+    }
+  }
+
+  if (action.type === 'UI_PREFRENCE_DIALOG') {
+    newState = {
+      ...state,
+      preference_dialog: action.open
     }
   }
 
