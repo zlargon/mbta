@@ -58,8 +58,8 @@ class Search extends React.Component {
     });
 
     Promise.all([
-      prediction(route.id, stop.id, 0, this.props.maxNumber),
-      prediction(route.id, stop.id, 1, this.props.maxNumber)
+      prediction(route.id, stop.id, 0),
+      prediction(route.id, stop.id, 1)
     ])
     .then(departureTimes => {
 
@@ -162,7 +162,6 @@ export default connect((state) => {
     lang: state.lang,
     collapse: state.ui.search_collapse,
     schedules: state.schedules,
-    loading: state.ui.schedule_loading,
-    maxNumber: state.preference.max_schedule_number
+    loading: state.ui.schedule_loading
   }
 })(Search);

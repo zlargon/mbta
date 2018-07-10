@@ -80,7 +80,7 @@ class SearchDialog extends React.Component {
       });
 
       // add schedule
-      prediction(route.id, stop.id, direct_id, this.props.maxNumber)
+      prediction(route.id, stop.id, direct_id)
         .then(departureTime => {
 
           this.props.dispatch({
@@ -127,7 +127,7 @@ class SearchDialog extends React.Component {
 
     return [
       header,
-      generateScheduleListItems(schedule, this.props.currentTime)
+      generateScheduleListItems(schedule, this.props.currentTime, this.props.maxNumber)
     ];
   }
 

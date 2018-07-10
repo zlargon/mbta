@@ -45,7 +45,7 @@ class Favorite extends React.Component {
     const requests = [];
     for (const key in schedules) {
       const sch = schedules[key];
-      requests.push(prediction(sch.route.id, sch.stop.id, sch.direct_id, this.props.maxNumber));
+      requests.push(prediction(sch.route.id, sch.stop.id, sch.direct_id));
     }
 
     Promise.all(requests)
@@ -118,7 +118,7 @@ class Favorite extends React.Component {
               </ListItem>
             );
 
-            const list = generateScheduleListItems(sch, this.props.currentTime);
+            const list = generateScheduleListItems(sch, this.props.currentTime, this.props.maxNumber);
             list.unshift(header);
             list.push(<Divider key={id + '-divider'}/>);
             return list;

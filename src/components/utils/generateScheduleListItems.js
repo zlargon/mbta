@@ -2,7 +2,7 @@ import React from 'react';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 
-function generateScheduleListItems (schedule, currentTime) {
+function generateScheduleListItems (schedule, currentTime, limit = 3) {
   const url = `https://www.mbta.com/schedules/${schedule.route.id}/schedule?direction_id=${schedule.direct_id}&origin=${schedule.stop.id}`;
   const link = <a href={url}>{url}</a>;
   const id = `${schedule.route.id}-${schedule.stop.id}-${schedule.direct_id}`;
@@ -19,7 +19,7 @@ function generateScheduleListItems (schedule, currentTime) {
 
   // 2. Departure Time
   const list = [];
-  for (let i = 0; i < schedule.departureTime.length; i++) {
+  for (let i = 0; i < limit && i < schedule.departureTime.length; i++) {
     const departureTime = new Date(schedule.departureTime[i]);
 
     // train has left
