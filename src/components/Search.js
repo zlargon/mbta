@@ -38,15 +38,7 @@ function Transition(props) {
 }
 
 class Search extends React.Component {
-
-  state = {
-    inSchedule: {
-      departureTime: []
-    },
-    outSchedule: {
-      departureTime: []
-    }
-  }
+  state = {}
 
   lang = (sentence) => {
     try {
@@ -66,27 +58,19 @@ class Search extends React.Component {
 
   popupSchedule = (route, stop) => () => {
 
+    // TODO: loading
     Promise.all([
       prediction(route.id, stop.id, 0),
       prediction(route.id, stop.id, 1)
     ])
     .then(departureTimes => {
-      this.setState({
-        inSchedule: {
-          title: `${stop.name} (${route.direction[0]})`,
-          route_id: route.id,
-          stop_id: stop.id,
-          direction_id: 0,
-          departureTime: departureTimes[0]
-        },
 
-        outSchedule: {
-          title: `${stop.name} (${route.direction[1]})`,
-          route_id: route.id,
-          stop_id: stop.id,
-          direction_id: 1,
-          departureTime: departureTimes[1]
-        }
+      // TODO: unloading
+      this.props.dispatch({
+        type: 'SEARCH_SCHEDULE',
+        route: route,
+        stop: stop,
+        departureTimes: departureTimes
       });
 
       this.props.dispatch({
@@ -192,6 +176,8 @@ class Search extends React.Component {
       )
     }
 
+    const inbound = this.props.search.inbound;
+    const outbound = this.props.search.outbound;
     return (
       <div>
         <List component="nav" style={this.props.style}>
@@ -211,13 +197,17 @@ class Search extends React.Component {
           </DialogTitle>
           <DialogContent>
             <List>
-              <ListSubheader>{this.state.inSchedule.title}</ListSubheader>
-              { generateScheduleListItems(this.state.inSchedule, 'inbound', this.props.currentTime) }
+              <ListSubheader>
+                {`${inbound.stop.name} → ${inbound.destination.name} (${inbound.route.direction[inbound.direct_id]})`}
+              </ListSubheader>
+              { generateScheduleListItems(inbound, 'inbound', this.props.currentTime) }
 
               <Divider/>
 
-              <ListSubheader>{this.state.outSchedule.title}</ListSubheader>
-              { generateScheduleListItems(this.state.outSchedule, 'outbound', this.props.currentTime) }
+              <ListSubheader>
+                {`${outbound.stop.name} → ${outbound.destination.name} (${outbound.route.direction[outbound.direct_id]})`}
+              </ListSubheader>
+              { generateScheduleListItems(outbound, 'outbound', this.props.currentTime) }
             </List>
           </DialogContent>
         </Dialog>
@@ -232,6 +222,7 @@ export default connect((state) => {
     lang: state.lang,
     collapse: state.ui.search_collapse,
     dialog: state.ui.search_dialog,
-    schedules: state.schedules
+    schedules: state.schedules,
+    search: state.searchSchedule
   }
 })(Search);

@@ -12,12 +12,14 @@ import uiReducer from './reducers/ui-reducer';
 import timeReducer from './reducers/time-reducer';
 import languageReducer from './reducers/language-reducer';
 import scheduleReducer from './reducers/schedule-reducer';
+import searchScheduleReducer from './reducers/search-schedule-reducer';
 
 const reducer = combineReducers({
   ui: uiReducer,
   lang: languageReducer,
   currentTime: timeReducer,
-  schedules: scheduleReducer
+  schedules: scheduleReducer,
+  searchSchedule: searchScheduleReducer
 });
 
 // Store
