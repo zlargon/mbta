@@ -17,12 +17,14 @@ import generateScheduleListItems from './utils/generateScheduleListItems';
 class Favorite extends React.Component {
   state = {}
 
-  removeSchedule = (schedule) => () => {
+  openDialog = (schedule) => () => {
+    const {stop, destination} = schedule;
+
     this.props.dispatch({
-      type: 'SCHEDULE_REMOVE',
-      route_id: schedule.route.id,
-      stop_id: schedule.stop.id,
-      direct_id: schedule.direct_id
+      type: 'UI_FAVORITE_DIALOG',
+      open: true,
+      message: `${stop.name} → ${destination.name}`,
+      schedule: schedule
     });
   }
 
@@ -75,7 +77,7 @@ class Favorite extends React.Component {
 
                 <ListItemSecondaryAction>
                   <IconButton>
-                    <DeleteIcon onClick={this.removeSchedule(sch)} style={{ color: route.text_color }}/>
+                    <DeleteIcon onClick={this.openDialog(sch)} style={{ color: route.text_color }}/>
                   </IconButton>
                 </ListItemSecondaryAction>
               </ListItem>

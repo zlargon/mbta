@@ -11,6 +11,11 @@ const defultState = {
   snackbar: {
     open: false,
     message: ''
+  },
+  favorite_dialog: {
+    open: false,
+    message: '',
+    schedule: {}
   }
 };
 
@@ -102,6 +107,17 @@ const uiReducer = (state = defultState, action) => {
       snackbar: {
         open: action.open,
         message: action.message
+      }
+    }
+  }
+
+  if (action.type === 'UI_FAVORITE_DIALOG') {
+    newState = {
+      ...state,
+      favorite_dialog: {
+        open: action.open,
+        message: action.message,
+        schedule: action.schedule
       }
     }
   }
