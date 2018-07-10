@@ -80,7 +80,7 @@ class SearchDialog extends React.Component {
       });
 
       // add schedule
-      prediction(route.id, stop.id, direct_id)
+      prediction(route.id, stop.id, direct_id, this.props.maxNumber)
         .then(departureTime => {
 
           this.props.dispatch({
@@ -177,6 +177,7 @@ export default connect((state) => {
     dialog: state.ui.search_dialog,
     search: state.searchSchedule,
     schedules: state.schedules,
-    loading: state.ui.schedule_loading
+    loading: state.ui.schedule_loading,
+    maxNumber: state.preference.max_schedule_number
   }
 })(SearchDialog);

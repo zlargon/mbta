@@ -45,7 +45,7 @@ class Favorite extends React.Component {
     const requests = [];
     for (const key in schedules) {
       const sch = schedules[key];
-      requests.push(prediction(sch.route.id, sch.stop.id, sch.direct_id));
+      requests.push(prediction(sch.route.id, sch.stop.id, sch.direct_id, this.props.maxNumber));
     }
 
     Promise.all(requests)
@@ -132,6 +132,7 @@ class Favorite extends React.Component {
 export default connect((state) => {
   return {
     currentTime: state.currentTime,
-    schedules: state.schedules
+    schedules: state.schedules,
+    maxNumber: state.preference.max_schedule_number
   }
 })(Favorite);
