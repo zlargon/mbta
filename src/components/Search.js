@@ -1,6 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
+// Search Dialog
+import SearchDialog from './SearchDialog';
+
 // List
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
@@ -10,13 +13,6 @@ import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import Collapse from '@material-ui/core/Collapse';
 import Checkbox from '@material-ui/core/Checkbox';
 import Divider from '@material-ui/core/Divider';
-import ListSubheader from '@material-ui/core/ListSubheader';
-
-// Dialog
-import Dialog from '@material-ui/core/Dialog';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogTitle from '@material-ui/core/DialogTitle';
-import Slide from '@material-ui/core/Slide';
 
 // Icons
 import ExpandLessIcon from '@material-ui/icons/ExpandLess';
@@ -29,13 +25,6 @@ import Routes from '../mbta/route.json';
 
 // Dictionary
 import dictionary from '../dictionary.json';
-
-// Utils
-import generateScheduleListItems from './utils/generateScheduleListItems';
-
-function Transition(props) {
-  return <Slide direction="up" {...props} />;
-}
 
 class Search extends React.Component {
   state = {}
@@ -176,41 +165,14 @@ class Search extends React.Component {
       )
     }
 
-    const inbound = this.props.search.inbound;
-    const outbound = this.props.search.outbound;
     return (
       <div>
         <List component="nav" style={this.props.style}>
           { list }
         </List>
 
-        <Dialog
-          open={this.props.dialog}
-          TransitionComponent={Transition}
-          keepMounted
-          onClose={() => { this.props.dispatch({ type: 'UI_SEARCH_DIALOG', open: false }); }}
-          aria-labelledby="alert-dialog-slide-title"
-          aria-describedby="alert-dialog-slide-description"
-        >
-          <DialogTitle style={{ margin: 'auto' }}>
-            { this.props.currentTime.toLocaleTimeString() }
-          </DialogTitle>
-          <DialogContent>
-            <List>
-              <ListSubheader>
-                {`${inbound.stop.name} → ${inbound.destination.name} (${inbound.route.direction[inbound.direct_id]})`}
-              </ListSubheader>
-              { generateScheduleListItems(inbound, 'inbound', this.props.currentTime) }
-
-              <Divider/>
-
-              <ListSubheader>
-                {`${outbound.stop.name} → ${outbound.destination.name} (${outbound.route.direction[outbound.direct_id]})`}
-              </ListSubheader>
-              { generateScheduleListItems(outbound, 'outbound', this.props.currentTime) }
-            </List>
-          </DialogContent>
-        </Dialog>
+        {/* Search Dialog */}
+        <SearchDialog />
       </div>
     );
   }
@@ -218,11 +180,8 @@ class Search extends React.Component {
 
 export default connect((state) => {
   return {
-    currentTime: state.currentTime,
     lang: state.lang,
     collapse: state.ui.search_collapse,
-    dialog: state.ui.search_dialog,
-    schedules: state.schedules,
-    search: state.searchSchedule
+    schedules: state.schedules
   }
 })(Search);
