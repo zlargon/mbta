@@ -32,13 +32,14 @@ class PreferenceDialog extends React.Component {
     });
   }
 
-  render = () => {
-    const MAX = 5;
-    const options = [];
-    for (let i = 1; i <= MAX; i++) {
-      options.push(<option key={i} value={i}>{i}</option>);
-    }
+  getOptions = () => {
+    const options = [1, 2, 3, 4, 5, 10];
+    const list = options.map(v => <option key={v} value={v}>{v}</option>)
+    list.push(<option key={99} value={99}>All</option>);
+    return list;
+  }
 
+  render = () => {
     return (
       <Dialog
         open={this.props.dialog}
@@ -68,7 +69,7 @@ class PreferenceDialog extends React.Component {
                 }
               }}
             >
-              {options}
+              {this.getOptions()}
             </TextField>
           </FormControl>
         </DialogContent>
