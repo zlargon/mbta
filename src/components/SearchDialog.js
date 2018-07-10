@@ -47,6 +47,10 @@ class SearchDialog extends React.Component {
     return this.props.schedules.hasOwnProperty(`${route.id}_${stop.id}_${direct_id}`);
   }
 
+  hasTrain = (schedule) => {
+    return schedule.stop.id !== schedule.destination.id;
+  }
+
   close = () => {
     this.props.dispatch({
       type: 'UI_SEARCH_DIALOG',
@@ -96,12 +100,13 @@ class SearchDialog extends React.Component {
     }
   }
 
-  getHeader = (schedule) => {
+  getListItems = (schedule) => {
     const { route, stop, direct_id, destination } = schedule;
+    const key = `${route.id}_${stop.id}_${direct_id}`;
     const isLoading = this.props.loading.hasOwnProperty(`${route.id}_${stop.id}_${direct_id}`);
 
-    return (
-      <ListItem>
+    const header = (
+      <ListItem key={key}>
         <ListItemText
           primary={`${stop.name} → ${destination.name}`}
           secondary={route.direction[direct_id]}
@@ -119,6 +124,11 @@ class SearchDialog extends React.Component {
         </ListItemSecondaryAction>
       </ListItem>
     );
+
+    return [
+      header,
+      generateScheduleListItems(schedule, key, this.props.currentTime)
+    ];
   }
 
   render = () => {
@@ -151,13 +161,9 @@ class SearchDialog extends React.Component {
 
         <DialogContent>
           <List>
-            { this.getHeader(inbound) }
-            { generateScheduleListItems(inbound, 'inbound', this.props.currentTime) }
-
-            <Divider/>
-
-            { this.getHeader(outbound) }
-            { generateScheduleListItems(outbound, 'outbound', this.props.currentTime) }
+            { this.hasTrain(inbound) && this.getListItems(inbound) }
+            { (this.hasTrain(inbound) && this.hasTrain(outbound)) && <Divider/> }
+            { this.hasTrain(outbound) && this.getListItems(outbound) }
           </List>
         </DialogContent>
       </Dialog>
