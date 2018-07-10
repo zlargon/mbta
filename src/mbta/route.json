@@ -2,8 +2,9 @@
   {
     "id": "Red",
     "name": "Red Line",
-    "color": "DA291C",
-    "text_color": "FFFFFF",
+    "short_name": "",
+    "color": "#DA291C",
+    "text_color": "#FFFFFF",
     "direction": [
       "Southbound",
       "Northbound"
@@ -98,8 +99,9 @@
   {
     "id": "Orange",
     "name": "Orange Line",
-    "color": "ED8B00",
-    "text_color": "FFFFFF",
+    "short_name": "",
+    "color": "#ED8B00",
+    "text_color": "#FFFFFF",
     "direction": [
       "Southbound",
       "Northbound"
@@ -190,8 +192,9 @@
   {
     "id": "Green-B",
     "name": "Green Line B",
-    "color": "00843D",
-    "text_color": "FFFFFF",
+    "short_name": "B",
+    "color": "#00843D",
+    "text_color": "#FFFFFF",
     "direction": [
       "Westbound",
       "Eastbound"
@@ -298,8 +301,9 @@
   {
     "id": "Green-C",
     "name": "Green Line C",
-    "color": "00843D",
-    "text_color": "FFFFFF",
+    "short_name": "C",
+    "color": "#00843D",
+    "text_color": "#FFFFFF",
     "direction": [
       "Westbound",
       "Eastbound"
@@ -398,8 +402,9 @@
   {
     "id": "Green-D",
     "name": "Green Line D",
-    "color": "00843D",
-    "text_color": "FFFFFF",
+    "short_name": "D",
+    "color": "#00843D",
+    "text_color": "#FFFFFF",
     "direction": [
       "Westbound",
       "Eastbound"
@@ -490,8 +495,9 @@
   {
     "id": "Green-E",
     "name": "Green Line E",
-    "color": "00843D",
-    "text_color": "FFFFFF",
+    "short_name": "E",
+    "color": "#00843D",
+    "text_color": "#FFFFFF",
     "direction": [
       "Westbound",
       "Eastbound"
@@ -582,8 +588,9 @@
   {
     "id": "Blue",
     "name": "Blue Line",
-    "color": "003DA5",
-    "text_color": "FFFFFF",
+    "short_name": "",
+    "color": "#003DA5",
+    "text_color": "#FFFFFF",
     "direction": [
       "Westbound",
       "Eastbound"

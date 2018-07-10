@@ -134,7 +134,7 @@ class Search extends React.Component {
       // Route list
       list.push(
         <ListItem button key={route.id + '-route'}
-          style={{ backgroundColor: '#' + route.color, opacity: 0.9 }}
+          style={{ backgroundColor: route.color, opacity: 0.9 }}
           onClick={this.collapseHandler(route.id)}>
 
           <ListItemIcon>
@@ -143,11 +143,11 @@ class Search extends React.Component {
           <ListItemText inset
             primary={this.lang(route.name)}
             primaryTypographyProps={{
-              style: { color: '#' + route.text_color }
+              style: { color: route.text_color }
             }}
             secondary={`${route.direction[0]} / ${route.direction[1]}`}
             secondaryTypographyProps={{
-              style: { color: '#' + route.text_color }
+              style: { color: route.text_color }
             }}/>
           {this.props.collapse[route.id] ? <ExpandLessIcon /> : <ExpandMoreIcon />}
         </ListItem>

@@ -71,7 +71,7 @@ class Favorite extends React.Component {
 
             const title = `${sch.stop.name} → ${sch.destination.name} (${sch.route.direction[sch.direct_id]})`;
             const header = (
-              <ListSubheader key={id} style={{ backgroundColor: '#' + sch.route.color, color: '#' + sch.route.text_color, opacity: 0.9 }}>
+              <ListSubheader key={id} style={{ backgroundColor: sch.route.color, color: sch.route.text_color, opacity: 0.9 }}>
                 {title + (sch.isFailed ? ' (Update Failed)' : '')}
                 <IconButton>
                   <DeleteIcon onClick={this.removeSchedule(sch)} style={{color: 'white'}}/>

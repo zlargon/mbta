@@ -15,6 +15,7 @@ const scheduleReducer = (state = defultState, action) => {
         route: {
           id: route.id,
           name: route.name,
+          short_name: route.short_name,
           color: route.color,
           text_color: route.text_color,
           direction: route.direction
