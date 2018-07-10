@@ -108,13 +108,14 @@ class Favorite extends React.Component {
                       color: route.text_color,
                       fontWeight: 'bold'
                     }
-                  }}/>
+                  }}
+                />
 
-                  <ListItemSecondaryAction>
-                    <IconButton>
-                      <DeleteIcon onClick={this.removeSchedule(sch)} style={{ color: route.text_color }}/>
-                    </IconButton>
-                  </ListItemSecondaryAction>
+                <ListItemSecondaryAction>
+                  <IconButton>
+                    <DeleteIcon onClick={this.removeSchedule(sch)} style={{ color: route.text_color }}/>
+                  </IconButton>
+                </ListItemSecondaryAction>
               </ListItem>
             );
 
