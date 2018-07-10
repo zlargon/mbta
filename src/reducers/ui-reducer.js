@@ -1,15 +1,17 @@
 const defultState = {
-  panel: Number.parseInt(localStorage.getItem('panel') || '0', 10),
-
   // { "Blue": false, "Orange": false, "Red": false, ...}
   search_collapse: JSON.parse(localStorage.getItem('search_collapse') || '{}'),
-
+  panel: Number.parseInt(localStorage.getItem('panel') || '0', 10),
   menu: false,
   menu_collapse: [true, true, true],
   search_dialog: false,
   schedule_loading: {},
   preference_dialog: false,
-  schedule_is_refreshing: false
+  schedule_is_refreshing: false,
+  snackbar: {
+    open: false,
+    message: ''
+  }
 };
 
 const uiReducer = (state = defultState, action) => {
@@ -91,6 +93,16 @@ const uiReducer = (state = defultState, action) => {
     newState = {
       ...state,
       schedule_is_refreshing: action.refreshing
+    }
+  }
+
+  if (action.type === 'UI_SEARCH_DIALOG_SNARCK_BAR') {
+    newState = {
+      ...state,
+      snackbar: {
+        open: action.open,
+        message: action.message
+      }
     }
   }
 

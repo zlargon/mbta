@@ -28,6 +28,9 @@ import StarBorderIcon from '@material-ui/icons/StarBorder';
 // Progress
 import CircularProgress from '@material-ui/core/CircularProgress';
 
+// Snackbar
+import Snackbar from '@material-ui/core/Snackbar';
+
 // Utils
 import generateScheduleListItems from './utils/generateScheduleListItems';
 
@@ -51,16 +54,33 @@ class SearchDialog extends React.Component {
     return schedule.stop.id !== schedule.destination.id;
   }
 
-  close = () => {
+  dialogClose = () => {
     this.props.dispatch({
       type: 'UI_SEARCH_DIALOG',
       open: false
     });
   }
 
+  openSnackbar = (message) => {
+    this.props.dispatch({
+      type: 'UI_SEARCH_DIALOG_SNARCK_BAR',
+      open: true,
+      message: message
+    });
+  }
+
+  closeSnackbar = () => {
+    this.props.dispatch({
+      type: 'UI_SEARCH_DIALOG_SNARCK_BAR',
+      open: false,
+      message: ''
+    });
+  }
+
   addScheduleToggle = (schedule) => () => {
-    const { route, stop, direct_id } = schedule;
+    const { route, stop, direct_id, destination } = schedule;
     const key = `${route.id}_${stop.id}_${direct_id}`;
+    const schedule_name = `${stop.name} → ${destination.name}`;
 
     if (this.isScheduleExist(schedule)) {
 
@@ -71,6 +91,9 @@ class SearchDialog extends React.Component {
         stop_id: stop.id,
         direct_id: direct_id
       });
+
+      // show snackbar
+      this.openSnackbar(`"${schedule_name}" has been removed from Favorite List.`);
 
     } else {
       // loading
@@ -90,6 +113,9 @@ class SearchDialog extends React.Component {
             direct_id: direct_id,
             departureTime: departureTime
           });
+
+          // show snackbar
+          this.openSnackbar(`"${schedule_name}" has been added to Favorite List.`);
 
           // unloading
           this.props.dispatch({
@@ -139,7 +165,7 @@ class SearchDialog extends React.Component {
         TransitionComponent={Transition}
         keepMounted
         fullScreen
-        onClose={this.close}
+        onClose={this.dialogClose}
         aria-labelledby="alert-dialog-slide-title"
         aria-describedby="alert-dialog-slide-description"
       >
@@ -154,7 +180,7 @@ class SearchDialog extends React.Component {
             </Typography>
 
             <IconButton color="inherit">
-              <ClearIcon onClick={this.close}/>
+              <ClearIcon onClick={this.dialogClose}/>
             </IconButton>
           </Toolbar>
         </AppBar>
@@ -166,6 +192,19 @@ class SearchDialog extends React.Component {
             { this.hasTrain(outbound) && this.getListItems(outbound) }
           </List>
         </DialogContent>
+
+        <Snackbar
+          open={this.props.snackbar.open}
+          message={this.props.snackbar.message}
+          onClose={this.closeSnackbar}
+          anchorOrigin={{
+            vertical: 'bottom',
+            horizontal: 'center'
+          }}
+          ContentProps={{
+            'aria-describedby': 'message-id',
+          }}
+        />
       </Dialog>
     );
   }
@@ -178,6 +217,7 @@ export default connect((state) => {
     search: state.searchSchedule,
     schedules: state.schedules,
     loading: state.ui.schedule_loading,
-    maxNumber: state.preference.max_schedule_number
+    maxNumber: state.preference.max_schedule_number,
+    snackbar: state.ui.snackbar
   }
 })(SearchDialog);
