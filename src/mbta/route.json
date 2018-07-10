@@ -10,193 +10,88 @@
     ],
     "stops": [
       {
-        "id": "place-alfcl",
-        "name": "Alewife",
-        "location": {
-          "address": "Alewife Brook Pkwy and Cambridge Park Dr, Cambridge, MA 02140",
-          "latitude": 42.395428,
-          "longitude": -71.142483
-        }
-      },
-      {
-        "id": "place-davis",
-        "name": "Davis",
-        "location": {
-          "address": "College Ave and Elm St, Somerville, MA",
-          "latitude": 42.39674,
-          "longitude": -71.121815
-        }
-      },
-      {
-        "id": "place-portr",
-        "name": "Porter",
-        "location": {
-          "address": "1899 Massachusetts Ave, Cambridge, MA 02140",
-          "latitude": 42.3884,
-          "longitude": -71.119149
-        }
-      },
-      {
-        "id": "place-harsq",
-        "name": "Harvard",
-        "location": {
-          "address": "1400 Massachusetts Ave, Cambridge, MA",
-          "latitude": 42.373362,
-          "longitude": -71.118956
-        }
-      },
-      {
-        "id": "place-cntsq",
-        "name": "Central",
-        "location": {
-          "address": "Massachusetts Avenue and Prospect Street, Cambridge, MA 02139",
-          "latitude": 42.365486,
-          "longitude": -71.103802
-        }
-      },
-      {
-        "id": "place-knncl",
-        "name": "Kendall/MIT",
-        "location": {
-          "address": "300 Main St, Cambridge, MA 02142",
-          "latitude": 42.36249079,
-          "longitude": -71.08617653
-        }
-      },
-      {
-        "id": "place-chmnl",
-        "name": "Charles/MGH",
-        "location": {
-          "address": "Cambridge St and Charles St, Boston, MA",
-          "latitude": 42.361166,
-          "longitude": -71.070628
-        }
-      },
-      {
-        "id": "place-pktrm",
-        "name": "Park Street",
-        "location": {
-          "address": "Tremont St and Winter St, Boston, MA 02108",
-          "latitude": 42.35639457,
-          "longitude": -71.0624242
-        }
-      },
-      {
-        "id": "place-dwnxg",
-        "name": "Downtown Crossing",
-        "location": {
-          "address": "Washington St and Summer St, Boston, MA",
-          "latitude": 42.355518000000004,
-          "longitude": -71.060225
-        }
-      },
-      {
-        "id": "place-sstat",
-        "name": "South Station",
-        "location": {
-          "address": "Atlantic Ave and Summer St, Boston, MA 02110",
-          "latitude": 42.352271,
-          "longitude": -71.055242
-        }
-      },
-      {
-        "id": "place-brdwy",
-        "name": "Broadway",
-        "location": {
-          "address": "Dorchester Ave and Broadway, Boston, MA",
-          "latitude": 42.342622,
-          "longitude": -71.056967
-        }
-      },
-      {
-        "id": "place-andrw",
-        "name": "Andrew",
-        "location": {
-          "address": "Dorchester Ave and Southhampton St, South Boston, MA 02127",
-          "latitude": 42.330154,
-          "longitude": -71.057655
-        }
-      },
-      {
-        "id": "place-jfk",
-        "name": "JFK/UMass",
-        "location": {
-          "address": "599 Old Colony Ave Boston, MA 02127-3805",
-          "latitude": 42.320685,
-          "longitude": -71.052391
-        }
-      },
-      {
-        "id": "place-shmnl",
-        "name": "Savin Hill",
-        "location": {
-          "address": "125 Savin Hill Ave, Dorchester, MA 02124",
-          "latitude": 42.31129,
-          "longitude": -71.053331
-        }
-      },
-      {
-        "id": "place-fldcr",
-        "name": "Fields Corner",
-        "location": {
-          "address": "50 Freeman St, Dorchester, MA 02122",
-          "latitude": 42.300093,
-          "longitude": -71.061667
-        }
-      },
-      {
-        "id": "place-smmnl",
-        "name": "Shawmut",
-        "location": {
-          "address": "Dayton St and Clementine Park, Dorchester, MA 02124",
-          "latitude": 42.29312583,
-          "longitude": -71.06573796
-        }
-      },
-      {
-        "id": "place-nqncy",
-        "name": "North Quincy",
-        "location": {
-          "address": "Hancock St and Hunt St, Quincy, MA 02171",
-          "latitude": 42.275275,
-          "longitude": -71.029583
-        }
-      },
-      {
-        "id": "place-qnctr",
-        "name": "Quincy Center",
-        "location": {
-          "address": "175 Thomas E Burgin Pkwy, Quincy, MA 02169",
-          "latitude": 42.251809,
-          "longitude": -71.005409
-        }
-      },
-      {
-        "id": "place-qamnl",
-        "name": "Quincy Adams",
-        "location": {
-          "address": "Burgin Pkwy and Centre St, Quincy, MA 02169",
-          "latitude": 42.233391,
-          "longitude": -71.007153
-        }
+        "id": "place-asmnl",
+        "name": "Ashmont"
       },
       {
         "id": "place-brntn",
-        "name": "Braintree",
-        "location": {
-          "address": "197 Ivory St, Braintree, MA 02184",
-          "latitude": 42.2078543,
-          "longitude": -71.0011385
-        }
+        "name": "Braintree"
       },
       {
-        "id": "place-asmnl",
-        "name": "Ashmont",
-        "location": {
-          "address": "Dorchester Ave and Ashmont St, Boston, MA 02124",
-          "latitude": 42.284652,
-          "longitude": -71.064489
-        }
+        "id": "place-qamnl",
+        "name": "Quincy Adams"
+      },
+      {
+        "id": "place-qnctr",
+        "name": "Quincy Center"
+      },
+      {
+        "id": "place-nqncy",
+        "name": "North Quincy"
+      },
+      {
+        "id": "place-smmnl",
+        "name": "Shawmut"
+      },
+      {
+        "id": "place-fldcr",
+        "name": "Fields Corner"
+      },
+      {
+        "id": "place-shmnl",
+        "name": "Savin Hill"
+      },
+      {
+        "id": "place-jfk",
+        "name": "JFK/UMass"
+      },
+      {
+        "id": "place-andrw",
+        "name": "Andrew"
+      },
+      {
+        "id": "place-brdwy",
+        "name": "Broadway"
+      },
+      {
+        "id": "place-sstat",
+        "name": "South Station"
+      },
+      {
+        "id": "place-dwnxg",
+        "name": "Downtown Crossing"
+      },
+      {
+        "id": "place-pktrm",
+        "name": "Park Street"
+      },
+      {
+        "id": "place-chmnl",
+        "name": "Charles/MGH"
+      },
+      {
+        "id": "place-knncl",
+        "name": "Kendall/MIT"
+      },
+      {
+        "id": "place-cntsq",
+        "name": "Central"
+      },
+      {
+        "id": "place-harsq",
+        "name": "Harvard"
+      },
+      {
+        "id": "place-portr",
+        "name": "Porter"
+      },
+      {
+        "id": "place-davis",
+        "name": "Davis"
+      },
+      {
+        "id": "place-alfcl",
+        "name": "Alewife"
       }
     ]
   },
@@ -211,184 +106,84 @@
     ],
     "stops": [
       {
-        "id": "place-forhl",
-        "name": "Forest Hills",
-        "location": {
-          "address": "Washington St and Hyde Park Ave, Jamaica Plain, MA 02130",
-          "latitude": 42.300523,
-          "longitude": -71.113686
-        }
-      },
-      {
-        "id": "place-grnst",
-        "name": "Green Street",
-        "location": {
-          "address": "150 Green St, Jamaica Plain, MA",
-          "latitude": 42.310525,
-          "longitude": -71.107414
-        }
-      },
-      {
-        "id": "place-sbmnl",
-        "name": "Stony Brook",
-        "location": {
-          "address": "100 Boylston St, Jamaica Plain, MA",
-          "latitude": 42.317062,
-          "longitude": -71.104248
-        }
-      },
-      {
-        "id": "place-jaksn",
-        "name": "Jackson Square",
-        "location": {
-          "address": "1500 Columbus Ave, Jamaica Plain, MA",
-          "latitude": 42.323132,
-          "longitude": -71.099592
-        }
-      },
-      {
-        "id": "place-rcmnl",
-        "name": "Roxbury Crossing",
-        "location": {
-          "address": "1400 Tremont St, Roxbury, MA",
-          "latitude": 42.331397,
-          "longitude": -71.095451
-        }
-      },
-      {
-        "id": "place-rugg",
-        "name": "Ruggles",
-        "location": {
-          "address": "1150 Tremont St, Roxbury, MA 02120",
-          "latitude": 42.336377,
-          "longitude": -71.088961
-        }
-      },
-      {
-        "id": "place-masta",
-        "name": "Massachusetts Avenue",
-        "location": {
-          "address": "393 Massachusetts Ave, Boston, MA 02118",
-          "latitude": 42.341512,
-          "longitude": -71.083423
-        }
-      },
-      {
-        "id": "place-bbsta",
-        "name": "Back Bay",
-        "location": {
-          "address": "145 Dartmouth St Boston, MA 02116",
-          "latitude": 42.34735,
-          "longitude": -71.075727
-        }
-      },
-      {
-        "id": "place-tumnl",
-        "name": "Tufts Medical Center",
-        "location": {
-          "address": "750 Washington St, Boston, MA",
-          "latitude": 42.349662,
-          "longitude": -71.063917
-        }
-      },
-      {
-        "id": "place-chncl",
-        "name": "Chinatown",
-        "location": {
-          "address": "Washington Street and Boylston Street, Boston, MA",
-          "latitude": 42.352547,
-          "longitude": -71.062752
-        }
-      },
-      {
-        "id": "place-dwnxg",
-        "name": "Downtown Crossing",
-        "location": {
-          "address": "Washington St and Summer St, Boston, MA",
-          "latitude": 42.355518000000004,
-          "longitude": -71.060225
-        }
-      },
-      {
-        "id": "place-state",
-        "name": "State Street",
-        "location": {
-          "address": "200 Washington St, Boston, MA",
-          "latitude": 42.358978,
-          "longitude": -71.057598
-        }
-      },
-      {
-        "id": "place-haecl",
-        "name": "Haymarket",
-        "location": {
-          "address": "136 Blackstone St, Boston, MA 02109",
-          "latitude": 42.363021,
-          "longitude": -71.05829
-        }
-      },
-      {
-        "id": "place-north",
-        "name": "North Station",
-        "location": {
-          "address": "135 Causeway St, Boston MA 02114",
-          "latitude": 42.365577,
-          "longitude": -71.06129
-        }
-      },
-      {
-        "id": "place-ccmnl",
-        "name": "Community College",
-        "location": {
-          "address": "Austin St and Rutherford Ave, Charlestown, MA",
-          "latitude": 42.373622,
-          "longitude": -71.069533
-        }
-      },
-      {
-        "id": "place-sull",
-        "name": "Sullivan Square",
-        "location": {
-          "address": "Maffa Way and Cambridge St, Charlestown, MA 02129",
-          "latitude": 42.383975,
-          "longitude": -71.076994
-        }
-      },
-      {
-        "id": "place-astao",
-        "name": "Assembly",
-        "location": {
-          "address": "499 Foley St, Somerville, MA 02145",
-          "latitude": 42.392811,
-          "longitude": -71.077257
-        }
-      },
-      {
-        "id": "place-welln",
-        "name": "Wellington",
-        "location": {
-          "address": "Revere Beach Pkwy and Rivers Edge Dr, Medford, MA 02155",
-          "latitude": 42.40237,
-          "longitude": -71.077082
-        }
+        "id": "place-ogmnl",
+        "name": "Oak Grove"
       },
       {
         "id": "place-mlmnl",
-        "name": "Malden Center",
-        "location": {
-          "address": "Commercial St and Pleasant St, Malden, MA 02148",
-          "latitude": 42.426632,
-          "longitude": -71.07411
-        }
+        "name": "Malden Center"
       },
       {
-        "id": "place-ogmnl",
-        "name": "Oak Grove",
-        "location": {
-          "address": "Washington St at Winter St, Malden, MA 02148",
-          "latitude": 42.43668,
-          "longitude": -71.071097
-        }
+        "id": "place-welln",
+        "name": "Wellington"
+      },
+      {
+        "id": "place-astao",
+        "name": "Assembly"
+      },
+      {
+        "id": "place-sull",
+        "name": "Sullivan Square"
+      },
+      {
+        "id": "place-ccmnl",
+        "name": "Community College"
+      },
+      {
+        "id": "place-north",
+        "name": "North Station"
+      },
+      {
+        "id": "place-haecl",
+        "name": "Haymarket"
+      },
+      {
+        "id": "place-state",
+        "name": "State Street"
+      },
+      {
+        "id": "place-dwnxg",
+        "name": "Downtown Crossing"
+      },
+      {
+        "id": "place-chncl",
+        "name": "Chinatown"
+      },
+      {
+        "id": "place-tumnl",
+        "name": "Tufts Medical Center"
+      },
+      {
+        "id": "place-bbsta",
+        "name": "Back Bay"
+      },
+      {
+        "id": "place-masta",
+        "name": "Massachusetts Avenue"
+      },
+      {
+        "id": "place-rugg",
+        "name": "Ruggles"
+      },
+      {
+        "id": "place-rcmnl",
+        "name": "Roxbury Crossing"
+      },
+      {
+        "id": "place-jaksn",
+        "name": "Jackson Square"
+      },
+      {
+        "id": "place-sbmnl",
+        "name": "Stony Brook"
+      },
+      {
+        "id": "place-grnst",
+        "name": "Green Street"
+      },
+      {
+        "id": "place-forhl",
+        "name": "Forest Hills"
       }
     ]
   },
@@ -403,220 +198,100 @@
     ],
     "stops": [
       {
-        "id": "place-lake",
-        "name": "Boston College",
-        "location": {
-          "address": "Commonwealth Ave and Lake St, Boston, MA 02135",
-          "latitude": 42.340081,
-          "longitude": -71.166769
-        }
-      },
-      {
-        "id": "place-sougr",
-        "name": "South Street",
-        "location": {
-          "address": null,
-          "latitude": 42.3396,
-          "longitude": -71.157661
-        }
-      },
-      {
-        "id": "place-chill",
-        "name": "Chestnut Hill Avenue",
-        "location": {
-          "address": "Commonwealth Ave and Chestnut Hill Ave, Boston, MA",
-          "latitude": 42.338169,
-          "longitude": -71.15316
-        }
-      },
-      {
-        "id": "place-chswk",
-        "name": "Chiswick Road",
-        "location": {
-          "address": "Commonwealth Ave and Chiswick Rd, Boston, MA",
-          "latitude": 42.340805,
-          "longitude": -71.150711
-        }
-      },
-      {
-        "id": "place-sthld",
-        "name": "Sutherland Road",
-        "location": {
-          "address": "Commonwealth Ave and Sutherland Rd, Boston, MA",
-          "latitude": 42.341614,
-          "longitude": -71.146202
-        }
-      },
-      {
-        "id": "place-wascm",
-        "name": "Washington Street",
-        "location": {
-          "address": "Commonwealth Ave and Washington St, Boston, MA",
-          "latitude": 42.343864,
-          "longitude": -71.142853
-        }
-      },
-      {
-        "id": "place-wrnst",
-        "name": "Warren Street",
-        "location": {
-          "address": "Commonwealth Ave and Warren St, Boston, MA",
-          "latitude": 42.348343,
-          "longitude": -71.140457
-        }
-      },
-      {
-        "id": "place-alsgr",
-        "name": "Allston Street",
-        "location": {
-          "address": "Allston St and Commonwealth Ave, Boston, MA 02134",
-          "latitude": 42.348701,
-          "longitude": -71.137955
-        }
-      },
-      {
-        "id": "place-grigg",
-        "name": "Griggs Street",
-        "location": {
-          "address": "Commonwealth Ave and Griggs St, Boston, MA",
-          "latitude": 42.348545,
-          "longitude": -71.134949
-        }
-      },
-      {
-        "id": "place-harvd",
-        "name": "Harvard Avenue",
-        "location": {
-          "address": "Commonwealth Ave and Harvard Ave, Boston, MA",
-          "latitude": 42.350243,
-          "longitude": -71.131355
-        }
-      },
-      {
-        "id": "place-brico",
-        "name": "Packards Corner",
-        "location": {
-          "address": "Commonwealth Ave and Brighton Ave, Boston, MA, 02215",
-          "latitude": 42.351967,
-          "longitude": -71.125031
-        }
-      },
-      {
-        "id": "place-babck",
-        "name": "Babcock Street",
-        "location": {
-          "address": "Commonwealth Ave and Babcock St, Boston, MA 02215",
-          "latitude": 42.35182,
-          "longitude": -71.12165
-        }
-      },
-      {
-        "id": "place-plsgr",
-        "name": "Pleasant Street",
-        "location": {
-          "address": "Commonwealth Ave and Pleasant St, Boston, MA 02215",
-          "latitude": 42.351521,
-          "longitude": -71.118889
-        }
-      },
-      {
-        "id": "place-stplb",
-        "name": "Saint Paul Street",
-        "location": {
-          "address": null,
-          "latitude": 42.3512,
-          "longitude": -71.116104
-        }
-      },
-      {
-        "id": "place-buwst",
-        "name": "Boston University West",
-        "location": {
-          "address": "Commonwealth Ave and Amory St, Boston, MA 02215",
-          "latitude": 42.350941,
-          "longitude": -71.113876
-        }
-      },
-      {
-        "id": "place-bucen",
-        "name": "Boston University Central",
-        "location": {
-          "address": "Commonwealth Ave and Marsh Chapel, Boston, MA 02215",
-          "latitude": 42.350082,
-          "longitude": -71.106865
-        }
-      },
-      {
-        "id": "place-buest",
-        "name": "Boston University East",
-        "location": {
-          "address": "Commonwealth Ave and Granby St, Boston, MA 02215",
-          "latitude": 42.349735,
-          "longitude": -71.103889
-        }
-      },
-      {
-        "id": "place-bland",
-        "name": "Blandford Street",
-        "location": {
-          "address": "Commonwealth Ave and Blandford Mall, Boston, MA 02215",
-          "latitude": 42.349293,
-          "longitude": -71.100258
-        }
-      },
-      {
-        "id": "place-kencl",
-        "name": "Kenmore",
-        "location": {
-          "address": "Commonwealth Ave and Kenmore St, Boston, MA 02215",
-          "latitude": 42.348949,
-          "longitude": -71.095169
-        }
-      },
-      {
-        "id": "place-hymnl",
-        "name": "Hynes Convention Center",
-        "location": {
-          "address": "100 Massachusetts Ave, Boston, MA",
-          "latitude": 42.347888,
-          "longitude": -71.087903
-        }
-      },
-      {
-        "id": "place-coecl",
-        "name": "Copley",
-        "location": {
-          "address": "Boylston St and Dartmouth St, Boston, MA",
-          "latitude": 42.349974,
-          "longitude": -71.077447
-        }
-      },
-      {
-        "id": "place-armnl",
-        "name": "Arlington",
-        "location": {
-          "address": "Arlington St and Boylston St, Boston, MA 02116",
-          "latitude": 42.351902,
-          "longitude": -71.070893
-        }
+        "id": "place-pktrm",
+        "name": "Park Street"
       },
       {
         "id": "place-boyls",
-        "name": "Boylston",
-        "location": {
-          "address": "Boylston St and Tremont St, Boston, MA",
-          "latitude": 42.35302,
-          "longitude": -71.06459
-        }
+        "name": "Boylston"
       },
       {
-        "id": "place-pktrm",
-        "name": "Park Street",
-        "location": {
-          "address": "Tremont St and Winter St, Boston, MA 02108",
-          "latitude": 42.35639457,
-          "longitude": -71.0624242
-        }
+        "id": "place-armnl",
+        "name": "Arlington"
+      },
+      {
+        "id": "place-coecl",
+        "name": "Copley"
+      },
+      {
+        "id": "place-hymnl",
+        "name": "Hynes Convention Center"
+      },
+      {
+        "id": "place-kencl",
+        "name": "Kenmore"
+      },
+      {
+        "id": "place-bland",
+        "name": "Blandford Street"
+      },
+      {
+        "id": "place-buest",
+        "name": "Boston University East"
+      },
+      {
+        "id": "place-bucen",
+        "name": "Boston University Central"
+      },
+      {
+        "id": "place-buwst",
+        "name": "Boston University West"
+      },
+      {
+        "id": "place-stplb",
+        "name": "Saint Paul Street"
+      },
+      {
+        "id": "place-plsgr",
+        "name": "Pleasant Street"
+      },
+      {
+        "id": "place-babck",
+        "name": "Babcock Street"
+      },
+      {
+        "id": "place-brico",
+        "name": "Packards Corner"
+      },
+      {
+        "id": "place-harvd",
+        "name": "Harvard Avenue"
+      },
+      {
+        "id": "place-grigg",
+        "name": "Griggs Street"
+      },
+      {
+        "id": "place-alsgr",
+        "name": "Allston Street"
+      },
+      {
+        "id": "place-wrnst",
+        "name": "Warren Street"
+      },
+      {
+        "id": "place-wascm",
+        "name": "Washington Street"
+      },
+      {
+        "id": "place-sthld",
+        "name": "Sutherland Road"
+      },
+      {
+        "id": "place-chswk",
+        "name": "Chiswick Road"
+      },
+      {
+        "id": "place-chill",
+        "name": "Chestnut Hill Avenue"
+      },
+      {
+        "id": "place-sougr",
+        "name": "South Street"
+      },
+      {
+        "id": "place-lake",
+        "name": "Boston College"
       }
     ]
   },
@@ -631,202 +306,92 @@
     ],
     "stops": [
       {
-        "id": "place-clmnl",
-        "name": "Cleveland Circle",
-        "location": {
-          "address": "Beacon St and Chestnut Hill Ave, Brighton, MA",
-          "latitude": 42.336142,
-          "longitude": -71.149326
-        }
-      },
-      {
-        "id": "place-engav",
-        "name": "Englewood Avenue",
-        "location": {
-          "address": "Beacon St and Englewood Ave, Brookline, MA",
-          "latitude": 42.336971,
-          "longitude": -71.14566
-        }
-      },
-      {
-        "id": "place-denrd",
-        "name": "Dean Road",
-        "location": {
-          "address": "Beacon St and Dean Rd, Brookline, MA",
-          "latitude": 42.337807,
-          "longitude": -71.141853
-        }
-      },
-      {
-        "id": "place-tapst",
-        "name": "Tappan Street",
-        "location": {
-          "address": "Beacon St and Tappan St, Brookline, MA",
-          "latitude": 42.338459,
-          "longitude": -71.138702
-        }
-      },
-      {
-        "id": "place-bcnwa",
-        "name": "Washington Square",
-        "location": {
-          "address": "Beacon St and Washington St, Brookline, MA",
-          "latitude": 42.339394,
-          "longitude": -71.13533
-        }
-      },
-      {
-        "id": "place-fbkst",
-        "name": "Fairbanks Street",
-        "location": {
-          "address": "Beacon St and Fairbanks Ave, Brookline, MA",
-          "latitude": 42.339725,
-          "longitude": -71.131073
-        }
-      },
-      {
-        "id": "place-bndhl",
-        "name": "Brandon Hall",
-        "location": {
-          "address": "1481 Beacon Street, Brookline, MA",
-          "latitude": 42.340023,
-          "longitude": -71.129082
-        }
-      },
-      {
-        "id": "place-sumav",
-        "name": "Summit Avenue",
-        "location": {
-          "address": "Beacon St and Summit Ave, Brookline, MA",
-          "latitude": 42.34111,
-          "longitude": -71.12561
-        }
-      },
-      {
-        "id": "place-cool",
-        "name": "Coolidge Corner",
-        "location": {
-          "address": "Beacon St and Harvard St, Brookline, MA",
-          "latitude": 42.342116,
-          "longitude": -71.121263
-        }
-      },
-      {
-        "id": "place-stpul",
-        "name": "Saint Paul Street",
-        "location": {
-          "address": "Commonwealth Ave and Saint Paul St, Boston, MA 02446",
-          "latitude": 42.343327,
-          "longitude": -71.116997
-        }
-      },
-      {
-        "id": "place-kntst",
-        "name": "Kent Street",
-        "location": {
-          "address": "Beacon St and Powell St, Brookline, MA",
-          "latitude": 42.344074,
-          "longitude": -71.114197
-        }
-      },
-      {
-        "id": "place-hwsst",
-        "name": "Hawes Street",
-        "location": {
-          "address": "Beacon St and Hawes St, Brookline, MA",
-          "latitude": 42.344906,
-          "longitude": -71.111145
-        }
-      },
-      {
-        "id": "place-smary",
-        "name": "Saint Marys Street",
-        "location": {
-          "address": "Beacon St and Saint Mary's St, Boston, MA",
-          "latitude": 42.345974,
-          "longitude": -71.107353
-        }
-      },
-      {
-        "id": "place-kencl",
-        "name": "Kenmore",
-        "location": {
-          "address": "Commonwealth Ave and Kenmore St, Boston, MA 02215",
-          "latitude": 42.348949,
-          "longitude": -71.095169
-        }
-      },
-      {
-        "id": "place-hymnl",
-        "name": "Hynes Convention Center",
-        "location": {
-          "address": "100 Massachusetts Ave, Boston, MA",
-          "latitude": 42.347888,
-          "longitude": -71.087903
-        }
-      },
-      {
-        "id": "place-coecl",
-        "name": "Copley",
-        "location": {
-          "address": "Boylston St and Dartmouth St, Boston, MA",
-          "latitude": 42.349974,
-          "longitude": -71.077447
-        }
-      },
-      {
-        "id": "place-armnl",
-        "name": "Arlington",
-        "location": {
-          "address": "Arlington St and Boylston St, Boston, MA 02116",
-          "latitude": 42.351902,
-          "longitude": -71.070893
-        }
-      },
-      {
-        "id": "place-boyls",
-        "name": "Boylston",
-        "location": {
-          "address": "Boylston St and Tremont St, Boston, MA",
-          "latitude": 42.35302,
-          "longitude": -71.06459
-        }
-      },
-      {
-        "id": "place-pktrm",
-        "name": "Park Street",
-        "location": {
-          "address": "Tremont St and Winter St, Boston, MA 02108",
-          "latitude": 42.35639457,
-          "longitude": -71.0624242
-        }
-      },
-      {
-        "id": "place-gover",
-        "name": "Government Center",
-        "location": {
-          "address": "Cambridge St and Court St, Boston, MA",
-          "latitude": 42.359705,
-          "longitude": -71.059215
-        }
+        "id": "place-north",
+        "name": "North Station"
       },
       {
         "id": "place-haecl",
-        "name": "Haymarket",
-        "location": {
-          "address": "136 Blackstone St, Boston, MA 02109",
-          "latitude": 42.363021,
-          "longitude": -71.05829
-        }
+        "name": "Haymarket"
       },
       {
-        "id": "place-north",
-        "name": "North Station",
-        "location": {
-          "address": "135 Causeway St, Boston MA 02114",
-          "latitude": 42.365577,
-          "longitude": -71.06129
-        }
+        "id": "place-gover",
+        "name": "Government Center"
+      },
+      {
+        "id": "place-pktrm",
+        "name": "Park Street"
+      },
+      {
+        "id": "place-boyls",
+        "name": "Boylston"
+      },
+      {
+        "id": "place-armnl",
+        "name": "Arlington"
+      },
+      {
+        "id": "place-coecl",
+        "name": "Copley"
+      },
+      {
+        "id": "place-hymnl",
+        "name": "Hynes Convention Center"
+      },
+      {
+        "id": "place-kencl",
+        "name": "Kenmore"
+      },
+      {
+        "id": "place-smary",
+        "name": "Saint Marys Street"
+      },
+      {
+        "id": "place-hwsst",
+        "name": "Hawes Street"
+      },
+      {
+        "id": "place-kntst",
+        "name": "Kent Street"
+      },
+      {
+        "id": "place-stpul",
+        "name": "Saint Paul Street"
+      },
+      {
+        "id": "place-cool",
+        "name": "Coolidge Corner"
+      },
+      {
+        "id": "place-sumav",
+        "name": "Summit Avenue"
+      },
+      {
+        "id": "place-bndhl",
+        "name": "Brandon Hall"
+      },
+      {
+        "id": "place-fbkst",
+        "name": "Fairbanks Street"
+      },
+      {
+        "id": "place-bcnwa",
+        "name": "Washington Square"
+      },
+      {
+        "id": "place-tapst",
+        "name": "Tappan Street"
+      },
+      {
+        "id": "place-denrd",
+        "name": "Dean Road"
+      },
+      {
+        "id": "place-engav",
+        "name": "Englewood Avenue"
+      },
+      {
+        "id": "place-clmnl",
+        "name": "Cleveland Circle"
       }
     ]
   },
@@ -841,184 +406,84 @@
     ],
     "stops": [
       {
-        "id": "place-gover",
-        "name": "Government Center",
-        "location": {
-          "address": "Cambridge St and Court St, Boston, MA",
-          "latitude": 42.359705,
-          "longitude": -71.059215
-        }
-      },
-      {
-        "id": "place-pktrm",
-        "name": "Park Street",
-        "location": {
-          "address": "Tremont St and Winter St, Boston, MA 02108",
-          "latitude": 42.35639457,
-          "longitude": -71.0624242
-        }
-      },
-      {
-        "id": "place-boyls",
-        "name": "Boylston",
-        "location": {
-          "address": "Boylston St and Tremont St, Boston, MA",
-          "latitude": 42.35302,
-          "longitude": -71.06459
-        }
-      },
-      {
-        "id": "place-armnl",
-        "name": "Arlington",
-        "location": {
-          "address": "Arlington St and Boylston St, Boston, MA 02116",
-          "latitude": 42.351902,
-          "longitude": -71.070893
-        }
-      },
-      {
-        "id": "place-coecl",
-        "name": "Copley",
-        "location": {
-          "address": "Boylston St and Dartmouth St, Boston, MA",
-          "latitude": 42.349974,
-          "longitude": -71.077447
-        }
-      },
-      {
-        "id": "place-hymnl",
-        "name": "Hynes Convention Center",
-        "location": {
-          "address": "100 Massachusetts Ave, Boston, MA",
-          "latitude": 42.347888,
-          "longitude": -71.087903
-        }
-      },
-      {
-        "id": "place-kencl",
-        "name": "Kenmore",
-        "location": {
-          "address": "Commonwealth Ave and Kenmore St, Boston, MA 02215",
-          "latitude": 42.348949,
-          "longitude": -71.095169
-        }
-      },
-      {
-        "id": "place-fenwy",
-        "name": "Fenway",
-        "location": {
-          "address": "411 Park Dr, Boston, MA 02215",
-          "latitude": 42.345394,
-          "longitude": -71.104187
-        }
-      },
-      {
-        "id": "place-longw",
-        "name": "Longwood",
-        "location": {
-          "address": "30 Chapel St, Brookline, MA, 02446",
-          "latitude": 42.341145,
-          "longitude": -71.110451
-        }
-      },
-      {
-        "id": "place-bvmnl",
-        "name": "Brookline Village",
-        "location": {
-          "address": "31 Station Street, Brookline, MA 02445",
-          "latitude": 42.332774,
-          "longitude": -71.116296
-        }
-      },
-      {
-        "id": "place-brkhl",
-        "name": "Brookline Hills",
-        "location": {
-          "address": "Tappan St and Cypress St, Brookline, MA 02445",
-          "latitude": 42.331333,
-          "longitude": -71.126999
-        }
-      },
-      {
-        "id": "place-bcnfd",
-        "name": "Beaconsfield",
-        "location": {
-          "address": "124 Beaconsfield Rd, Brookline, MA 02445",
-          "latitude": 42.335846,
-          "longitude": -71.140823
-        }
-      },
-      {
-        "id": "place-rsmnl",
-        "name": "Reservoir",
-        "location": {
-          "address": "401 Chestnut Hill Ave, Brookline, MA, 02445",
-          "latitude": 42.335027,
-          "longitude": -71.148952
-        }
-      },
-      {
-        "id": "place-chhil",
-        "name": "Chestnut Hill",
-        "location": {
-          "address": "Hammond St and Chestnut Hill Rd, Newton, MA 02467",
-          "latitude": 42.326653,
-          "longitude": -71.165314
-        }
-      },
-      {
-        "id": "place-newto",
-        "name": "Newton Centre",
-        "location": {
-          "address": "72 Union Street, Newton, MA 02459",
-          "latitude": 42.329391,
-          "longitude": -71.192429
-        }
-      },
-      {
-        "id": "place-newtn",
-        "name": "Newton Highlands",
-        "location": {
-          "address": "60 Station Avenue, Newton, MA 02461",
-          "latitude": 42.321735,
-          "longitude": -71.206116
-        }
-      },
-      {
-        "id": "place-eliot",
-        "name": "Eliot",
-        "location": {
-          "address": "248 Lincoln St, Newton, MA 02461",
-          "latitude": 42.319023,
-          "longitude": -71.216713
-        }
-      },
-      {
-        "id": "place-waban",
-        "name": "Waban",
-        "location": {
-          "address": "Beacon St and Waban Sq, Newton, MA 02468",
-          "latitude": 42.325943,
-          "longitude": -71.230728
-        }
+        "id": "place-river",
+        "name": "Riverside"
       },
       {
         "id": "place-woodl",
-        "name": "Woodland",
-        "location": {
-          "address": "1940 Washington St, Newton, MA 02466",
-          "latitude": 42.333374,
-          "longitude": -71.244301
-        }
+        "name": "Woodland"
       },
       {
-        "id": "place-river",
-        "name": "Riverside",
-        "location": {
-          "address": "367 Grove St, Newton, MA 02466",
-          "latitude": 42.337059,
-          "longitude": -71.251742
-        }
+        "id": "place-waban",
+        "name": "Waban"
+      },
+      {
+        "id": "place-eliot",
+        "name": "Eliot"
+      },
+      {
+        "id": "place-newtn",
+        "name": "Newton Highlands"
+      },
+      {
+        "id": "place-newto",
+        "name": "Newton Centre"
+      },
+      {
+        "id": "place-chhil",
+        "name": "Chestnut Hill"
+      },
+      {
+        "id": "place-rsmnl",
+        "name": "Reservoir"
+      },
+      {
+        "id": "place-bcnfd",
+        "name": "Beaconsfield"
+      },
+      {
+        "id": "place-brkhl",
+        "name": "Brookline Hills"
+      },
+      {
+        "id": "place-bvmnl",
+        "name": "Brookline Village"
+      },
+      {
+        "id": "place-longw",
+        "name": "Longwood"
+      },
+      {
+        "id": "place-fenwy",
+        "name": "Fenway"
+      },
+      {
+        "id": "place-kencl",
+        "name": "Kenmore"
+      },
+      {
+        "id": "place-hymnl",
+        "name": "Hynes Convention Center"
+      },
+      {
+        "id": "place-coecl",
+        "name": "Copley"
+      },
+      {
+        "id": "place-armnl",
+        "name": "Arlington"
+      },
+      {
+        "id": "place-boyls",
+        "name": "Boylston"
+      },
+      {
+        "id": "place-pktrm",
+        "name": "Park Street"
+      },
+      {
+        "id": "place-gover",
+        "name": "Government Center"
       }
     ]
   },
@@ -1033,184 +498,84 @@
     ],
     "stops": [
       {
-        "id": "place-hsmnl",
-        "name": "Heath Street",
-        "location": {
-          "address": "Heath St and South Huntington Ave, Boston, MA",
-          "latitude": 42.328316,
-          "longitude": -71.110252
-        }
-      },
-      {
-        "id": "place-bckhl",
-        "name": "Back of the Hill",
-        "location": {
-          "address": "100 S Huntington Ave, Boston, MA 02130",
-          "latitude": 42.330139,
-          "longitude": -71.111313
-        }
-      },
-      {
-        "id": "place-rvrwy",
-        "name": "Riverway",
-        "location": {
-          "address": "S Huntington Ave at Huntington Ave, Boston",
-          "latitude": 42.331684,
-          "longitude": -71.111931
-        }
-      },
-      {
-        "id": "place-mispk",
-        "name": "Mission Park",
-        "location": {
-          "address": "Huntington Ave and Mission Park Dr, Boston, MA 02115",
-          "latitude": 42.333195,
-          "longitude": -71.109756
-        }
-      },
-      {
-        "id": "place-fenwd",
-        "name": "Fenwood Road",
-        "location": {
-          "address": "Huntington Ave and Fenwood Rd, Boston, MA",
-          "latitude": 42.333706,
-          "longitude": -71.105728
-        }
-      },
-      {
-        "id": "place-brmnl",
-        "name": "Brigham Circle",
-        "location": {
-          "address": "Huntington Ave and Francis St, Boston, MA",
-          "latitude": 42.334229,
-          "longitude": -71.104609
-        }
-      },
-      {
-        "id": "place-lngmd",
-        "name": "Longwood Medical Area",
-        "location": {
-          "address": "Huntington Ave and Longwood Ave, Boston, MA, 02115",
-          "latitude": 42.33596,
-          "longitude": -71.100052
-        }
-      },
-      {
-        "id": "place-mfa",
-        "name": "Museum of Fine Arts",
-        "location": {
-          "address": "Huntington Ave and Ruggles St, Boston, MA",
-          "latitude": 42.337711,
-          "longitude": -71.095512
-        }
-      },
-      {
-        "id": "place-nuniv",
-        "name": "Northeastern University",
-        "location": {
-          "address": "Huntington Ave and Opera Pl, Boston, MA, 02115",
-          "latitude": 42.340401,
-          "longitude": -71.088806
-        }
-      },
-      {
-        "id": "place-symcl",
-        "name": "Symphony",
-        "location": {
-          "address": "Massachusetts Ave and Huntington Ave, Boston, MA",
-          "latitude": 42.342687,
-          "longitude": -71.085056
-        }
-      },
-      {
-        "id": "place-prmnl",
-        "name": "Prudential",
-        "location": {
-          "address": "Huntington Ave and Belvidere St, Boston, MA 02199",
-          "latitude": 42.34557,
-          "longitude": -71.081696
-        }
-      },
-      {
-        "id": "place-coecl",
-        "name": "Copley",
-        "location": {
-          "address": "Boylston St and Dartmouth St, Boston, MA",
-          "latitude": 42.349974,
-          "longitude": -71.077447
-        }
-      },
-      {
-        "id": "place-armnl",
-        "name": "Arlington",
-        "location": {
-          "address": "Arlington St and Boylston St, Boston, MA 02116",
-          "latitude": 42.351902,
-          "longitude": -71.070893
-        }
-      },
-      {
-        "id": "place-boyls",
-        "name": "Boylston",
-        "location": {
-          "address": "Boylston St and Tremont St, Boston, MA",
-          "latitude": 42.35302,
-          "longitude": -71.06459
-        }
-      },
-      {
-        "id": "place-pktrm",
-        "name": "Park Street",
-        "location": {
-          "address": "Tremont St and Winter St, Boston, MA 02108",
-          "latitude": 42.35639457,
-          "longitude": -71.0624242
-        }
-      },
-      {
-        "id": "place-gover",
-        "name": "Government Center",
-        "location": {
-          "address": "Cambridge St and Court St, Boston, MA",
-          "latitude": 42.359705,
-          "longitude": -71.059215
-        }
-      },
-      {
-        "id": "place-haecl",
-        "name": "Haymarket",
-        "location": {
-          "address": "136 Blackstone St, Boston, MA 02109",
-          "latitude": 42.363021,
-          "longitude": -71.05829
-        }
-      },
-      {
-        "id": "place-north",
-        "name": "North Station",
-        "location": {
-          "address": "135 Causeway St, Boston MA 02114",
-          "latitude": 42.365577,
-          "longitude": -71.06129
-        }
+        "id": "place-lech",
+        "name": "Lechmere"
       },
       {
         "id": "place-spmnl",
-        "name": "Science Park",
-        "location": {
-          "address": "Leverett Circle and Nashua St, Boston, MA 02114",
-          "latitude": 42.366664,
-          "longitude": -71.067666
-        }
+        "name": "Science Park"
       },
       {
-        "id": "place-lech",
-        "name": "Lechmere",
-        "location": {
-          "address": "Cambridge St and O'Brien Hwy, Cambridge, MA 02141",
-          "latitude": 42.370772,
-          "longitude": -71.076536
-        }
+        "id": "place-north",
+        "name": "North Station"
+      },
+      {
+        "id": "place-haecl",
+        "name": "Haymarket"
+      },
+      {
+        "id": "place-gover",
+        "name": "Government Center"
+      },
+      {
+        "id": "place-pktrm",
+        "name": "Park Street"
+      },
+      {
+        "id": "place-boyls",
+        "name": "Boylston"
+      },
+      {
+        "id": "place-armnl",
+        "name": "Arlington"
+      },
+      {
+        "id": "place-coecl",
+        "name": "Copley"
+      },
+      {
+        "id": "place-prmnl",
+        "name": "Prudential"
+      },
+      {
+        "id": "place-symcl",
+        "name": "Symphony"
+      },
+      {
+        "id": "place-nuniv",
+        "name": "Northeastern University"
+      },
+      {
+        "id": "place-mfa",
+        "name": "Museum of Fine Arts"
+      },
+      {
+        "id": "place-lngmd",
+        "name": "Longwood Medical Area"
+      },
+      {
+        "id": "place-brmnl",
+        "name": "Brigham Circle"
+      },
+      {
+        "id": "place-fenwd",
+        "name": "Fenwood Road"
+      },
+      {
+        "id": "place-mispk",
+        "name": "Mission Park"
+      },
+      {
+        "id": "place-rvrwy",
+        "name": "Riverway"
+      },
+      {
+        "id": "place-bckhl",
+        "name": "Back of the Hill"
+      },
+      {
+        "id": "place-hsmnl",
+        "name": "Heath Street"
       }
     ]
   },
@@ -1225,112 +590,52 @@
     ],
     "stops": [
       {
-        "id": "place-bomnl",
-        "name": "Bowdoin",
-        "location": {
-          "address": "Cambridge St and New Chardon St/Bowdoin St, Boston, MA 02114",
-          "latitude": 42.361365,
-          "longitude": -71.062037
-        }
-      },
-      {
-        "id": "place-gover",
-        "name": "Government Center",
-        "location": {
-          "address": "Cambridge St and Court St, Boston, MA",
-          "latitude": 42.359705,
-          "longitude": -71.059215
-        }
-      },
-      {
-        "id": "place-state",
-        "name": "State Street",
-        "location": {
-          "address": "200 Washington St, Boston, MA",
-          "latitude": 42.358978,
-          "longitude": -71.057598
-        }
-      },
-      {
-        "id": "place-aqucl",
-        "name": "Aquarium",
-        "location": {
-          "address": "Atlantic Ave and State St, Boston, MA 02120",
-          "latitude": 42.359784,
-          "longitude": -71.051652
-        }
-      },
-      {
-        "id": "place-mvbcl",
-        "name": "Maverick",
-        "location": {
-          "address": "Sumner St and Maverick Sq, East Boston, MA",
-          "latitude": 42.36911856,
-          "longitude": -71.03952958
-        }
-      },
-      {
-        "id": "place-aport",
-        "name": "Airport",
-        "location": {
-          "address": "Transportation Way and Service Rd, Boston, MA 02128",
-          "latitude": 42.374262,
-          "longitude": -71.030395
-        }
-      },
-      {
-        "id": "place-wimnl",
-        "name": "Wood Island",
-        "location": {
-          "address": "450 Bennington St, East Boston, MA",
-          "latitude": 42.3796403,
-          "longitude": -71.02286539
-        }
-      },
-      {
-        "id": "place-orhte",
-        "name": "Orient Heights",
-        "location": {
-          "address": "1000 Bennington St, East Boston, MA 02128",
-          "latitude": 42.386867,
-          "longitude": -71.004736
-        }
-      },
-      {
-        "id": "place-sdmnl",
-        "name": "Suffolk Downs",
-        "location": {
-          "address": "1230 Bennington St, East Boston, MA 02128",
-          "latitude": 42.39050067,
-          "longitude": -70.99712259
-        }
-      },
-      {
-        "id": "place-bmmnl",
-        "name": "Beachmont",
-        "location": {
-          "address": "630 Winthrop Ave, Revere, MA 02151",
-          "latitude": 42.39754234,
-          "longitude": -70.99231944
-        }
+        "id": "place-wondl",
+        "name": "Wonderland"
       },
       {
         "id": "place-rbmnl",
-        "name": "Revere Beach",
-        "location": {
-          "address": "220 Shirley Ave, Revere, MA",
-          "latitude": 42.40784254,
-          "longitude": -70.99253321
-        }
+        "name": "Revere Beach"
       },
       {
-        "id": "place-wondl",
-        "name": "Wonderland",
-        "location": {
-          "address": "1300 North Shore Rd, Revere, MA 02151",
-          "latitude": 42.41342,
-          "longitude": -70.991648
-        }
+        "id": "place-bmmnl",
+        "name": "Beachmont"
+      },
+      {
+        "id": "place-sdmnl",
+        "name": "Suffolk Downs"
+      },
+      {
+        "id": "place-orhte",
+        "name": "Orient Heights"
+      },
+      {
+        "id": "place-wimnl",
+        "name": "Wood Island"
+      },
+      {
+        "id": "place-aport",
+        "name": "Airport"
+      },
+      {
+        "id": "place-mvbcl",
+        "name": "Maverick"
+      },
+      {
+        "id": "place-aqucl",
+        "name": "Aquarium"
+      },
+      {
+        "id": "place-state",
+        "name": "State Street"
+      },
+      {
+        "id": "place-gover",
+        "name": "Government Center"
+      },
+      {
+        "id": "place-bomnl",
+        "name": "Bowdoin"
       }
     ]
   }

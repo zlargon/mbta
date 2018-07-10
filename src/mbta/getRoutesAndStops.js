@@ -1,8 +1,12 @@
-const _async = require('co').wrap;
+/*
+ * The script to generate the route.json
+ */
+const fs = require('fs');
+const co = require('co');
 const fetch = require('node-fetch');
 const host = 'https://api-v3.mbta.com';
 
-const getRoutesAndStops = _async(function * () {
+co(function * () {
   let res = yield fetch(host + '/routes').then(res => res.json());
   const routes = res.data.slice(0, 7);
 
@@ -19,16 +23,17 @@ const getRoutesAndStops = _async(function * () {
 
     let stops = yield fetch(host + '/stops?filter[route]=' + route.id)
                       .then(res => res.json())
-                      .then(res => res.data);
+                      .then(res => res.data.reverse());
 
     for (let stop of stops) {
 
       stop.name = stop.attributes.name;
-      stop.location = {
-        address: stop.attributes.address,
-        latitude: stop.attributes.latitude,
-        longitude: stop.attributes.longitude
-      };
+
+      // stop.location = {
+      //   address: stop.attributes.address,
+      //   latitude: stop.attributes.latitude,
+      //   longitude: stop.attributes.longitude
+      // };
 
       delete stop.links;
       delete stop.relationships;
@@ -39,7 +44,6 @@ const getRoutesAndStops = _async(function * () {
     route.stops = stops;
   }
 
-  return routes;
-})
-
-module.exports = getRoutesAndStops;
+  // write file
+  fs.writeFileSync('route.json', JSON.stringify(routes, null, 2));
+});
