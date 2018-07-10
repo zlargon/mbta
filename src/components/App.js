@@ -23,11 +23,48 @@ import SearchIcon from '@material-ui/icons/Search';
 import StarIcon from '@material-ui/icons/Star';
 import SettingsIcon from '@material-ui/icons/Settings';
 
+// MBTA
+import prediction from '../mbta/prediction';
+
 // Dictionary
 import dictionary from '../dictionary.json';
 
 class App extends React.Component {
   state = {}
+
+  constructor (props) {
+    super(props);
+
+    this.updateSchedule();
+    setInterval(() => {
+      // update data every 10 sec
+      this.updateSchedule();
+    }, 10000);
+  }
+
+  updateSchedule = () => {
+    const schedules = {...this.props.schedules};
+
+    const requests = [];
+    for (const key in schedules) {
+      const sch = schedules[key];
+      requests.push(prediction(sch.route.id, sch.stop.id, sch.direct_id));
+    }
+
+    Promise.all(requests)
+      .then(departureTimes => {
+        let i = 0;
+        for (const key in schedules) {
+          const sch = schedules[key];
+          sch.departureTime = departureTimes[i++];
+        }
+
+        this.props.dispatch({
+          type: 'SCHEDULE_UPDATE',
+          schedules: schedules
+        });
+      });
+  }
 
   lang = (sentence) => {
     try {
@@ -116,6 +153,7 @@ class App extends React.Component {
 export default connect((state) => {
   return {
     currentTime: state.currentTime,
+    schedules: state.schedules,
     lang: state.lang,
     panel: state.ui.panel
   }
