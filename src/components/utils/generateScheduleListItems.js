@@ -2,15 +2,16 @@ import React from 'react';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 
-function generateScheduleListItems (schedule, schedule_id, currentTime) {
+function generateScheduleListItems (schedule, currentTime) {
   const url = `https://www.mbta.com/schedules/${schedule.route.id}/schedule?direction_id=${schedule.direct_id}&origin=${schedule.stop.id}`;
   const link = <a href={url}>{url}</a>;
+  const id = `${schedule.route.id}-${schedule.stop.id}-${schedule.direct_id}`;
 
   if (schedule.departureTime.length === 0) {
 
     // 1. No Data
     return [
-      <ListItem key={schedule_id + '-time-0'}>
+      <ListItem key={id}>
         <ListItemText primary={'No Data'} secondary={link} />
       </ListItem>
     ];
@@ -31,7 +32,7 @@ function generateScheduleListItems (schedule, schedule_id, currentTime) {
     const SS = t.getSeconds() + 's';
 
     list.push(
-      <ListItem key={schedule_id + '-time-' + i}
+      <ListItem key={`${id}-time-${i}`}
         style={{ textAlign: 'center' }}>
         <ListItemText
           primary={departureTime.toLocaleTimeString()}

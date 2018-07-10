@@ -118,7 +118,7 @@ class Favorite extends React.Component {
               </ListItem>
             );
 
-            const list = generateScheduleListItems(sch, id, this.props.currentTime);
+            const list = generateScheduleListItems(sch, this.props.currentTime);
             list.unshift(header);
             list.push(<Divider key={id + '-divider'}/>);
             return list;

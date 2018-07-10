@@ -127,7 +127,7 @@ class SearchDialog extends React.Component {
 
     return [
       header,
-      generateScheduleListItems(schedule, key, this.props.currentTime)
+      generateScheduleListItems(schedule, this.props.currentTime)
     ];
   }
 
