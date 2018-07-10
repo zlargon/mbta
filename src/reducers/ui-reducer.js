@@ -1,23 +1,27 @@
-const defaultUI = {
-  panel: 0,
+const defultState = {
+  panel: Number.parseInt(localStorage.getItem('panel') || '0', 10),
+
+  // { "Blue": false, "Orange": false, "Red": false, ...}
+  search_collapse: JSON.parse(localStorage.getItem('search_collapse') || '{}'),
+
   menu: false,
   menu_collapse: [true, true, true],
-  search_collapse: {}, // { "Blue": false, "Orange": false, "Red": false, ...}
   search_dialog: false,
   schedule_loading: {}
-}
+};
 
-const uiReducer = (state = defaultUI, action) => {
+const uiReducer = (state = defultState, action) => {
+  let newState = state;
 
   if (action.type === 'UI_PANEL_CHANGE') {
-    return {
+    newState = {
       ...state,
       panel: action.panel
     };
   }
 
   if (action.type === 'UI_MENU_TOGGLE') {
-    return {
+    newState = {
       ...state,
       menu: !state.menu
     }
@@ -27,7 +31,7 @@ const uiReducer = (state = defaultUI, action) => {
     const collapse = [...state.menu_collapse];
     collapse[action.index] = !collapse[action.index];
 
-    return {
+    newState = {
       ...state,
       menu_collapse: collapse
     }
@@ -37,14 +41,14 @@ const uiReducer = (state = defaultUI, action) => {
     const collapse = {...state.search_collapse};
     collapse[action.routeId] = !collapse[action.routeId];
 
-    return {
+    newState = {
       ...state,
       search_collapse: collapse
     }
   }
 
   if (action.type === 'UI_SEARCH_DIALOG') {
-    return {
+    newState = {
       ...state,
       search_dialog: action.open
     }
@@ -56,7 +60,7 @@ const uiReducer = (state = defaultUI, action) => {
     };
     loading[action.schedule] = true;
 
-    return {
+    newState = {
       ...state,
       schedule_loading: loading
     }
@@ -68,13 +72,17 @@ const uiReducer = (state = defaultUI, action) => {
     };
     delete loading[action.schedule];
 
-    return {
+    newState = {
       ...state,
       schedule_loading: loading
     }
   }
 
-  return state;
+  // save to location storage
+  localStorage.setItem('panel', newState.panel);
+  localStorage.setItem('search_collapse', JSON.stringify(newState.search_collapse));
+
+  return newState;
 }
 
 export default uiReducer;
