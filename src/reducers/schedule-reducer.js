@@ -8,14 +8,20 @@ const scheduleReducer = (state = defultState, action) => {
   if (action.type === 'SCHEDULE_ADD') {
     const { route, stop, direct_id } = action;
     const key = [route.id, stop.id, direct_id].join('_');
+
     newState = {
       ...state,
       [key]: {
-        title: `${stop.name} (${route.direction[direct_id]})`,
-        route_id: route.id,
-        color: route.color,
-        stop_id: stop.id,
+        route: {
+          id: route.id,
+          name: route.name,
+          color: route.color,
+          text_color: route.text_color,
+          direction: route.direction
+        },
+        stop: stop,
         direct_id: direct_id,
+        destination: route.stops[direct_id === 1 ? 0 : route.stops.length - 1],
         isFailed: false,
         departureTime: action.departureTime
       }

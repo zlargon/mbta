@@ -32,8 +32,8 @@ class Favorite extends React.Component {
   removeSchedule = (schedule) => () => {
     this.props.dispatch({
       type: 'SCHEDULE_REMOVE',
-      route_id: schedule.route_id,
-      stop_id: schedule.stop_id,
+      route_id: schedule.route.id,
+      stop_id: schedule.stop.id,
       direct_id: schedule.direct_id
     });
   }
@@ -44,7 +44,7 @@ class Favorite extends React.Component {
     const requests = [];
     for (const key in schedules) {
       const sch = schedules[key];
-      requests.push(prediction(sch.route_id, sch.stop_id, sch.direct_id));
+      requests.push(prediction(sch.route.id, sch.stop.id, sch.direct_id));
     }
 
     Promise.all(requests)
@@ -68,14 +68,19 @@ class Favorite extends React.Component {
         {
           Object.values(this.props.schedules).map((sch, index) => {
             const id = 'sch-' + index;
-            const list = generateScheduleListItems(sch, id, this.props.currentTime);
-            list.unshift(
-              <ListSubheader key={id} style={{ backgroundColor: '#' + sch.color, color: 'white', opacity: 0.9 }}>
-                {sch.title + (sch.isFailed ? ' (Update Failed)' : '')}
+
+            const title = `${sch.stop.name} → ${sch.destination.name} (${sch.route.direction[sch.direct_id]})`;
+            const header = (
+              <ListSubheader key={id} style={{ backgroundColor: '#' + sch.route.color, color: '#' + sch.route.text_color, opacity: 0.9 }}>
+                {title + (sch.isFailed ? ' (Update Failed)' : '')}
                 <IconButton>
                   <DeleteIcon onClick={this.removeSchedule(sch)} style={{color: 'white'}}/>
                 </IconButton>
-              </ListSubheader>);
+              </ListSubheader>
+            );
+
+            const list = generateScheduleListItems(sch, id, this.props.currentTime);
+            list.unshift(header);
             list.push(<Divider key={id + '-divider'}/>);
             return list;
           })
