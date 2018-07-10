@@ -23,7 +23,6 @@ class Favorite extends React.Component {
   constructor (props) {
     super(props);
 
-    // TODO: move to index.js
     this.updateSchedule();
     setInterval(() => {
       // update data every 10 sec

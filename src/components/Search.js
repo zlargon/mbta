@@ -18,6 +18,9 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward';
 import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
 
+// Progress
+import CircularProgress from '@material-ui/core/CircularProgress';
+
 // MBTA
 import prediction from '../mbta/prediction';
 import logo from '../mbta/logo.png';
@@ -47,14 +50,19 @@ class Search extends React.Component {
 
   popupSchedule = (route, stop) => () => {
 
-    // TODO: loading
+    // loading
+    const key = `${route.id}_${stop.id}`;
+    this.props.dispatch({
+      type: 'UI_SCHEDULE_LOADING_ADD',
+      schedule: key
+    });
+
     Promise.all([
       prediction(route.id, stop.id, 0),
       prediction(route.id, stop.id, 1)
     ])
     .then(departureTimes => {
 
-      // TODO: unloading
       this.props.dispatch({
         type: 'SEARCH_SCHEDULE',
         route: route,
@@ -65,7 +73,13 @@ class Search extends React.Component {
       this.props.dispatch({
         type: 'UI_SEARCH_DIALOG',
         open: true
-      })
+      });
+
+      // unloading
+      this.props.dispatch({
+        type: 'UI_SCHEDULE_LOADING_REMOVE',
+        schedule: key
+      });
     });
   }
 
@@ -104,6 +118,8 @@ class Search extends React.Component {
       for (let stop of route.stops) {
         stops.push(
           <ListItem button key={stop.id} onClick={this.popupSchedule(route, stop)}>
+
+            { this.props.loading.hasOwnProperty(`${route.id}_${stop.id}`) && <CircularProgress/> }
 
             <ListItemText inset primary={stop.name} />
 
@@ -145,6 +161,7 @@ export default connect((state) => {
   return {
     lang: state.lang,
     collapse: state.ui.search_collapse,
-    schedules: state.schedules
+    schedules: state.schedules,
+    loading: state.ui.schedule_loading
   }
 })(Search);
