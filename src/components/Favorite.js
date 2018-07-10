@@ -2,8 +2,10 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 // List
-import ListSubheader from '@material-ui/core/ListSubheader';
 import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
+import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import Divider from '@material-ui/core/Divider';
 
 import IconButton from '@material-ui/core/IconButton';
@@ -68,15 +70,52 @@ class Favorite extends React.Component {
         {
           Object.values(this.props.schedules).map((sch, index) => {
             const id = 'sch-' + index;
+            const { route, stop, direct_id, destination, isFailed } = sch;
+            const shortNameStyle = {
+              height: '35px',
+              width: '35px',
+              lineHeight: '36px',
+              textAlign: 'center',
+              borderRadius: '50%',
+              backgroundColor: 'white',
+              opacity: 0.7,
+              marginRight: '5px',
+              fontWeight: 'bold',
+              fontAize: '20px',
+              color: route.color
+            };
 
-            const title = `${sch.stop.name} → ${sch.destination.name} (${sch.route.direction[sch.direct_id]})`;
             const header = (
-              <ListSubheader key={id} style={{ backgroundColor: sch.route.color, color: sch.route.text_color, opacity: 0.9 }}>
-                {title + (sch.isFailed ? ' (Update Failed)' : '')}
-                <IconButton>
-                  <DeleteIcon onClick={this.removeSchedule(sch)} style={{color: 'white'}}/>
-                </IconButton>
-              </ListSubheader>
+              <ListItem key={id} style={{ backgroundColor: route.color, color: route.text_color, opacity: 0.9 }} >
+
+                { route.short_name === '' ? '' : (
+                  <div style={shortNameStyle}>
+                    {route.short_name}
+                  </div>
+                )}
+
+                <ListItemText inset
+                  primary={`${stop.name} → ${destination.name} ${isFailed ? '(Update Failed)' : ''}`}
+                  secondary={route.direction[direct_id]}
+
+                  primaryTypographyProps={{
+                    style: {
+                      color: route.text_color
+                    }
+                  }}
+                  secondaryTypographyProps={{
+                    style: {
+                      color: route.text_color,
+                      fontWeight: 'bold'
+                    }
+                  }}/>
+
+                  <ListItemSecondaryAction>
+                    <IconButton>
+                      <DeleteIcon onClick={this.removeSchedule(sch)} style={{ color: route.text_color }}/>
+                    </IconButton>
+                  </ListItemSecondaryAction>
+              </ListItem>
             );
 
             const list = generateScheduleListItems(sch, id, this.props.currentTime);
