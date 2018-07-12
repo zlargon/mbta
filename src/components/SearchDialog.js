@@ -25,9 +25,6 @@ import ClearIcon from '@material-ui/icons/Clear';
 import StarIcon from '@material-ui/icons/Star';
 import StarBorderIcon from '@material-ui/icons/StarBorder';
 
-// Progress
-import CircularProgress from '@material-ui/core/CircularProgress';
-
 // Snackbar
 import Snackbar from '@material-ui/core/Snackbar';
 
@@ -35,7 +32,6 @@ import Snackbar from '@material-ui/core/Snackbar';
 import generateScheduleListItems from './utils/generateScheduleListItems';
 
 // MBTA
-import prediction from '../mbta/prediction';
 import logo from '../mbta/logo.png';
 
 function Transition(props) {
@@ -78,8 +74,7 @@ class SearchDialog extends React.Component {
   }
 
   addScheduleToggle = (schedule) => () => {
-    const { route, stop, direct_id, destination } = schedule;
-    const key = `${route.id}_${stop.id}_${direct_id}`;
+    const { route, stop, direct_id, departureTime, destination } = schedule;
     const schedule_name = `${stop.name} → ${destination.name}`;
 
     if (this.isScheduleExist(schedule)) {
@@ -93,43 +88,27 @@ class SearchDialog extends React.Component {
       });
 
       // show snackbar
-      this.openSnackbar(`"${schedule_name}" has been removed from Favorite List.`);
+      this.openSnackbar(`Remove "${schedule_name}" from Favorite List`);
 
     } else {
-      // loading
-      this.props.dispatch({
-        type: 'UI_SCHEDULE_LOADING_ADD',
-        schedule: key
-      });
 
       // add schedule
-      prediction(route.id, stop.id, direct_id)
-        .then(departureTime => {
+      this.props.dispatch({
+        type: 'SCHEDULE_ADD',
+        route: route,
+        stop: stop,
+        direct_id: direct_id,
+        departureTime: departureTime
+      });
 
-          this.props.dispatch({
-            type: 'SCHEDULE_ADD',
-            route: route,
-            stop: stop,
-            direct_id: direct_id,
-            departureTime: departureTime
-          });
-
-          // show snackbar
-          this.openSnackbar(`"${schedule_name}" has been added to Favorite List.`);
-
-          // unloading
-          this.props.dispatch({
-            type: 'UI_SCHEDULE_LOADING_REMOVE',
-            schedule: key
-          });
-        });
+      // show snackbar
+      this.openSnackbar(`Add "${schedule_name}" to Favorite List`);
     }
   }
 
   getListItems = (schedule) => {
     const { route, stop, direct_id, destination } = schedule;
     const key = `${route.id}_${stop.id}_${direct_id}`;
-    const isLoading = this.props.loading.hasOwnProperty(`${route.id}_${stop.id}_${direct_id}`);
 
     const header = (
       <ListItem key={key}>
@@ -145,7 +124,7 @@ class SearchDialog extends React.Component {
 
         <ListItemSecondaryAction>
           <IconButton onClick={this.addScheduleToggle(schedule)}>
-            { isLoading ? <CircularProgress/> : (this.isScheduleExist(schedule) ? <StarIcon /> : <StarBorderIcon />) }
+            { this.isScheduleExist(schedule) ? <StarIcon /> : <StarBorderIcon /> }
           </IconButton>
         </ListItemSecondaryAction>
       </ListItem>
@@ -216,7 +195,6 @@ export default connect((state) => {
     dialog: state.ui.search_dialog,
     search: state.searchSchedule,
     schedules: state.schedules,
-    loading: state.ui.schedule_loading,
     maxNumber: state.preference.max_schedule_number,
     snackbar: state.ui.snackbar
   }
