@@ -1,20 +1,15 @@
-const defaultState = {
-  inbound: {
-    route: {
-      direction: []
-    },
-    stop: {},
-    destination: {},
-    departureTime: []
+const defaultSchedule = {
+  route: {
+    direction: []
   },
-  outbound: {
-    route: {
-      direction: []
-    },
-    stop: {},
-    destination: {},
-    departureTime: []
-  }
+  stop: {},
+  destination: {},
+  departureTime: []
+}
+
+const defaultState = {
+  inbound: defaultSchedule,
+  outbound: defaultSchedule
 }
 
 const searchScheduleReducer = (state = defaultState, action) => {
