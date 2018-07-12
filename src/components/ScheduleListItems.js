@@ -2,7 +2,7 @@ import React from 'react';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 
-function generateScheduleListItems (schedule, currentTime, limit = 3) {
+function ScheduleListItems (schedule, currentTime, limit = 3) {
   const url = `https://www.mbta.com/schedules/${schedule.route.id}/schedule?direction_id=${schedule.direct_id}&origin=${schedule.stop.id}`;
   const link = <a href={url}>{url}</a>;
   const id = `${schedule.route.id}-${schedule.stop.id}-${schedule.direct_id}`;
@@ -44,4 +44,4 @@ function generateScheduleListItems (schedule, currentTime, limit = 3) {
   return list;
 }
 
-export default generateScheduleListItems;
+export default ScheduleListItems;

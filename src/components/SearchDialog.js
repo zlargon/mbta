@@ -29,7 +29,7 @@ import StarBorderIcon from '@material-ui/icons/StarBorder';
 import Snackbar from '@material-ui/core/Snackbar';
 
 // Utils
-import generateScheduleListItems from './utils/generateScheduleListItems';
+import ScheduleListItems from './ScheduleListItems';
 
 // MBTA
 import logo from '../mbta/logo.png';
@@ -132,7 +132,7 @@ class SearchDialog extends React.Component {
 
     return [
       header,
-      generateScheduleListItems(schedule, this.props.currentTime, this.props.maxNumber)
+      ScheduleListItems(schedule, this.props.currentTime, this.props.maxNumber)
     ];
   }
 

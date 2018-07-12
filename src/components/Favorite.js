@@ -12,7 +12,7 @@ import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
 
 // Utils
-import generateScheduleListItems from './utils/generateScheduleListItems';
+import ScheduleListItems from './ScheduleListItems';
 
 class Favorite extends React.Component {
   state = {}
@@ -83,10 +83,11 @@ class Favorite extends React.Component {
               </ListItem>
             );
 
-            const list = generateScheduleListItems(sch, this.props.currentTime, this.props.maxNumber);
-            list.unshift(header);
-            list.push(<Divider key={id + '-divider'}/>);
-            return list;
+            return [
+              header,
+              ScheduleListItems(sch, this.props.currentTime, this.props.maxNumber),
+              <Divider key={id + '-divider'}/>
+            ];
           })
         }
       </List>
