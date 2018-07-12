@@ -13,6 +13,7 @@ import Favorite from './Favorite';
 import SlideMenu from './SlideMenu';
 import PreferenceDialog from './PreferenceDialog';
 import FavoriteDialog from './FavoriteDialog';
+import SearchDialog from './SearchDialog';
 
 // BottomNavigation
 import BottomNavigation from '@material-ui/core/BottomNavigation';
@@ -129,6 +130,7 @@ class App extends React.Component {
         <SlideMenu/>
         <PreferenceDialog/>
         <FavoriteDialog/>
+        <SearchDialog />
 
         <AppBar position="sticky" style={{backgroundColor: '#1f88ff', color: 'white'}}>
           <Toolbar>

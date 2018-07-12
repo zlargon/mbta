@@ -1,9 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-// Search Dialog
-import SearchDialog from './SearchDialog';
-
 // List
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
@@ -145,14 +142,9 @@ class Search extends React.Component {
     }
 
     return (
-      <div>
-        <List component="nav" style={this.props.style}>
-          { list }
-        </List>
-
-        {/* Search Dialog */}
-        <SearchDialog />
-      </div>
+      <List component="nav" style={this.props.style}>
+        { list }
+      </List>
     );
   }
 }
