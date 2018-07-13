@@ -10,7 +10,8 @@ const defultState = {
   schedule_is_refreshing: false,
   snackbar: {
     open: false,
-    message: ''
+    message: '',
+    variant: ''
   },
   favorite_dialog: {
     open: false,
@@ -106,7 +107,8 @@ const uiReducer = (state = defultState, action) => {
       ...state,
       snackbar: {
         open: action.open,
-        message: action.message
+        message: action.message,
+        variant: action.variant
       }
     }
   }

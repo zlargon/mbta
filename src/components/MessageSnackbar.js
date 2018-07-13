@@ -8,32 +8,38 @@ import Snackbar from '@material-ui/core/Snackbar';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 
+const style = {
+  success: { backgroundColor: '#5C9D51' },
+  info:    { backgroundColor: '#3476CC' },
+  warning: { backgroundColor: '#F3A33A' },
+  error:   { backgroundColor: '#C33E38' }
+}
+
 class MessageSnackbar extends React.Component {
   state = {}
 
   close = () => {
     this.props.dispatch({
       type: 'UI_SEARCH_DIALOG_SNARCK_BAR',
-      open: false,
-      message: ''
+      open: false
     });
   }
 
   render = () => {
     return (
       <Snackbar
-        open={this.props.snackbar.open}
-        message={this.props.snackbar.message}
+        open={this.props.open}
+        message={this.props.message}
         onClose={this.close}
         anchorOrigin={{
           vertical: 'bottom',
           horizontal: 'center'
         }}
         ContentProps={{
-          'aria-describedby': 'message-id',
+          style: style[this.props.variant]
         }}
         action={
-          <IconButton aria-label="Close" color="inherit" onClick={this.close}>
+          <IconButton color="inherit" onClick={this.close}>
             <CloseIcon />
           </IconButton>
         }
@@ -44,7 +50,9 @@ class MessageSnackbar extends React.Component {
 
 export default connect((state) => {
   return {
-    snackbar: state.ui.snackbar
+    open: state.ui.snackbar.open,
+    message: state.ui.snackbar.message,
+    variant: state.ui.snackbar.variant
   }
 })(MessageSnackbar);
 

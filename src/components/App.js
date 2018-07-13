@@ -91,7 +91,8 @@ class App extends React.Component {
           this.props.dispatch({
             type: 'UI_SEARCH_DIALOG_SNARCK_BAR',
             open: true,
-            message: 'Cannot get data from server. Please check your Internet.'
+            message: 'Cannot get data from server. Please check your Internet.',
+            variant: 'error'
           });
         }
       });
