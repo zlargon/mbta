@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { withStyles } from '@material-ui/core/styles';
 
 // Snackbar
 import Snackbar from '@material-ui/core/Snackbar';
@@ -8,7 +9,9 @@ import Snackbar from '@material-ui/core/Snackbar';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 
-const style = {
+const styles = {
+  message: { width: '280px' },
+  action:  { paddingLeft: '0px' },
   success: { backgroundColor: '#5C9D51' },
   info:    { backgroundColor: '#3476CC' },
   warning: { backgroundColor: '#F3A33A' },
@@ -36,7 +39,11 @@ class MessageSnackbar extends React.Component {
           horizontal: 'center'
         }}
         ContentProps={{
-          style: style[this.props.variant]
+          classes: {
+            root: this.props.classes[this.props.variant],
+            message: this.props.classes.message,
+            action: this.props.classes.action
+          }
         }}
         action={
           <IconButton color="inherit" onClick={this.close}>
@@ -54,5 +61,4 @@ export default connect((state) => {
     message: state.ui.snackbar.message,
     variant: state.ui.snackbar.variant
   }
-})(MessageSnackbar);
-
+})(withStyles(styles)(MessageSnackbar));
