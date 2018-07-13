@@ -4,6 +4,10 @@ import { connect } from 'react-redux';
 // Snackbar
 import Snackbar from '@material-ui/core/Snackbar';
 
+// Icon Button
+import IconButton from '@material-ui/core/IconButton';
+import CloseIcon from '@material-ui/icons/Close';
+
 class MessageSnackbar extends React.Component {
   state = {}
 
@@ -28,6 +32,11 @@ class MessageSnackbar extends React.Component {
         ContentProps={{
           'aria-describedby': 'message-id',
         }}
+        action={
+          <IconButton aria-label="Close" color="inherit" onClick={this.close}>
+            <CloseIcon />
+          </IconButton>
+        }
       />
     );
   }
