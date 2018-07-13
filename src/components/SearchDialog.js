@@ -25,9 +25,6 @@ import ClearIcon from '@material-ui/icons/Clear';
 import StarIcon from '@material-ui/icons/Star';
 import StarBorderIcon from '@material-ui/icons/StarBorder';
 
-// Snackbar
-import Snackbar from '@material-ui/core/Snackbar';
-
 // Utils
 import ScheduleListItems from './ScheduleListItems';
 
@@ -62,14 +59,6 @@ class SearchDialog extends React.Component {
       type: 'UI_SEARCH_DIALOG_SNARCK_BAR',
       open: true,
       message: message
-    });
-  }
-
-  closeSnackbar = () => {
-    this.props.dispatch({
-      type: 'UI_SEARCH_DIALOG_SNARCK_BAR',
-      open: false,
-      message: ''
     });
   }
 
@@ -171,19 +160,6 @@ class SearchDialog extends React.Component {
             { this.hasTrain(outbound) && this.getListItems(outbound) }
           </List>
         </DialogContent>
-
-        <Snackbar
-          open={this.props.snackbar.open}
-          message={this.props.snackbar.message}
-          onClose={this.closeSnackbar}
-          anchorOrigin={{
-            vertical: 'bottom',
-            horizontal: 'center'
-          }}
-          ContentProps={{
-            'aria-describedby': 'message-id',
-          }}
-        />
       </Dialog>
     );
   }
@@ -195,7 +171,6 @@ export default connect((state) => {
     dialog: state.ui.search_dialog,
     search: state.searchSchedule,
     schedules: state.schedules,
-    maxNumber: state.preference.max_schedule_number,
-    snackbar: state.ui.snackbar
+    maxNumber: state.preference.max_schedule_number
   }
 })(SearchDialog);
