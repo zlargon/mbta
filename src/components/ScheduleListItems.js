@@ -27,16 +27,21 @@ function ScheduleListItems (schedule, currentTime, limit = 3) {
       continue;
     }
 
-    const t = new Date(departureTime - currentTime);
-    const MM = t.getMinutes() === 0 ? '' : (t.getMinutes() + 'm ');
-    const SS = t.getSeconds() + 's';
+    let t = Number.parseInt((departureTime - currentTime) / 1000, 10);
+    let s = t % 60;   t = Number.parseInt(t / 60, 10);
+    let m = t % 60;   t = Number.parseInt(t / 60, 10);
+    let h = t % 24;
+
+    const SS = s + 's';
+    const MM = (m === 0) ? '' : (m + 'm ');
+    const HH = (h === 0) ? '' : (h + 'h ');
 
     list.push(
       <ListItem key={`${id}-time-${i}`}
         style={{ textAlign: 'center' }}>
         <ListItemText
           primary={departureTime.toLocaleTimeString()}
-          secondary={MM + SS}
+          secondary={HH + MM + SS}
         />
       </ListItem>
     );
