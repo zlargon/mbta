@@ -4,7 +4,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 
 function ScheduleListItems (schedule, currentTime, limit = 3) {
   const url = `https://www.mbta.com/schedules/${schedule.route.id}/schedule?direction_id=${schedule.direct_id}&origin=${schedule.stop.id}`;
-  const link = <a href={url}>{url}</a>;
+  const link = <a href={url} target="_blank">{url}</a>;
   const id = `${schedule.route.id}-${schedule.stop.id}-${schedule.direct_id}`;
 
   if (schedule.departureTime.length === 0) {
