@@ -49,7 +49,7 @@ class App extends React.Component {
     }, 10000);
   }
 
-  updateSchedule = () => {
+  updateSchedule = (event) => {
     const schedules = {...this.props.schedules};
 
     const requests = [];
@@ -82,6 +82,18 @@ class App extends React.Component {
           type: 'UI_SCHEDULE_REFRESH',
           refreshing: false
         });
+      })
+      .catch(error => {
+        // let Circular Progress keep rolling
+
+        // show error message if click by RefreshIcon
+        if (event) {
+          this.props.dispatch({
+            type: 'UI_SEARCH_DIALOG_SNARCK_BAR',
+            open: true,
+            message: 'Cannot get data from server. Please check your Internet.'
+          });
+        }
       });
   }
 
@@ -127,7 +139,6 @@ class App extends React.Component {
 
     return (
       <div>
-
         <SlideMenu/>
         <PreferenceDialog/>
         <FavoriteDialog/>
@@ -151,13 +162,10 @@ class App extends React.Component {
               {toolBarTitle}
             </Typography>
 
-            { // Refresh Icon
-              this.props.refreshing ?
-                <CircularProgress style={{marginLeft: '8px', color: 'white'}}/> :
-                <IconButton color="inherit" onClick={this.updateSchedule}>
-                  <RefreshIcon />
-                </IconButton>
-            }
+            {/* Refresh Icon */}
+            <IconButton color="inherit" onClick={this.updateSchedule}>
+              { !this.props.refreshing ? <RefreshIcon /> : <CircularProgress style={{marginLeft: '8px', color: 'white'}}/> }
+            </IconButton>
           </Toolbar>
         </AppBar>
 

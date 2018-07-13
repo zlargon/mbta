@@ -47,6 +47,12 @@ class Search extends React.Component {
 
   popupSchedule = (route, stop) => () => {
 
+    const isLoading = this.props.loading.hasOwnProperty(`${route.id}_${stop.id}`);
+    if (isLoading) {
+      // block the ListItem, not to call the API at the sametime
+      return;
+    }
+
     // loading
     const key = `${route.id}_${stop.id}`;
     this.props.dispatch({
@@ -77,6 +83,22 @@ class Search extends React.Component {
         type: 'UI_SCHEDULE_LOADING_REMOVE',
         schedule: key
       });
+    })
+    .catch(error => {
+      // show error message
+      this.props.dispatch({
+        type: 'UI_SEARCH_DIALOG_SNARCK_BAR',
+        open: true,
+        message: 'Cannot get data from server. Please check your Internet.'
+      });
+
+      // unloading after 2 second
+      setTimeout(() => {
+        this.props.dispatch({
+          type: 'UI_SCHEDULE_LOADING_REMOVE',
+          schedule: key
+        });
+      }, 2000);
     });
   }
 
@@ -113,10 +135,12 @@ class Search extends React.Component {
 
       let stops = [];
       for (let stop of route.stops) {
-        stops.push(
-          <ListItem button key={stop.id} onClick={this.popupSchedule(route, stop)}>
 
-            { this.props.loading.hasOwnProperty(`${route.id}_${stop.id}`) && <CircularProgress/> }
+        const isLoading = this.props.loading.hasOwnProperty(`${route.id}_${stop.id}`);
+        stops.push(
+          <ListItem button={!isLoading} key={stop.id} onClick={this.popupSchedule(route, stop)}>
+
+            { isLoading && <CircularProgress size={20} style={{ marginRight: '20px' }}/> }
 
             <ListItemText inset primary={stop.name} />
 
