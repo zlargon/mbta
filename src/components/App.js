@@ -125,7 +125,7 @@ class App extends React.Component {
       this.lang('Search') : this.props.currentTime.toLocaleTimeString();
 
     return (
-      <div style={{ textAlign: 'center' }}>
+      <div>
 
         <SlideMenu/>
         <PreferenceDialog/>
@@ -159,7 +159,7 @@ class App extends React.Component {
           </Toolbar>
         </AppBar>
 
-        <div style={{ marginTop: '-5px', marginBottom: '45px' }}>
+        <div style={{ marginTop: '-6px', marginBottom: '45px' }}>
           {/* Panel 0 */}
           <Search style={this.showPanel(0)} />
 
